@@ -1,0 +1,28 @@
+﻿@model List<Shop.Models.Product>
+@{
+    ViewBag.Title = "Home";
+}
+<div class="page-sections">
+    //carousal
+</div>
+<div class="page-sections">
+    <div class="homepage-items-head-cont">
+        <h2 class="homepage-items-head">New Products</h2>
+    </div>
+    <div class="product-cont">
+        <ul class="product-cont-ul">
+            @foreach (var product in Model)
+            {
+                <li>
+                    <a asp-controller="Product" asp-action="Details" asp-route-id="@product.ProductId">
+                        <div class="product-item-cont">
+                            <img src="@product.ImgUrl" alt="@product.Title" />
+                            <p class="product-title">@product.Title</p>
+                            <p class="product-price">@product.PriceStr</p>
+                        </div>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

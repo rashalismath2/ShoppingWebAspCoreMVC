@@ -1,0 +1,78 @@
+﻿@model Shop.Models.Product
+@using Shop.Models.Enums 
+@{
+    ViewBag.Title = Model.Title;
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb product-details-breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item ">@Model.Type.ToString()</li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.Title</li>
+    </ol>
+</nav>
+
+<section id="product-details-page-cont" class="page-sections">
+    <div class="product-detailts-page-contents">
+        <img src="@Model.ImgUrl" alt="@Model.Title" />
+    </div>
+    <div class="product-detailts-page-contents product-detailts-page-contents-details">
+        <ul>
+            <h2 class="product-details-product-title">@Model.Title</h2>
+            <p class="product-details-product-price">@Model.PriceStr</p>
+        </ul>
+        <form>
+            <div class="product-details-sections">
+                <div class="product-details-section-first"><span>Color</span></div>
+                <div class="product-details-section-second">
+                    @foreach (var color in Enum.GetValues(typeof(ProductColor)))
+                    {
+                        <input class="@color.ToString()" value="@color.ToString()" name="color" type="radio" />
+                    }
+                </div>
+            </div>
+            <div class="product-details-sections">
+                <div class="product-details-section-first"><span>Size</span></div>
+                <div class="product-details-section-second">
+                    @foreach (var size in Enum.GetValues(typeof(ProductSize)))
+                    {
+                        <div class="custom-control custom-checkbox">
+                            <input value="@size.ToString()" name="size" type="radio" id="@size.ToString()">
+                            <label class="" for="@size.ToString()">@size.ToString()</label>
+                        </div>
+                    }
+                </div>
+            </div>
+        </form>
+
+        <hr />
+
+        <div class="product-details-sections">
+            <div class="product-details-section-first"><span>Qty</span></div>
+            <div class="product-details-section-second">
+                <select class="custom-select">
+                    @for (int i = 1; i < 11; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="product-details-sections">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt"></i>
+                Add to cart
+            </button>
+        </div>
+
+        <hr />
+
+        <div class="product-details-sections">
+            <div class="product-details-section-first"><span>Share</span></div>
+            <div class="product-details-section-second">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+            </div>
+        </div>
+
+    </div>
+</section>

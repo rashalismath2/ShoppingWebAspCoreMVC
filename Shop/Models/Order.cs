@@ -15,6 +15,6 @@ namespace Shop.Models
         public string CartId { get; set; }
         public float Total { get; set; }
         public float SubTotal { get; set; }
-        public float Discount { get; set; }
+        public float DiscountPrecentage { get; set; }
     }
 }
