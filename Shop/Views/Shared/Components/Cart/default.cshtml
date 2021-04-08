@@ -3,6 +3,8 @@
 }
 
 <li>
-    <span class="badge badge-light">@Model.CartItems.Count()</span>
-    <i class="fas fa-shopping-cart"></i>
+    <a id="cart-icon" asp-controller="Checkout" asp-action="Index">
+        <span class="badge badge-light">@Model.CartItems.Count()</span>
+        <i class="fas fa-shopping-cart"></i>
+    </a>
 </li>

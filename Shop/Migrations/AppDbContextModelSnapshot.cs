@@ -54,11 +54,11 @@ namespace Shop.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CartId1")
+                    b.Property<string>("CartId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Color")
+                        .HasColumnType("int");
 
                     b.Property<float>("Discount")
                         .HasColumnType("real");
@@ -69,6 +69,9 @@ namespace Shop.Migrations
                     b.Property<int>("Qty")
                         .HasColumnType("int");
 
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
+
                     b.Property<float>("SubTotal")
                         .HasColumnType("real");
 
@@ -77,7 +80,7 @@ namespace Shop.Migrations
 
                     b.HasKey("CartItemId");
 
-                    b.HasIndex("CartId1");
+                    b.HasIndex("CartId");
 
                     b.HasIndex("ProductId");
 
@@ -125,9 +128,6 @@ namespace Shop.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Color")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -143,9 +143,6 @@ namespace Shop.Migrations
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -160,39 +157,33 @@ namespace Shop.Migrations
                         new
                         {
                             ProductId = 1,
-                            Color = 0,
-                            CreatedDate = new DateTime(2021, 4, 7, 14, 37, 48, 614, DateTimeKind.Local).AddTicks(711),
+                            CreatedDate = new DateTime(2021, 4, 8, 11, 54, 32, 398, DateTimeKind.Local).AddTicks(2758),
                             Description = "",
                             DiscountPrecentage = 2f,
                             ImgUrl = "https://www.nolimit.lk/storage/products/NOLIMIT-Online_0114__W0A7136.jpg",
                             Price = 1500f,
-                            Size = 0,
                             Title = "Long Sleeve T-Shirt",
                             Type = 0
                         },
                         new
                         {
                             ProductId = 2,
-                            Color = 2,
-                            CreatedDate = new DateTime(2021, 4, 7, 14, 37, 48, 619, DateTimeKind.Local).AddTicks(1750),
+                            CreatedDate = new DateTime(2021, 4, 8, 11, 54, 32, 403, DateTimeKind.Local).AddTicks(3212),
                             Description = "",
                             DiscountPrecentage = 2f,
                             ImgUrl = "https://www.nolimit.lk/storage/products/135.jpg",
                             Price = 1800f,
-                            Size = 1,
                             Title = "Basic Polo T-Shirt",
                             Type = 0
                         },
                         new
                         {
                             ProductId = 3,
-                            Color = 1,
-                            CreatedDate = new DateTime(2021, 4, 7, 14, 37, 48, 619, DateTimeKind.Local).AddTicks(2058),
+                            CreatedDate = new DateTime(2021, 4, 8, 11, 54, 32, 403, DateTimeKind.Local).AddTicks(3515),
                             Description = "",
                             DiscountPrecentage = 1.5f,
                             ImgUrl = "https://www.nolimit.lk/storage/online-shoot-0008-w0a8003-1.jpg",
                             Price = 2800f,
-                            Size = 2,
                             Title = "GENTS CASUAL SHIRT",
                             Type = 1
                         });
@@ -243,7 +234,7 @@ namespace Shop.Migrations
                 {
                     b.HasOne("Shop.Models.Cart", "Cart")
                         .WithMany("CartItems")
-                        .HasForeignKey("CartId1");
+                        .HasForeignKey("CartId");
 
                     b.HasOne("Shop.Models.Product", "Product")
                         .WithMany()

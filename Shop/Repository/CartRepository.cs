@@ -24,13 +24,19 @@ namespace Shop.Repository
             DbContext.Carts.Add(cart);
             DbContext.SaveChanges();
             return cart;
+        }    
+        public Cart Update(Cart cart)
+        {
+            DbContext.Carts.Update(cart);
+            DbContext.SaveChanges();
+            return cart;
         }
 
         public async Task<Cart>  GetCart()
         {
             string cartId = Cart.GetCartIdFromSession(Service);
 
-            Cart cart = await DbContext.Carts.Include(c => c.CartItems)
+            Cart cart = await DbContext.Carts.Include(c => c.CartItems).ThenInclude(ci=>ci.Product)
                 .FirstOrDefaultAsync(c=>c.CartId== cartId);
 
             if (cart==null) {

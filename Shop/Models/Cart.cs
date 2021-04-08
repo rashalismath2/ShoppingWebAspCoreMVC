@@ -13,7 +13,7 @@ namespace Shop.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdateAt { get; set; }
         public bool Cleared { get; set; }
-        public IEnumerable<CartItem> CartItems { get; set; }
+        public List<CartItem> CartItems { get; set; }
         public float Total { get; set; }
         public float SubTotal { get; set; }
         public float Discount { get; set; }
@@ -21,6 +21,42 @@ namespace Shop.Models
         public Cart()
         {
             CartItems = new List<CartItem>();
+        }
+
+        public float GetDiscount() {
+            float itemDiscount = 0;
+            if (CartItems.Count == 0)
+            {
+                return 0;
+            }
+            foreach (var item in CartItems)
+            {
+                itemDiscount += item.CalculateDiscount();
+            }
+            return itemDiscount;
+        }
+        public float GetSubTotal() {
+            float itemSubTotal = 0;
+            if (CartItems.Count == 0)
+            {
+                return 0;
+            }
+            foreach (var item in CartItems)
+            {
+                itemSubTotal += item.CalculateSubTotal();
+            }
+            return itemSubTotal;
+        }
+        public float GetTotal() {
+            float itemTotal = 0;
+            if (CartItems.Count==0) {
+                return 0;
+            }
+            foreach (var item in CartItems)
+            {
+                itemTotal += item.CalculateTotal();
+            }
+            return itemTotal - GetDiscount();
         }
         public static string GetCartIdFromSession(IServiceProvider service) {
 

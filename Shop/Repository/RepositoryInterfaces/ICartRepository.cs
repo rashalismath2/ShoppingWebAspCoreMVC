@@ -10,5 +10,6 @@ namespace Shop.Repository.RepositoryInterfaces
     {
         Task<Cart> GetCart();
         Cart Create(Cart cart);
+        Cart Update(Cart cart);
     }
 }

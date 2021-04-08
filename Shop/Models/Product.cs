@@ -13,9 +13,7 @@ namespace Shop.Models
         public string Title { get; set; }
         public string ImgUrl { get; set; }
         public ProductType Type { get; set; }
-        public ProductSize Size { get; set; }
-        public ProductColor Color { get; set; }
-        public float? DiscountPrecentage { get; set; }
+        public float DiscountPrecentage { get; set; }
         public float Price { get; set; }
         public string Description { get; set; }
         public DateTime CreatedDate { get; set; }

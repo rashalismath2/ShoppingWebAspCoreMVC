@@ -1,32 +1,34 @@
-﻿@model Shop.Models.Product
-@using Shop.Models.Enums 
+﻿@model Shop.ViewModels.ProductCartViewModel
+@using Shop.Models.Enums
 @{
-    ViewBag.Title = Model.Title;
+    ViewBag.Title = Model.Product.Title;
 }
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb product-details-breadcrumb">
         <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
-        <li class="breadcrumb-item ">@Model.Type.ToString()</li>
-        <li class="breadcrumb-item active" aria-current="page">@Model.Title</li>
+        <li class="breadcrumb-item ">@Model.Product.Type.ToString()</li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.Product.Title</li>
     </ol>
 </nav>
 
 <section id="product-details-page-cont" class="page-sections">
     <div class="product-detailts-page-contents">
-        <img src="@Model.ImgUrl" alt="@Model.Title" />
+        <img src="@Model.Product.ImgUrl" alt="@Model.Product.Title" />
     </div>
     <div class="product-detailts-page-contents product-detailts-page-contents-details">
         <ul>
-            <h2 class="product-details-product-title">@Model.Title</h2>
-            <p class="product-details-product-price">@Model.PriceStr</p>
+            <h2 class="product-details-product-title">@Model.Product.Title</h2>
+            <p class="product-details-product-price">@Model.Product.PriceStr</p>
         </ul>
-        <form>
+        <form method="post" asp-action="AddToCart">
+            <input type="hidden" asp-for="Product.ProductId" />
             <div class="product-details-sections">
                 <div class="product-details-section-first"><span>Color</span></div>
                 <div class="product-details-section-second">
                     @foreach (var color in Enum.GetValues(typeof(ProductColor)))
                     {
-                        <input class="@color.ToString()" value="@color.ToString()" name="color" type="radio" />
+                        <input class="@color.ToString()" id="@color.ToString()" value="@color.ToString()" asp-for="CartItem.Color" type="radio" />
+                        <label class="" for="@color.ToString()">@color.ToString()</label>
                     }
                 </div>
             </div>
@@ -36,34 +38,44 @@
                     @foreach (var size in Enum.GetValues(typeof(ProductSize)))
                     {
                         <div class="custom-control custom-checkbox">
-                            <input value="@size.ToString()" name="size" type="radio" id="@size.ToString()">
+                            <input value="@size.ToString()" asp-for="CartItem.Size" type="radio" id="@size.ToString()">
                             <label class="" for="@size.ToString()">@size.ToString()</label>
                         </div>
                     }
                 </div>
             </div>
-        </form>
 
-        <hr />
+            <hr />
 
-        <div class="product-details-sections">
-            <div class="product-details-section-first"><span>Qty</span></div>
-            <div class="product-details-section-second">
-                <select class="custom-select">
-                    @for (int i = 1; i < 11; i++)
-                    {
-                        <option value="@i">@i</option>
-                    }
-                </select>
+            <div class="product-details-sections">
+                <div class="product-details-section-first"><span>Qty</span></div>
+                <div class="product-details-section-second">
+                    <select asp-for="CartItem.Qty" class="custom-select">
+                        @for (int i = 1; i < 11; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="product-details-sections">
-            <button type="submit" class="btn btn-primary">
-                <i class="fas fa-sign-in-alt"></i>
-                Add to cart
-            </button>
-        </div>
+            <div class="product-details-sections">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Add to cart
+                </button>
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <p class="text-success success-message">@TempData["SuccessMessage"]</p>
+                }  
 
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <p class="text-danger error-message">@TempData["ErrorMessage"]</p>
+                }
+
+            </div>
+        </form>
         <hr />
 
         <div class="product-details-sections">
