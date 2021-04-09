@@ -44,11 +44,13 @@ namespace Shop.Controllers
             Cart newCart =await CartRepository.GetCart();
             productCartViewModel.CartItem.ProductId = productCartViewModel.Product.ProductId;
 
-            int qtyTotal = newCart.CartItems.Where(ci => ci.Product.ProductId == productCartViewModel.Product.ProductId).Sum(s=>s.Qty);
+            int qtyTotal = newCart.CartItems
+                .Where(ci => ci.Product.ProductId == productCartViewModel.Product.ProductId)
+                .Sum(s=>s.Qty);
           
-            if (qtyTotal >= 10)
+            if (qtyTotal+productCartViewModel.CartItem.Qty > 10)
             {
-                TempData["ErrorMessage"] = "You have already added 10 items of this product";
+                TempData["ErrorMessage"] = "You can only add 10 items per product. You hace already added "+qtyTotal+" items.";
 
                 return RedirectToAction("Details", new { id = productCartViewModel.Product.ProductId });
             }

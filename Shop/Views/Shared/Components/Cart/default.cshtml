@@ -1,10 +1,10 @@
-﻿@model Shop.Models.Cart
+﻿@model Shop.ViewModels.CartDetailsViewModel
 @{
 }
 
 <li>
-    <a id="cart-icon" asp-controller="Checkout" asp-action="Index">
-        <span class="badge badge-light">@Model.CartItems.Count()</span>
+    <a id="cart-icon" asp-controller="Cart" asp-action="Index">
+        <span class="badge badge-light">@Model.CartDetails.Count()</span>
         <i class="fas fa-shopping-cart"></i>
     </a>
 </li>

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Models;
-using Shop.Repository;
 using Shop.Repository.RepositoryInterfaces;
 using Shop.ViewModels;
 using System;
@@ -8,19 +7,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Shop.Components
+namespace Shop.Controllers
 {
-    public class CartViewComponent : ViewComponent
+    public class CartController : Controller
     {
-        public CartViewComponent(ICartRepository cartRepo)
+        public CartController(ICartRepository CartRepository)
         {
-            CartRepo = cartRepo;
+            this.CartRepository = CartRepository;
         }
 
-        public ICartRepository CartRepo { get; }
+        public ICartRepository CartRepository { get; }
 
-        public async Task<IViewComponentResult> InvokeAsync() {
-            Cart cart = await CartRepo.GetCart();
+        public async Task<IActionResult> Index()
+        {
+            Cart cart =await CartRepository.GetCart();
             var cartItemsGroupedBy = cart.CartItems.GroupBy(ci => ci.ProductId);
 
             List<CartDetails> cartItems = new List<CartDetails>();
@@ -31,7 +31,9 @@ namespace Shop.Components
                 cartItems.Add(cartItem);
             }
 
-            CartDetailsViewModel detailsViewModel = new CartDetailsViewModel(cart, cartItems);
+            CartDetailsViewModel detailsViewModel = new CartDetailsViewModel(cart,cartItems);
+            
+
             return View(detailsViewModel);
         }
     }

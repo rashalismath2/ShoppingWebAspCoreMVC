@@ -1,0 +1,78 @@
+﻿@model Shop.ViewModels.CartDetailsViewModel
+@{
+    ViewBag.Title = "Cart";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Product</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+            <th scope="col">Qty</th>
+            <th scope="col">Discount</th>
+            <th scope="col">Product SubTotal</th>
+            <th scope="col">Product Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.CartDetails.Count < 1)
+        {
+            <tr>
+                <td class="text-center" colspan="9">Cart Is Empty</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var cartItem in Model.CartDetails)
+            {
+                <tr>
+                    <td><img class="cart-product-image" src="@cartItem.Product.ImgUrl" /></td>
+                    <td>@cartItem.Product.Title</td>
+                    <td>@cartItem.Product.Type.ToString()</td>
+                    <td>Rs.@cartItem.Product.Price</td>
+                    <td>@cartItem.Qty</td>
+                    <td>Rs.@cartItem.Discount</td>
+                    <td>Rs.@cartItem.SubTotal</td>
+                    <td>Rs.@cartItem.Total</td>
+                </tr>
+            }
+        }
+        <br />
+        @if (Model.CartDetails.Count > 0)
+        {
+            <tr>
+                <td class="no-border"></td>
+                <td class="no-border"></td>
+                <td class="no-border"></td>
+                <td class="no-border"></td>
+                <td class="no-border"></td>
+                <td class="font-weight-bold ">Total Discount</td>
+                <td class="font-weight-bold ">SubTotal</td>
+                <td class="font-weight-bold ">Total</td>
+            </tr>
+            <tr>
+                <td class="no-border"></td>
+                <td class="no-border"></td>
+                <td class="no-border"></td>
+                <td class="no-border"></td>
+                <td class="no-border"></td>
+                <td>Rs.@Model.Cart.GetDiscount()</td>
+                <td>Rs.@Model.Cart.GetSubTotal()</td>
+                <td>Rs.@Model.Cart.GetTotal()</td>
+            </tr>
+            <tr>
+                <td class="no-border"></td>
+                <td class="no-border"></td>
+                <td class="no-border"></td>
+                <td class="no-border"></td>
+                <td class="no-border"></td>
+                <td class="no-border"></td>
+                <td class="no-border"></td>
+                <td class="text-right no-border"><button class="btn btn-success">Proceed To Checkout</button></td>
+            </tr>
+        }
+
+    </tbody>
+</table>

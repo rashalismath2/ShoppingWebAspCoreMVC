@@ -230,8 +230,11 @@ img {
 }
 
 
-//checkout
+//cart
 
 .cart-product-image {
     width: 40px !important;
+}
+.table td.no-border {
+    border: 0 !important;
 }

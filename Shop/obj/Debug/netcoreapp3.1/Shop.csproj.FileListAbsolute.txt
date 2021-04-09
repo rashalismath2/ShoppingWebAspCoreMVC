@@ -76,4 +76,4 @@ C:\Users\Inexis Dev\source\repos\ShopProject\Shop\obj\Debug\netcoreapp3.1\Razor\
 C:\Users\Inexis Dev\source\repos\ShopProject\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Cart\default.cshtml.g.cs
 C:\Users\Inexis Dev\source\repos\ShopProject\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Product\Details.cshtml.g.cs
 C:\Users\Inexis Dev\source\repos\ShopProject\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Product\NotFound.cshtml.g.cs
-C:\Users\Inexis Dev\source\repos\ShopProject\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\Index.cshtml.g.cs
+C:\Users\Inexis Dev\source\repos\ShopProject\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
