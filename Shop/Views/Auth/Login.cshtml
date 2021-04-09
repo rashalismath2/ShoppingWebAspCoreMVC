@@ -1,0 +1,25 @@
+﻿@model Shop.Models.Auth.Login
+@{
+    ViewBag.Title = "Login";
+}
+
+
+<div class="page-sections">
+    <form id="login-form" method="post" asp-controller="Auth" asp-action="Login">
+        <div class="form-group">
+            <label for="emailInput">Email address</label>
+            <input asp-for="Email" class="form-control" id="emailInput" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <span asp-validation-for="Email" >
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="passwordInput">Password</label>
+            <input type="password" asp-for="Password" class="form-control" id="passwordInput" placeholder="Password">
+            <span asp-validation-for="Password" >
+            </span>
+        </div>
+    
+        <button type="submit" class="btn ">Login</button>
+    </form>
+</div>

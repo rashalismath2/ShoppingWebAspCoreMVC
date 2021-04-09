@@ -15,5 +15,8 @@ namespace Shop.Models
         public string Address { get; set; }
         public string ContactNumber { get; set; }
         public List<Order> Orders { get; set; }
+        public string Password { get; set; }
+
+       
     }
 }

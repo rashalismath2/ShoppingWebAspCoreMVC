@@ -77,3 +77,6 @@ C:\Users\Inexis Dev\source\repos\ShopProject\Shop\obj\Debug\netcoreapp3.1\Razor\
 C:\Users\Inexis Dev\source\repos\ShopProject\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Product\Details.cshtml.g.cs
 C:\Users\Inexis Dev\source\repos\ShopProject\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Product\NotFound.cshtml.g.cs
 C:\Users\Inexis Dev\source\repos\ShopProject\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
+C:\Users\Inexis Dev\source\repos\ShopProject\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Auth\Login.cshtml.g.cs
+C:\Users\Inexis Dev\source\repos\ShopProject\Shop\bin\Debug\netcoreapp3.1\BCrypt.Net-Next.dll
+C:\Users\Inexis Dev\source\repos\ShopProject\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\User\default.cshtml.g.cs

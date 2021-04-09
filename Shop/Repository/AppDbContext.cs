@@ -31,7 +31,7 @@ namespace Shop.Repository
                 DiscountPrecentage = 2,
                 Price = 1500,
                 Description = "",
-                CreatedDate=DateTime.Now
+                CreatedDate = DateTime.Now
             });
             modelBuilder.Entity<Product>().HasData(new Product()
             {
@@ -63,7 +63,17 @@ namespace Shop.Repository
                 Email = "UserOne@gmail.com",
                 Address = "Address one",
                 ContactNumber = "0750000000"
-            });     
+            });            
+            modelBuilder.Entity<User>().HasData(new User()
+            {
+                UserId = 2,
+                FirstName = "Admin",
+                LastName = "One",
+                Email = "admin@admin.com",
+                Address = "Address one",
+                ContactNumber = "0750000000",
+                Password= "$2a$11$Hx.1.HZkvkfw7T52BbdhLuJQAhdvR5Y.1nSvwCxJ1sK9paLLtqi5S"
+            });
 
         }
     }

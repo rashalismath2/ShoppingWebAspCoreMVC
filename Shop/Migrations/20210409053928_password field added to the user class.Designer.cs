@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shop.Repository;
 
 namespace Shop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210409053928_password field added to the user class")]
+    partial class passwordfieldaddedtotheuserclass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,7 +159,7 @@ namespace Shop.Migrations
                         new
                         {
                             ProductId = 1,
-                            CreatedDate = new DateTime(2021, 4, 9, 12, 0, 48, 485, DateTimeKind.Local).AddTicks(6878),
+                            CreatedDate = new DateTime(2021, 4, 9, 11, 9, 26, 745, DateTimeKind.Local).AddTicks(998),
                             Description = "",
                             DiscountPrecentage = 2f,
                             ImgUrl = "https://www.nolimit.lk/storage/products/NOLIMIT-Online_0114__W0A7136.jpg",
@@ -168,7 +170,7 @@ namespace Shop.Migrations
                         new
                         {
                             ProductId = 2,
-                            CreatedDate = new DateTime(2021, 4, 9, 12, 0, 48, 493, DateTimeKind.Local).AddTicks(660),
+                            CreatedDate = new DateTime(2021, 4, 9, 11, 9, 26, 755, DateTimeKind.Local).AddTicks(1891),
                             Description = "",
                             DiscountPrecentage = 2f,
                             ImgUrl = "https://www.nolimit.lk/storage/products/135.jpg",
@@ -179,7 +181,7 @@ namespace Shop.Migrations
                         new
                         {
                             ProductId = 3,
-                            CreatedDate = new DateTime(2021, 4, 9, 12, 0, 48, 493, DateTimeKind.Local).AddTicks(1097),
+                            CreatedDate = new DateTime(2021, 4, 9, 11, 9, 26, 755, DateTimeKind.Local).AddTicks(2384),
                             Description = "",
                             DiscountPrecentage = 1.5f,
                             ImgUrl = "https://www.nolimit.lk/storage/online-shoot-0008-w0a8003-1.jpg",
@@ -230,16 +232,6 @@ namespace Shop.Migrations
                             Email = "UserOne@gmail.com",
                             FirstName = "User",
                             LastName = "One"
-                        },
-                        new
-                        {
-                            UserId = 2,
-                            Address = "Address one",
-                            ContactNumber = "0750000000",
-                            Email = "admin@admin.com",
-                            FirstName = "Admin",
-                            LastName = "One",
-                            Password = "$2a$11$Hx.1.HZkvkfw7T52BbdhLuJQAhdvR5Y.1nSvwCxJ1sK9paLLtqi5S"
                         });
                 });
 

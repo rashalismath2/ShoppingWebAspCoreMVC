@@ -1,0 +1,15 @@
+﻿@model Shop.Models.User
+@{
+}
+
+@if (Model != null)
+{
+    <p class="m-0 d-inline"><span class="font-weight-bold">Hi, </span>@Model.FirstName!</p>
+}
+else
+{
+    <a asp-controller="Auth" asp-action="Login">
+        <i class="fas fa-sign-in-alt"></i>
+        <span>Login</span>
+    </a>
+}

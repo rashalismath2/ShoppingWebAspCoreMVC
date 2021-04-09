@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "0TosPXC3unZ8VRslpIZ35/IwVdFK2B8PQfsHJmMKlQWFY01FW6I2In3ahywkpB37QjSsuQordD5aKytG1l5hpw==",
+  "dgSpecHash": "u278nElFpuaGYt7zxncZIKmfmOJqnQZ4YwDGyqkcR3c+3T0u0bqLvefpv4Tplg7nwA4cuf+phheGo5dnMt3fxA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Inexis Dev\\source\\repos\\ShopProject\\Shop\\Shop.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Inexis Dev\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\Inexis Dev\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Inexis Dev\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
     "C:\\Users\\Inexis Dev\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

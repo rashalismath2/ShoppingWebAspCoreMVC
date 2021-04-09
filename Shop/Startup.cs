@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Shop.Repository;
 using Shop.Repository.RepositoryInterfaces;
+using Shop.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,10 @@ namespace Shop
 
             services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+
+            services.AddScoped<IAuthService, AuthService>();
 
 
             services.AddDistributedMemoryCache();
@@ -42,7 +47,7 @@ namespace Shop
             {
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
-                options.IdleTimeout = TimeSpan.FromDays(2);
+                options.IdleTimeout = TimeSpan.FromDays(1);
             });
         }
 
