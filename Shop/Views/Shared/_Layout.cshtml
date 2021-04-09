@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/Css/Style.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <link href="~/Content/Css/Style.css" rel="stylesheet" >
+    
 </head>
 <body>
-    <nav class="navbar navbar-light ">
+    <nav class="navbar navbar-light nav-padding ">
         <span class="navbar-brand mb-0 h1"><a id="shop-logo" asp-controller="Home" asp-action="Index">ShopOnline</a></span>
          
         <div>
@@ -24,7 +25,7 @@
         </div>
     </nav>
 
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-dark nav-padding ">
         <ul class="nav-list-items" id="nav-product-types">
             @foreach (var item in Enum.GetValues(typeof(ProductType)))
             {

@@ -44,6 +44,7 @@ namespace Shop.Controllers
                 }
             }
 
+            ModelState.AddModelError("Login","Invalid email and password!");
 
             return View(login);
         }

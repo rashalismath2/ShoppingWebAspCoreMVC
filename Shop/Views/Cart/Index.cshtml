@@ -3,7 +3,7 @@
     ViewBag.Title = "Cart";
 }
 
-<table class="table">
+<table class="table nav-padding">
     <thead>
         <tr>
             <th scope="col">Image</th>
@@ -70,7 +70,7 @@
                 <td class="no-border"></td>
                 <td class="no-border"></td>
                 <td class="no-border"></td>
-                <td class="text-right no-border"><button class="btn btn-success">Proceed To Checkout</button></td>
+                <td class="text-right no-border"><a asp-controller="Checkout" asp-action="Index" class="btn btn-success">Proceed To Checkout</a></td>
             </tr>
         }
 

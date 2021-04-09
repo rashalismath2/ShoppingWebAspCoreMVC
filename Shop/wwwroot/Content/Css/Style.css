@@ -6,13 +6,26 @@
 }
 
 a {
-    text-decoration:none;
-    color:inherit;
-}
-a:hover{
     text-decoration: none;
     color: inherit;
 }
+
+ul {
+   list-style:none;
+   padding:0;
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.clearfix {
+    content: "";
+    display: block;
+    clear: both;
+}
+
 section {
     display: flex
 }
@@ -21,8 +34,11 @@ img {
     width: 40px;
 }
 
+.nav-padding {
+    padding: .5rem 5rem;
+}
 .page-sections {
-    padding: .5rem 1rem;
+    padding: .5rem 5rem;
     margin-top: 25px;
 }
 
@@ -128,13 +144,13 @@ img {
     cursor: pointer;
 }
 
-    .product-item-cont:hover {
-        -webkit-box-shadow: -1px -3px 11px -7px rgba(0,0,0,0.75);
-        -moz-box-shadow: -1px -3px 11px -7px rgba(0,0,0,0.75);
-        box-shadow: -1px -3px 11px -7px rgba(0,0,0,0.75);
-    }
+.product-item-cont:hover {
+    -webkit-box-shadow: -1px -3px 11px -7px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px -3px 11px -7px rgba(0,0,0,0.75);
+    box-shadow: -1px -3px 11px -7px rgba(0,0,0,0.75);
+}
 
-//details page
+/*//details page*/
 
 #product-details-page-cont {
     display: flex;
@@ -243,7 +259,7 @@ img {
 }
 
 
-//cart
+/*//cart*/
 
 .cart-product-image {
     width: 40px !important;
@@ -254,17 +270,24 @@ img {
 }
 
 
-//Login forma
+/*//Login forma*/
 
 #login-form {
+    padding: 20px;
+    border: 1px solid black;
     width: 400px;
     margin: auto;
 }
-#login-form button{
+
+#login-form button { 
     background: grey;
     float: right;
-    color:white;
+    color: white;
 }
+
 .field-validation-error {
+    color: red;
+}
+.validation-summary-errors {
     color:red;
 }
