@@ -51,16 +51,12 @@ namespace Shop.Models
             return SubTotal;
         }
         public float GetTotal() {
-            float itemTotal = 0;
             if (CartItems.Count==0) {
                 Total = 0;
                 return Total;
             }
-            foreach (var item in CartItems)
-            {
-                itemTotal += item.CalculateTotal();
-            }
-            Total = itemTotal - GetDiscount();
+      
+            Total = GetSubTotal() - GetDiscount();
             return Total;
         }
         public static string GetCartIdFromSession(IServiceProvider service) {

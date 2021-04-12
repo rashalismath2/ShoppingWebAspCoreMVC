@@ -14,6 +14,7 @@ namespace Shop.Models
         public ProductSize Size { get; set; }
         public ProductColor Color { get; set; }
         public Cart Cart { get; set; }
+        public string CartId { get; set; }
         public int Qty { get; set; }
 
         public float Total { get; set; }
@@ -24,7 +25,7 @@ namespace Shop.Models
 
             if (Product != null)
             {
-                return (Product.Price * Qty) - CalculateDiscount();
+                return CalculateSubTotal() - CalculateDiscount();
             }
             return 0;
         }

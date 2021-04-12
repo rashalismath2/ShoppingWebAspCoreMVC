@@ -4,6 +4,14 @@
 }
 
 <div class="page-sections">
+    <div class="text-right">
+        @if (TempData["CartItemRemoved"]!=null)
+        {
+            <div class="alert alert-success d-inline mr-2" role="alert">
+                @TempData["CartItemRemoved"]
+            </div>
+        }
+    </div>
     <table class="table nav-padding">
         <thead>
             <tr>
@@ -16,6 +24,7 @@
                 <th scope="col">Discount</th>
                 <th scope="col">Product SubTotal</th>
                 <th scope="col">Product Total</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -39,6 +48,13 @@
                         <td>Rs.@cartItem.CalculateDiscount()</td>
                         <td>Rs.@cartItem.CalculateSubTotal()</td>
                         <td>Rs.@cartItem.CalculateTotal()</td>
+                        <td class="font-weight-bold ">
+                            <form asp-action="Delete" method="post">
+                                <input type="hidden" value="@cartItem.CartItemId" name="deleteCartItemId" />
+                                <button class="btn btn-danger">Delete</button>
+                            </form>
+
+                        </td>
                     </tr>
                 }
             }
@@ -55,6 +71,7 @@
                     <td class="font-weight-bold ">Total Discount</td>
                     <td class="font-weight-bold ">SubTotal</td>
                     <td class="font-weight-bold ">Total</td>
+                    <td class="font-weight-bold "></td>
                 </tr>
                 <tr>
                     <td class="no-border"></td>
@@ -66,6 +83,7 @@
                     <td>Rs.@Model.GetDiscount()</td>
                     <td>Rs.@Model.GetSubTotal()</td>
                     <td>Rs.@Model.GetTotal()</td>
+                    <td class="font-weight-bold "></td>
                 </tr>
                 <tr>
                     <td class="no-border"></td>
@@ -77,6 +95,7 @@
                     <td class="no-border"></td>
                     <td class="no-border"></td>
                     <td class="text-right no-border"><a asp-controller="Checkout" asp-action="Index" class="btn btn-success">Proceed To Checkout</a></td>
+
                 </tr>
             }
 
