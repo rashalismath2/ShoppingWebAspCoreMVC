@@ -12,7 +12,7 @@ namespace Shop.Models
         public User User { get; set; }
         public int? UserId { get; set; }
         public Cart Cart { get; set; }
-        public int CartId { get; set; }
+        public string CartId { get; set; }
         public string FullName { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
