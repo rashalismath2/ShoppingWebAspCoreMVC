@@ -24,11 +24,11 @@ namespace Shop.Migrations
                     b.Property<string>("CartId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("Cleared")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
 
                     b.Property<float>("Discount")
                         .HasColumnType("real");
@@ -85,6 +85,52 @@ namespace Shop.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("CartItems");
+                });
+
+            modelBuilder.Entity("Shop.Models.Checkout", b =>
+                {
+                    b.Property<int>("CheckoutId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CartId1")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("City")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PaymentMethod")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CheckoutId");
+
+                    b.HasIndex("CartId1");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Checkouts");
                 });
 
             modelBuilder.Entity("Shop.Models.Order", b =>
@@ -157,7 +203,7 @@ namespace Shop.Migrations
                         new
                         {
                             ProductId = 1,
-                            CreatedDate = new DateTime(2021, 4, 9, 12, 0, 48, 485, DateTimeKind.Local).AddTicks(6878),
+                            CreatedDate = new DateTime(2021, 4, 12, 13, 28, 7, 296, DateTimeKind.Local).AddTicks(5962),
                             Description = "",
                             DiscountPrecentage = 2f,
                             ImgUrl = "https://www.nolimit.lk/storage/products/NOLIMIT-Online_0114__W0A7136.jpg",
@@ -168,7 +214,7 @@ namespace Shop.Migrations
                         new
                         {
                             ProductId = 2,
-                            CreatedDate = new DateTime(2021, 4, 9, 12, 0, 48, 493, DateTimeKind.Local).AddTicks(660),
+                            CreatedDate = new DateTime(2021, 4, 12, 13, 28, 7, 305, DateTimeKind.Local).AddTicks(8733),
                             Description = "",
                             DiscountPrecentage = 2f,
                             ImgUrl = "https://www.nolimit.lk/storage/products/135.jpg",
@@ -179,7 +225,7 @@ namespace Shop.Migrations
                         new
                         {
                             ProductId = 3,
-                            CreatedDate = new DateTime(2021, 4, 9, 12, 0, 48, 493, DateTimeKind.Local).AddTicks(1097),
+                            CreatedDate = new DateTime(2021, 4, 12, 13, 28, 7, 305, DateTimeKind.Local).AddTicks(9386),
                             Description = "",
                             DiscountPrecentage = 1.5f,
                             ImgUrl = "https://www.nolimit.lk/storage/online-shoot-0008-w0a8003-1.jpg",
@@ -254,6 +300,17 @@ namespace Shop.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Shop.Models.Checkout", b =>
+                {
+                    b.HasOne("Shop.Models.Cart", "Cart")
+                        .WithMany()
+                        .HasForeignKey("CartId1");
+
+                    b.HasOne("Shop.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Shop.Models.Order", b =>

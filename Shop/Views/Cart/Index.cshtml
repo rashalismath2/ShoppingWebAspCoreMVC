@@ -1,78 +1,85 @@
-﻿@model Shop.ViewModels.CartDetailsViewModel
+﻿@model Shop.Models.Cart
 @{
     ViewBag.Title = "Cart";
 }
 
-<table class="table nav-padding">
-    <thead>
-        <tr>
-            <th scope="col">Image</th>
-            <th scope="col">Product</th>
-            <th scope="col">Category</th>
-            <th scope="col">Price</th>
-            <th scope="col">Qty</th>
-            <th scope="col">Discount</th>
-            <th scope="col">Product SubTotal</th>
-            <th scope="col">Product Total</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model.CartDetails.Count < 1)
-        {
+<div class="page-sections">
+    <table class="table nav-padding">
+        <thead>
             <tr>
-                <td class="text-center" colspan="9">Cart Is Empty</td>
+                <th scope="col">Image</th>
+                <th scope="col">Product</th>
+                <th scope="col">Category</th>
+                <th scope="col">Size</th>
+                <th scope="col">Price</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Discount</th>
+                <th scope="col">Product SubTotal</th>
+                <th scope="col">Product Total</th>
             </tr>
-        }
-        else
-        {
-            @foreach (var cartItem in Model.CartDetails)
+        </thead>
+        <tbody>
+            @if (Model.CartItems.Count < 1)
             {
                 <tr>
-                    <td><img class="cart-product-image" src="@cartItem.Product.ImgUrl" /></td>
-                    <td>@cartItem.Product.Title</td>
-                    <td>@cartItem.Product.Type.ToString()</td>
-                    <td>Rs.@cartItem.Product.Price</td>
-                    <td>@cartItem.Qty</td>
-                    <td>Rs.@cartItem.Discount</td>
-                    <td>Rs.@cartItem.SubTotal</td>
-                    <td>Rs.@cartItem.Total</td>
+                    <td class="text-center" colspan="9">Cart Is Empty</td>
                 </tr>
             }
-        }
-        <br />
-        @if (Model.CartDetails.Count > 0)
-        {
-            <tr>
-                <td class="no-border"></td>
-                <td class="no-border"></td>
-                <td class="no-border"></td>
-                <td class="no-border"></td>
-                <td class="no-border"></td>
-                <td class="font-weight-bold ">Total Discount</td>
-                <td class="font-weight-bold ">SubTotal</td>
-                <td class="font-weight-bold ">Total</td>
-            </tr>
-            <tr>
-                <td class="no-border"></td>
-                <td class="no-border"></td>
-                <td class="no-border"></td>
-                <td class="no-border"></td>
-                <td class="no-border"></td>
-                <td>Rs.@Model.Cart.GetDiscount()</td>
-                <td>Rs.@Model.Cart.GetSubTotal()</td>
-                <td>Rs.@Model.Cart.GetTotal()</td>
-            </tr>
-            <tr>
-                <td class="no-border"></td>
-                <td class="no-border"></td>
-                <td class="no-border"></td>
-                <td class="no-border"></td>
-                <td class="no-border"></td>
-                <td class="no-border"></td>
-                <td class="no-border"></td>
-                <td class="text-right no-border"><a asp-controller="Checkout" asp-action="Index" class="btn btn-success">Proceed To Checkout</a></td>
-            </tr>
-        }
+            else
+            {
+                @foreach (var cartItem in Model.CartItems)
+                {
+                    <tr>
+                        <td><img class="cart-product-image" src="@cartItem.Product.ImgUrl" /></td>
+                        <td>@cartItem.Product.Title</td>
+                        <td>@cartItem.Product.Type.ToString()</td>
+                        <td>@cartItem.Size</td>
+                        <td>Rs.@cartItem.Product.Price</td>
+                        <td>@cartItem.Qty</td>
+                        <td>Rs.@cartItem.CalculateDiscount()</td>
+                        <td>Rs.@cartItem.CalculateSubTotal()</td>
+                        <td>Rs.@cartItem.CalculateTotal()</td>
+                    </tr>
+                }
+            }
+            <br />
+            @if (Model.CartItems.Count > 0)
+            {
+                <tr>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="font-weight-bold ">Total Discount</td>
+                    <td class="font-weight-bold ">SubTotal</td>
+                    <td class="font-weight-bold ">Total</td>
+                </tr>
+                <tr>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td>Rs.@Model.GetDiscount()</td>
+                    <td>Rs.@Model.GetSubTotal()</td>
+                    <td>Rs.@Model.GetTotal()</td>
+                </tr>
+                <tr>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="text-right no-border"><a asp-controller="Checkout" asp-action="Index" class="btn btn-success">Proceed To Checkout</a></td>
+                </tr>
+            }
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>

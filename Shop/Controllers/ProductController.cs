@@ -17,7 +17,7 @@ namespace Shop.Controllers
             Products = products;
             CartRepository = cartRepository;
         }
-    
+
         public IProductRepository Products { get; }
         public ICartRepository CartRepository { get; }
 
@@ -39,29 +39,47 @@ namespace Shop.Controllers
             return View(productCartViewModel);
         }
         [HttpPost]
-        public async Task<IActionResult> AddToCart(ProductCartViewModel productCartViewModel) {
+        public async Task<IActionResult> AddToCart(ProductCartViewModel productCartViewModel)
+        {
 
-            Cart newCart =await CartRepository.GetCart();
+            Cart newCart = await CartRepository.GetCart();
             productCartViewModel.CartItem.ProductId = productCartViewModel.Product.ProductId;
 
-            int qtyTotal = newCart.CartItems
-                .Where(ci => ci.Product.ProductId == productCartViewModel.Product.ProductId)
-                .Sum(s=>s.Qty);
-          
-            if (qtyTotal+productCartViewModel.CartItem.Qty > 10)
+            List<CartItem> cartItems = newCart.CartItems
+                .Where(
+                        ci => ci.Product.ProductId == productCartViewModel.Product.ProductId).ToList();
+
+            //calculating qty will be determined by only the product id, size wont be included
+            //total of the qty exist in the cart and we are adding should be less than 10
+            int qtyTotal=cartItems.Sum(s => s.Qty);
+
+            if (qtyTotal + productCartViewModel.CartItem.Qty > 10)
             {
-                TempData["ErrorMessage"] = "You can only add 10 items per product. You hace already added "+qtyTotal+" items.";
+                TempData["ProductErrorMessage"] = "You can only add 10 items per product. You have already added " + qtyTotal + " items.";
 
                 return RedirectToAction("Details", new { id = productCartViewModel.Product.ProductId });
             }
 
-            newCart.CartItems.Add(productCartViewModel.CartItem);
-            
+
+            //if we have a product with same size in the cart items we just simply add two quentities
+            bool foundProduct = false;
+            foreach (var item in cartItems)
+            {
+                if (item.Size==productCartViewModel.CartItem.Size) {
+                    foundProduct = true;
+                    item.Qty += productCartViewModel.CartItem.Qty;
+                }
+            }
+            //if we didnt found a product with the same size but different size we will add it to the cart
+            if (!foundProduct) {
+                newCart.CartItems.Add(productCartViewModel.CartItem);
+            }
+           
             CartRepository.Update(newCart);
 
-            TempData["SuccessMessage"] = "Product added to the cart";
-            
-            return RedirectToAction("Details",new {id=productCartViewModel.Product.ProductId });
+            TempData["ProductSuccessMessage"] = "Product added to the cart";
+
+            return RedirectToAction("Details", new { id = productCartViewModel.Product.ProductId });
         }
     }
 }

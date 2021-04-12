@@ -21,20 +21,8 @@ namespace Shop.Controllers
         public async Task<IActionResult> Index()
         {
             Cart cart =await CartRepository.GetCart();
-            var cartItemsGroupedBy = cart.CartItems.GroupBy(ci => ci.ProductId);
-
-            List<CartDetails> cartItems = new List<CartDetails>();
-
-            foreach (var item in cartItemsGroupedBy)
-            {
-                CartDetails cartItem = new CartDetails(item.ToList());
-                cartItems.Add(cartItem);
-            }
-
-            CartDetailsViewModel detailsViewModel = new CartDetailsViewModel(cart,cartItems);
-            
-
-            return View(detailsViewModel);
+               
+            return View(cart);
         }
     }
 }

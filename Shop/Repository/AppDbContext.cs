@@ -18,7 +18,8 @@ namespace Shop.Repository
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; } 
+        public DbSet<Checkout> Checkouts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -63,7 +64,7 @@ namespace Shop.Repository
                 Email = "UserOne@gmail.com",
                 Address = "Address one",
                 ContactNumber = "0750000000"
-            });            
+            });
             modelBuilder.Entity<User>().HasData(new User()
             {
                 UserId = 2,
@@ -72,7 +73,7 @@ namespace Shop.Repository
                 Email = "admin@admin.com",
                 Address = "Address one",
                 ContactNumber = "0750000000",
-                Password= "$2a$11$Hx.1.HZkvkfw7T52BbdhLuJQAhdvR5Y.1nSvwCxJ1sK9paLLtqi5S"
+                Password = "$2a$11$Hx.1.HZkvkfw7T52BbdhLuJQAhdvR5Y.1nSvwCxJ1sK9paLLtqi5S"
             });
 
         }

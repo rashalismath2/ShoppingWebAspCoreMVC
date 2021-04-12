@@ -1,7 +1,116 @@
-﻿
+﻿@using Shop.Models.Enums
+@model Shop.Models.Checkout
 @{
     ViewBag.Title = "Checkout";
 }
 
+@section Left{
+    <div class="checkout-sections checkout-sections-border">
+        <span class="navbar-brand mb-0 h1"><a id="shop-logo" asp-controller="Home" asp-action="Index">ShopOnline</a></span>
+    </div>
+    <div class="checkout-sections ">
 
-<p>Checkout page</p>
+        <form asp-controller="Checkout" asp-action="Checkout" method="post">
+            <div>
+                <h5>Billing information</h5>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col">
+                        <input asp-for="FullName"  type="text" required class="form-control" id="checkoutFullName" placeholder="Full Name*">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-9">
+                        <input asp-for="Email" type="email" class="form-control" id="checkoutEmail" placeholder="Enter email*">
+                    </div>
+                    <div class="col-3">
+                        <input asp-for="Phone" type="text" class="form-control" id="checkoutPhone" placeholder="Phone*">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-4">
+                        <select asp-for="City" class="form-control" asp-items="Html.GetEnumSelectList<City>()" id="checkoutCity"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col">
+                        <input asp-for="Address" type="text" class="form-control" required id="checkoutAddress" placeholder="Address*">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <h5>Payment method</h5>
+                <div class="row">
+                    <div class="col-3">
+                        <select asp-for="PaymentMethod" class="form-control" asp-items="Html.GetEnumSelectList<PaymentMethod>()" id="checkoutOaymentMethid"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="checkoutNote">Note</label>
+                <textarea asp-for="Note" class="form-control" id="checkoutNote" rows="3"></textarea>
+            </div>
+
+            <input asp-for="@Model.CartId" value="@Model.Cart.CartId" type="hidden" />
+
+            <div class="form-group d-flex justify-content-between">
+                <a class="btn btn-secondary" asp-controller="Cart" asp-action="Index"><i class="fas fa-long-arrow-alt-left mr-1"></i>Cart</a>
+                <button type="submit" class="btn btn-primary">Checkout</button>
+            </div>
+
+        </form>
+
+    </div>
+}
+
+@section Right{
+    <div class="checkout-sections checkout-sections-border">
+        @foreach (var item in Model.Cart.CartItems)
+        {
+            <div class="row">
+                <div class="col-3 text-center">
+                    <div id="checkout-product-img">
+                        <span class="badge badge-light">@item.Qty</span>
+                        <img src="@item.Product.ImgUrl" />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <p class="m-0">@item.Product.Title</p>
+                    <p>Size: @item.Size</p>
+                </div>
+                <div class="col-3">
+                    <p><b>LKR @item.CalculateTotal()</b></p>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="checkout-sections checkout-sections-border">
+        <div class="row">
+            <div class="col-3">
+                Subtotal
+            </div>
+            <div class="col-6"></div>
+            <div class="col-3">
+                <p><b>LKR @Model.Cart.GetSubTotal()</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="checkout-sections checkout-sections-border">
+        <div class="row">
+            <div class="col-3 text-right font-weight-bold">
+                Total
+            </div>
+            <div class="col-5"></div>
+            <div class="col-4">
+                <h5><b>LKR @Model.Cart.GetTotal()</b></h5>
+            </div>
+        </div>
+    </div>
+}

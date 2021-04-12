@@ -39,12 +39,12 @@ namespace Shop.Controllers
                 {
                     AuthService.SetAuthUser(user.UserId, user.FirstName);
 
-                    TempData["LoginSuccessMessage"] = "Login successful";
+                    TempData["SuccessMessage"] = "Login successful";
                     return RedirectToRoute(new { controller = "Home", action = "Index" });
                 }
             }
 
-            ModelState.AddModelError("Login","Invalid email and password!");
+            ModelState.AddModelError("Login","Invalid email or password!");
 
             return View(login);
         }

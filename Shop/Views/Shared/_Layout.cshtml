@@ -5,19 +5,26 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
-    <link href="~/Content/Css/Style.css" rel="stylesheet" >
-    
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Css/Style.css" rel="stylesheet">
+
 </head>
 <body>
     <nav class="navbar navbar-light nav-padding ">
         <span class="navbar-brand mb-0 h1"><a id="shop-logo" asp-controller="Home" asp-action="Index">ShopOnline</a></span>
-         
+
         <div>
-            @if (TempData["LoginSuccessMessage"] != null)
+            @if (TempData["SuccessMessage"] != null)
             {
                 <div class="alert alert-success d-inline mr-2" role="alert">
-                    @TempData["LoginSuccessMessage"]
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+                
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger d-inline mr-2" role="alert">
+                    @TempData["ErrorMessage"]
                 </div>
             }
 
@@ -34,7 +41,7 @@
         </ul>
         <div>
             <ul class="nav-list-items">
-                @await Component.InvokeAsync("Cart") 
+                @await Component.InvokeAsync("Cart")
             </ul>
         </div>
     </nav>

@@ -37,7 +37,7 @@ namespace Shop
             services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-
+            services.AddScoped<ICheckoutRepository, CheckoutRepository>();
 
             services.AddScoped<IAuthService, AuthService>();
 

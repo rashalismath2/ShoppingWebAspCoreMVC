@@ -12,12 +12,11 @@ namespace Shop.Models
         public string CartId { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdateAt { get; set; }
-        public bool Cleared { get; set; }
         public List<CartItem> CartItems { get; set; }
         public float Total { get; set; }
         public float SubTotal { get; set; }
         public float Discount { get; set; }
-
+        public bool Deleted { get; set; }
         public Cart()
         {
             CartItems = new List<CartItem>();
@@ -27,36 +26,42 @@ namespace Shop.Models
             float itemDiscount = 0;
             if (CartItems.Count == 0)
             {
-                return 0;
+                Discount = 0;
+                return Discount;
             }
             foreach (var item in CartItems)
             {
                 itemDiscount += item.CalculateDiscount();
             }
-            return itemDiscount;
+            Discount = itemDiscount;
+            return Discount;
         }
         public float GetSubTotal() {
             float itemSubTotal = 0;
             if (CartItems.Count == 0)
             {
-                return 0;
+                SubTotal = 0;
+                return SubTotal;
             }
             foreach (var item in CartItems)
             {
                 itemSubTotal += item.CalculateSubTotal();
             }
-            return itemSubTotal;
+            SubTotal = itemSubTotal;
+            return SubTotal;
         }
         public float GetTotal() {
             float itemTotal = 0;
             if (CartItems.Count==0) {
-                return 0;
+                Total = 0;
+                return Total;
             }
             foreach (var item in CartItems)
             {
                 itemTotal += item.CalculateTotal();
             }
-            return itemTotal - GetDiscount();
+            Total = itemTotal - GetDiscount();
+            return Total;
         }
         public static string GetCartIdFromSession(IServiceProvider service) {
 
@@ -69,6 +74,12 @@ namespace Shop.Models
             }
 
             return cartId;
+        }
+        public static void ClearCartFromSession(IServiceProvider service)
+        {
+
+            ISession session = service.GetRequiredService<IHttpContextAccessor>().HttpContext.Session;
+            session.Remove("cartId");
         }
     }
 }
