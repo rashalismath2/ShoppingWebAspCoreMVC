@@ -8,7 +8,8 @@ namespace Shop.Services
 {
     public interface IAuthService
     {
-        Task<User> GetAuthUserAsync();
-        void SetAuthUser(int userId, string firstName);
+        User GetAuthUser();
+        void SetAuthUser(string firstName);
+        bool VerifyCredentials(string email,string password);
     }
 }

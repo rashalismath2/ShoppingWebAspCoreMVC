@@ -20,7 +20,7 @@
                     @TempData["SuccessMessage"]
                 </div>
             }
-                
+
             @if (TempData["ErrorMessage"] != null)
             {
                 <div class="alert alert-danger d-inline mr-2" role="alert">
@@ -36,6 +36,7 @@
         <ul class="nav-list-items" id="nav-product-types">
             @foreach (var item in Enum.GetValues(typeof(ProductType)))
             {
+                //add product page and add link to these list to that page
                 <li>@item.ToString()</li>
             }
         </ul>

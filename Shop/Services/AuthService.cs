@@ -24,23 +24,46 @@ namespace Shop.Services
         public ISession Session { get; }
         public IUserRepository UserRepository { get; }
 
-        public async Task<User> GetAuthUserAsync()
+        public User GetAuthUser()
         {
-            if (Session.GetInt32("UserId").HasValue)
+            User user = null;
+            if (Session.GetString("UserEmail") != null)
             {
-                int userId = Session.GetInt32("UserId").Value;
-                User user = await UserRepository.GetUserById(userId);
-                return user;
+                string email = Session.GetString("UserEmail");
+                user = UserRepository.GetUserByEmail(email);
             }
 
-            return null;
+            return user;
         }
 
-        public void SetAuthUser(int userId, string firstName)
+        public void SetAuthUser(string email)
         {
+            if (string.IsNullOrEmpty(email)) throw new ArgumentException("Email cant be empty!");
 
-            Session.SetString("UserFirstName", firstName);
-            Session.SetInt32("UserId", userId);
+            Session.SetString("UserEmail", email);
+        }
+
+        public bool VerifyCredentials(string email, string password)
+        {
+            if (string.IsNullOrEmpty(email)) throw new ArgumentException("Email cant be empty!");
+            if (string.IsNullOrEmpty(password)) throw new ArgumentException("Password cant be empty!");
+
+            bool isVerfied = false;
+
+            User user = UserRepository.GetUserByEmail(email);
+
+            if (user == null)
+            {
+                return isVerfied;
+            };
+
+            bool emailsAreTheSame = user.Email.ToLower().Equals(email.ToLower());
+
+            bool passwordsAreTheSame = BCrypt.Net.BCrypt.Verify(password, user.Password);
+
+            if (emailsAreTheSame && passwordsAreTheSame) isVerfied = true;
+
+            return isVerfied;
         }
     }
 }

@@ -31,15 +31,12 @@ namespace Shop.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = UserRepository.GetUserByEmail(login.Email);
-
-                bool verified = BCrypt.Net.BCrypt.Verify(login.Password, user.Password);
-
-                if (verified && (user.Email.ToLower() == login.Email.ToLower()))
+                if (AuthService.VerifyCredentials(login.Email,login.Password))
                 {
-                    AuthService.SetAuthUser(user.UserId, user.FirstName);
+                    AuthService.SetAuthUser(login.Email);
 
                     TempData["SuccessMessage"] = "Login successful";
+
                     return RedirectToRoute(new { controller = "Home", action = "Index" });
                 }
             }

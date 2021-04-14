@@ -47,7 +47,7 @@ namespace Shop.Controllers
         [HttpPost]
         public async Task<IActionResult> Checkout(Checkout checkout)
         {
-            User user=await AuthService.GetAuthUserAsync();
+            User user= AuthService.GetAuthUser();
             if (user!=null) {
                 checkout.UserId = user.UserId;
             }

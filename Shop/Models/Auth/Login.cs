@@ -9,12 +9,13 @@ namespace Shop.Models.Auth
 {
     public class Login
     {
+        //should be a viewmodel?
         [EmailAddress]
         [Required]
         public string Email { get; set; }
         [Required]
         public string Password { get; set; }
-     
-      
+
+
     }
 }

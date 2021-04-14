@@ -23,9 +23,10 @@ namespace Shop.Components
         public IUserRepository UserRepository { get; }
         public IAuthService AuthService { get; }
 
-        public async Task<IViewComponentResult> InvokeAsync() {
+        
+        public IViewComponentResult Invoke() {
 
-            return View(await AuthService.GetAuthUserAsync());
+            return View(AuthService.GetAuthUser());
         }
 
     }
