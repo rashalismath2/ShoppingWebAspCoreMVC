@@ -59,23 +59,12 @@ namespace Shop.Models
             Total = GetSubTotal() - GetDiscount();
             return Total;
         }
-        public static string GetCartIdFromSession(IServiceProvider service) {
 
-            ISession session = service.GetRequiredService<IHttpContextAccessor>().HttpContext.Session;
-            string cartId = session.GetString("cartId");
-
-            if (cartId==null) {
-                cartId = Guid.NewGuid().ToString();
-                session.SetString("cartId", cartId);
-            }
-
-            return cartId;
+        public void ProcessCart() {
+            GetDiscount();
+            GetSubTotal();
+            GetTotal();
         }
-        public static void ClearCartFromSession(IServiceProvider service)
-        {
 
-            ISession session = service.GetRequiredService<IHttpContextAccessor>().HttpContext.Session;
-            session.Remove("cartId");
-        }
     }
 }

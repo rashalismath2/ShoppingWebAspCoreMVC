@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shop.Models;
 using Shop.Repository.RepositoryInterfaces;
+using Shop.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,14 @@ namespace Shop.Repository
 {
     public class CartRepository : ICartRepository
     {
-        public CartRepository(AppDbContext DbContext, IServiceProvider service)
+        public CartRepository(AppDbContext DbContext,ICartService CartService)
         {
             this.DbContext = DbContext;
-            Service = service;
+            this.CartService = CartService;
         }
 
         public AppDbContext DbContext { get; }
-        public IServiceProvider Service { get; }
+        public ICartService CartService { get; }
 
         public Cart Create(Cart cart)
         {
@@ -34,7 +35,7 @@ namespace Shop.Repository
 
         public async Task<Cart>  GetCart()
         {
-            string cartId = Cart.GetCartIdFromSession(Service);
+            string cartId = CartService.GetCartIdFromSession();
 
             Cart cart = await DbContext.Carts.Include(c => c.CartItems).ThenInclude(ci=>ci.Product)
                 .FirstOrDefaultAsync(c=>c.CartId== cartId);

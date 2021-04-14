@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Models;
 using Shop.Repository.RepositoryInterfaces;
-using Shop.Services;
+using Shop.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,19 +14,19 @@ namespace Shop.Controllers
         public CheckoutController(
                 ICartRepository CartRepository,
                 ICheckoutRepository CheckoutRepository,
-                IServiceProvider Service, 
+                ICartService CartService,
                 IAuthService AuthService
             )
         {
             this.CartRepository = CartRepository;
             this.CheckoutRepository = CheckoutRepository;
-            this.Service = Service;
+            this.CartService = CartService;
             this.AuthService = AuthService;
         }
 
         public ICartRepository CartRepository { get; }
         public ICheckoutRepository CheckoutRepository { get; }
-        public IServiceProvider Service { get; }
+        public ICartService CartService { get; }
         public IAuthService AuthService { get; }
 
         public async Task<IActionResult> Index()
@@ -39,7 +39,7 @@ namespace Shop.Controllers
             }
             Checkout checkout = new Checkout()
             {
-                Cart = cart
+                Cart = cart,
             };
             return View(checkout);
         }
@@ -47,22 +47,16 @@ namespace Shop.Controllers
         [HttpPost]
         public async Task<IActionResult> Checkout(Checkout checkout)
         {
-            User user= AuthService.GetAuthUser();
-            if (user!=null) {
+            User user = AuthService.GetAuthUser();
+            if (user != null)
+            {
                 checkout.UserId = user.UserId;
             }
             await CheckoutRepository.Create(checkout);
 
-            Cart cart = await CartRepository.GetCart();
-            cart.Deleted = true;
 
-            cart.GetDiscount();
-            cart.GetSubTotal();
-            cart.GetTotal();
-
-            CartRepository.Update(cart);
-
-            Cart.ClearCartFromSession(Service);
+            await CartService.ProcessCart();
+            CartService.ClearCartFromSession();
 
             TempData["SuccessMessage"] = "Checkout complete";
 

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Shop.Models;
 using Shop.Models.Auth;
 using Shop.Repository.RepositoryInterfaces;
-using Shop.Services;
+using Shop.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

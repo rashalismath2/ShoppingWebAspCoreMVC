@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Shop.Repository;
 using Shop.Repository.RepositoryInterfaces;
 using Shop.Services;
+using Shop.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,7 @@ namespace Shop
 
 
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ICartService, CartService>();
 
 
             services.AddDistributedMemoryCache();
