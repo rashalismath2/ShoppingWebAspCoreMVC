@@ -11,14 +11,12 @@ namespace Shop.Repository
 {
     public class CartRepository : ICartRepository
     {
-        public CartRepository(AppDbContext DbContext,ICartService CartService)
+        public CartRepository(AppDbContext DbContext)
         {
             this.DbContext = DbContext;
-            this.CartService = CartService;
         }
 
         public AppDbContext DbContext { get; }
-        public ICartService CartService { get; }
 
         public Cart Create(Cart cart)
         {
@@ -33,10 +31,8 @@ namespace Shop.Repository
             return cart;
         }
 
-        public async Task<Cart>  GetCart()
+        public async Task<Cart>  GetCart(string cartId)
         {
-            string cartId = CartService.GetCartIdFromSession();
-
             Cart cart = await DbContext.Carts.Include(c => c.CartItems).ThenInclude(ci=>ci.Product)
                 .FirstOrDefaultAsync(c=>c.CartId== cartId);
 

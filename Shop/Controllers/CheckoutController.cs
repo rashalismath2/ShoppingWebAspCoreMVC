@@ -14,7 +14,7 @@ namespace Shop.Controllers
         public CheckoutController(
                 ICartRepository CartRepository,
                 ICheckoutRepository CheckoutRepository,
-                ICartService CartService,
+                ICartService CartService, 
                 IAuthService AuthService
             )
         {
@@ -31,7 +31,8 @@ namespace Shop.Controllers
 
         public async Task<IActionResult> Index()
         {
-            Cart cart = await CartRepository.GetCart();
+            string cartId = CartService.GetCartIdFromSession();
+            Cart cart = await CartRepository.GetCart(cartId);
             if (cart.CartItems.Count < 1)
             {
                 TempData["ErrorMessage"] = "The cart is empty";
@@ -47,14 +48,13 @@ namespace Shop.Controllers
         [HttpPost]
         public async Task<IActionResult> Checkout(Checkout checkout)
         {
-            User user = AuthService.GetAuthUser();
-            if (user != null)
-            {
+            User user= AuthService.GetAuthUser();
+            if (user!=null) {
                 checkout.UserId = user.UserId;
             }
             await CheckoutRepository.Create(checkout);
 
-
+            
             await CartService.ProcessCart();
             CartService.ClearCartFromSession();
 

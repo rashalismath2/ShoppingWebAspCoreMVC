@@ -8,7 +8,7 @@ namespace Shop.Repository.RepositoryInterfaces
 {
     public interface ICartRepository
     {
-        Task<Cart> GetCart();
+        Task<Cart> GetCart(string cartId);
         Cart Create(Cart cart);
         Cart Update(Cart cart);
     }

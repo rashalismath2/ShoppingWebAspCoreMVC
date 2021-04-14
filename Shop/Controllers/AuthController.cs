@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Models;
-using Shop.Models.Auth;
 using Shop.Repository.RepositoryInterfaces;
 using Shop.Services.Interfaces;
+using Shop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +27,7 @@ namespace Shop.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Login(Login login)
+        public IActionResult Login(LoginViewModel login)
         {
             if (ModelState.IsValid)
             {

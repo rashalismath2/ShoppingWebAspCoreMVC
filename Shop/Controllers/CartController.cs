@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Models;
 using Shop.Repository.RepositoryInterfaces;
+using Shop.Services.Interfaces;
 using Shop.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,18 +12,21 @@ namespace Shop.Controllers
 {
     public class CartController : Controller
     {
-        public CartController(ICartRepository CartRepository, ICartItemRepository CartItempRepository)
+        public CartController(ICartRepository CartRepository, ICartItemRepository CartItempRepository, ICartService CartService)
         {
             this.CartRepository = CartRepository;
             this.CartItempRepository = CartItempRepository;
+            this.CartService = CartService;
         }
 
         public ICartRepository CartRepository { get; }
         public ICartItemRepository CartItempRepository { get; }
+        public ICartService CartService { get; }
 
         public async Task<IActionResult> Index()
         {
-            Cart cart = await CartRepository.GetCart();
+            string cartId = CartService.GetCartIdFromSession();
+            Cart cart = await CartRepository.GetCart(cartId);
 
             return View(cart);
         }

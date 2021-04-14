@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Shop.Models.Auth
+namespace Shop.ViewModels
 {
-    public class Login
+    public class LoginViewModel
     {
         [EmailAddress]
         [Required]

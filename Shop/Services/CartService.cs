@@ -44,7 +44,8 @@ namespace Shop.Services
 
         public async Task<string> ProcessCart()
         {
-            Cart cart = await CartRepository.GetCart();
+            string cartId = GetCartIdFromSession();
+            Cart cart = await CartRepository.GetCart(cartId);
             cart.Deleted = true;
 
             cart.ProcessCart();
