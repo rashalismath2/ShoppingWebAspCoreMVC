@@ -31,11 +31,14 @@ namespace Shop.Controllers
             Product product = Products.GetById(id);
             if (product == null)
             {
+                //Created a not found product page
                 return View("NotFound");
             }
+
             ProductCartViewModel productCartViewModel = new ProductCartViewModel();
             productCartViewModel.Product = product;
             productCartViewModel.CartItem = new CartItem(); ;
+
             return View(productCartViewModel);
         }
         [HttpPost]
@@ -46,12 +49,12 @@ namespace Shop.Controllers
             productCartViewModel.CartItem.ProductId = productCartViewModel.Product.ProductId;
 
             List<CartItem> cartItems = newCart.CartItems
-                .Where(
-                        ci => ci.Product.ProductId == productCartViewModel.Product.ProductId).ToList();
+                .Where( ci => ci.Product.ProductId == productCartViewModel.Product.ProductId)
+                .ToList();
 
             //calculating qty will be determined by only the product id, size wont be included
             //total of the qty exist in the cart and we are adding should be less than 10
-            int qtyTotal=cartItems.Sum(s => s.Qty);
+            int qtyTotal = cartItems.Sum(s => s.Qty);
 
             if (qtyTotal + productCartViewModel.CartItem.Qty > 10)
             {
@@ -62,19 +65,21 @@ namespace Shop.Controllers
 
 
             //if we have a product with same size in the cart items we just simply add two quentities
-            bool foundProduct = false;
+            bool foundProductWithSameSize = false;
             foreach (var item in cartItems)
             {
-                if (item.Size==productCartViewModel.CartItem.Size) {
-                    foundProduct = true;
+                if (item.Size == productCartViewModel.CartItem.Size)
+                {
+                    foundProductWithSameSize = true;
                     item.Qty += productCartViewModel.CartItem.Qty;
                 }
             }
             //if we didnt found a product with the same size but different size we will add it to the cart
-            if (!foundProduct) {
+            if (!foundProductWithSameSize)
+            {
                 newCart.CartItems.Add(productCartViewModel.CartItem);
             }
-           
+
             CartRepository.Update(newCart);
 
             TempData["ProductSuccessMessage"] = "Product added to the cart";
