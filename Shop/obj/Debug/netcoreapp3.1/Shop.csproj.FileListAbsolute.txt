@@ -167,3 +167,5 @@ D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcorea
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\_Layout.cshtml.g.cs
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\_ViewImports.cshtml.g.cs
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\_ViewStart.cshtml.g.cs
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Product\Category.cshtml.g.cs
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Footer.cshtml.g.cs

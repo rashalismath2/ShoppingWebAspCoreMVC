@@ -1,0 +1,47 @@
+﻿<footer>
+    <div id="footer-contents" class="page-sections ">
+        <ul id="footer-brand-desc">
+            <li>
+                <span class="navbar-brand mb-0 h1"><a id="shop-logo" asp-controller="Home" asp-action="Index">ShopOnline</a></span>
+            </li>
+            <li>
+                <p class="mt-4">
+                    Sri Lanka’s biggest fashion chain offers a wide range
+                    of clothes and accessories for Men, Women and Kids.
+                    The retail store houses a range of Homeware and Lifestyle
+                    products to compliment a comprehensive family shopping experience for all our customers.
+                </p>
+            </li>
+            <li>
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+            </li>
+        </ul>
+
+        <ul>
+            <h5>Useful Links</h5>
+            <li>About Us</li>
+            <li>Privacy Policy</li>
+        </ul>
+
+        <ul>
+            <h5>What's In Store</h5>
+            @foreach (var item in Enum.GetValues(typeof(ProductType)))
+            {
+                <li><a asp-controller="Product" asp-action="Category" asp-route-category="@item.ToString()">@item.ToString()</a></li>
+            }
+        </ul>
+
+        <ul>
+            <h5>My Account</h5>
+            <li>My Profile</li>
+            <li>Orders</li>
+        </ul>
+    </div>
+    <hr />
+    <div class="page-sections">
+        <ul>
+            <p>&copy;2020 All Rights Reserved by.</p>
+        </ul>
+    </div>
+</footer>
