@@ -36,8 +36,7 @@
         <ul class="nav-list-items" id="nav-product-types">
             @foreach (var item in Enum.GetValues(typeof(ProductType)))
             {
-                //add product page and add link to these list to that page
-                <li>@item.ToString()</li>
+                <li><a asp-controller="Product" asp-action="Category" asp-route-category="@item.ToString()">@item.ToString()</a></li>
             }
         </ul>
         <div>
@@ -48,5 +47,7 @@
     </nav>
 
     @RenderBody()
+
+    @await Html.PartialAsync("_Footer") 
 </body>
 </html>

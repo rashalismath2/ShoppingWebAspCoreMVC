@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 using Shop.Models;
+using Shop.Models.Enums;
 using Shop.Repository.RepositoryInterfaces;
 using Shop.Services.Interfaces;
 using Shop.ViewModels;
@@ -15,12 +16,12 @@ namespace Shop.Controllers
     {
         public ProductController(IProductRepository products, ICartRepository cartRepository, ICartService CartService)
         {
-            Products = products;
+            ProductsRepository = products;
             CartRepository = cartRepository;
             this.CartService = CartService;
         }
 
-        public IProductRepository Products { get; }
+        public IProductRepository ProductsRepository { get; }
         public ICartRepository CartRepository { get; }
         public ICartService CartService { get; }
 
@@ -28,10 +29,16 @@ namespace Shop.Controllers
         {
             return View("NotFound");
         }
+        public IActionResult Category(ProductType category, string priceFilterByCat)
+        {
+            List<Product> products = ProductsRepository.ByCatergory(category,priceFilterByCat);
+            ViewBag.ProductType = category;
+            return View(products);
+        }
 
         public IActionResult Details(int id)
         {
-            Product product = Products.GetById(id);
+            Product product = ProductsRepository.GetById(id);
             if (product == null)
             {
                 //Created a not found product page
@@ -52,7 +59,7 @@ namespace Shop.Controllers
             productCartViewModel.CartItem.ProductId = productCartViewModel.Product.ProductId;
 
             List<CartItem> cartItems = newCart.CartItems
-                .Where( ci => ci.Product.ProductId == productCartViewModel.Product.ProductId)
+                .Where(ci => ci.Product.ProductId == productCartViewModel.Product.ProductId)
                 .ToList();
 
             //calculating qty will be determined by only the product id, size wont be included

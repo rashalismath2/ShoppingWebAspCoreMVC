@@ -1,0 +1,46 @@
+﻿@model List<Shop.Models.Product>
+@{
+    ViewBag.Title = ViewBag.ProductType;
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb product-details-breadcrumb  nav-padding">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item "> @ViewBag.ProductType</li>
+    </ol>
+</nav>
+
+<section id="product-category-page-cont" class="page-sections">
+    <div id="product-category-left">
+        <h4>By Price</h4>
+        <form method="get">
+            <select onchange="this.form.submit()" name="priceFilterByCat" class="form-select" aria-label="Default select example">
+                <option selected>Select</option>
+                <option value="low-t-high">Low to high</option>
+                <option value="high-t-low">High to low</option>
+            </select>
+        </form>
+    </div>
+    <div id="product-category-right">
+        @if (Model.Count < 1)
+        {
+            <h2>No products were found</h2>
+        }
+        <div class="product-cont">
+            <ul class="product-cont-ul">
+                @foreach (var product in Model)
+                {
+                    <li>
+                        <a asp-controller="Product" asp-action="Details" asp-route-id="@product.ProductId">
+                            <div class="product-item-cont">
+                                <img src="@product.ImgUrl" alt="@product.Title" />
+                                <p class="product-title">@product.Title</p>
+                                <p class="product-price">@product.PriceStr</p>
+                            </div>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</section>

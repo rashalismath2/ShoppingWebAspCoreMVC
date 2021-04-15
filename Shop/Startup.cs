@@ -72,6 +72,11 @@ namespace Shop
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                        name: "ProductsByCategory",
+                        pattern: "Product/Category/{category}",
+                        defaults:new { controller="Product",action="category"}
+                    );   
+                endpoints.MapControllerRoute(
                         name: "default",
                         pattern: "{controller=Home}/{action=Index}/{id?}"
                     );
