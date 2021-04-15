@@ -9,7 +9,8 @@ namespace Shop.Services.Interfaces
     public interface IAuthService
     {
         User GetAuthUser();
-        void SetAuthUser(string firstName);
+        void Login(string email,bool rememberMe);
         bool VerifyCredentials(string email,string password);
+        void Logout();
     }
 }

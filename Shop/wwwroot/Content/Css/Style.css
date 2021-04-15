@@ -7,7 +7,7 @@
 
 a {
     text-decoration: none;
-    color: inherit;
+    color: black;
 }
 
 ul {
@@ -41,6 +41,13 @@ img {
 .page-sections {
     padding: .5rem 5rem;
     margin-top: 25px;
+}
+
+.login-button {
+    color: black;
+}
+.login-button:hover {
+    color: black;
 }
 
 #cart-icon {
@@ -308,12 +315,15 @@ img {
     border-right: 1px solid grey;
     min-height: 100vh;
 }
+
 #checkout-cont-right {
-    width:40%;
+    width: 40%;
 }
+
 .checkout-sections {
     margin: 0.8rem;
 }
+
 .checkout-sections-border {
     border-bottom: 1px solid grey;
 }
@@ -328,6 +338,6 @@ img {
     #checkout-product-img span {
         position: absolute;
         background: #b9bbbd;
-        color:white;
+        color: white;
         right: 0;
     }
