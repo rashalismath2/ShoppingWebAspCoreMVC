@@ -37,11 +37,16 @@ namespace Shop.Services
             return user;
         }
 
-        public void SetAuthUser(string email)
+        public void Login(string email,bool rememberMe)
         {
             if (string.IsNullOrEmpty(email)) throw new ArgumentException("Email cant be empty!");
 
             Session.SetString("UserEmail", email);
+        }
+
+        public void Logout()
+        {
+            throw new NotImplementedException();
         }
 
         public bool VerifyCredentials(string email, string password)

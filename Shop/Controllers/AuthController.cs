@@ -33,7 +33,7 @@ namespace Shop.Controllers
             {
                 if (AuthService.VerifyCredentials(login.Email,login.Password))
                 {
-                    AuthService.SetAuthUser(login.Email);
+                    AuthService.Login(login.Email,login.RememberMe);
 
                     TempData["SuccessMessage"] = "Login successful";
 
@@ -44,6 +44,13 @@ namespace Shop.Controllers
             ModelState.AddModelError("Login","Invalid email or password!");
 
             return View(login);
+        }
+
+        [HttpPost]
+        public IActionResult Logout() {
+            AuthService.Logout();
+            TempData["SuccessMessage"] = "Logout successful";
+            return RedirectToRoute(new { controller="Home",action="Index"});
         }
     }
 }

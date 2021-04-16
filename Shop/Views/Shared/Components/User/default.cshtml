@@ -4,11 +4,22 @@
 
 @if (Model != null)
 {
-    <p class="m-0 d-inline"><span class="font-weight-bold">Hi, </span>@Model.FirstName!</p>
+    <div class="dropdown show dropleft d-inline">
+        <a onclick="openUserDropDown()" class="btn  dropdown-toggle" role="button" id="userdropdown-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <p class="m-0 d-inline"><span class="font-weight-bold">Hi, </span>@Model.FirstName!</p>
+        </a>
+
+        <div id="user-dropdown-main" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <form asp-controller="Auth" asp-action="Logout" method="post">
+                <button type="submit" class="dropdown-item" >Logout</button>
+            </form>
+        </div>
+    </div>
+
 }
 else
 {
-    <a asp-controller="Auth" asp-action="Login">
+    <a class="login-button" asp-controller="Auth" asp-action="Login">
         <i class="fas fa-sign-in-alt"></i>
         <span>Login</span>
     </a>
