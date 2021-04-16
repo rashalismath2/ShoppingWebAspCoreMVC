@@ -130,40 +130,6 @@ namespace Shop.Migrations
                     b.ToTable("Checkouts");
                 });
 
-            modelBuilder.Entity("Shop.Models.Order", b =>
-                {
-                    b.Property<int>("OrderId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CartId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<float>("DiscountPrecentage")
-                        .HasColumnType("real");
-
-                    b.Property<float>("SubTotal")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Total")
-                        .HasColumnType("real");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrderId");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders");
-                });
-
             modelBuilder.Entity("Shop.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -200,7 +166,7 @@ namespace Shop.Migrations
                         new
                         {
                             ProductId = 1,
-                            CreatedDate = new DateTime(2021, 4, 12, 14, 17, 31, 341, DateTimeKind.Local).AddTicks(9276),
+                            CreatedDate = new DateTime(2021, 4, 16, 13, 9, 3, 845, DateTimeKind.Local).AddTicks(4980),
                             Description = "",
                             DiscountPrecentage = 2f,
                             ImgUrl = "https://www.nolimit.lk/storage/products/NOLIMIT-Online_0114__W0A7136.jpg",
@@ -211,7 +177,7 @@ namespace Shop.Migrations
                         new
                         {
                             ProductId = 2,
-                            CreatedDate = new DateTime(2021, 4, 12, 14, 17, 31, 350, DateTimeKind.Local).AddTicks(6968),
+                            CreatedDate = new DateTime(2021, 4, 16, 13, 9, 3, 857, DateTimeKind.Local).AddTicks(5563),
                             Description = "",
                             DiscountPrecentage = 2f,
                             ImgUrl = "https://www.nolimit.lk/storage/products/135.jpg",
@@ -222,7 +188,7 @@ namespace Shop.Migrations
                         new
                         {
                             ProductId = 3,
-                            CreatedDate = new DateTime(2021, 4, 12, 14, 17, 31, 350, DateTimeKind.Local).AddTicks(7621),
+                            CreatedDate = new DateTime(2021, 4, 16, 13, 9, 3, 857, DateTimeKind.Local).AddTicks(6123),
                             Description = "",
                             DiscountPrecentage = 1.5f,
                             ImgUrl = "https://www.nolimit.lk/storage/online-shoot-0008-w0a8003-1.jpg",
@@ -306,21 +272,8 @@ namespace Shop.Migrations
                         .HasForeignKey("CartId");
 
                     b.HasOne("Shop.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Checkouts")
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("Shop.Models.Order", b =>
-                {
-                    b.HasOne("Shop.Models.Cart", "Cart")
-                        .WithMany()
-                        .HasForeignKey("CartId");
-
-                    b.HasOne("Shop.Models.User", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
