@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop", "Shop\Shop.csproj", "{8B5F05A0-0161-408E-8B32-73A946E80E63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Test", "Shop.Test\Shop.Test.csproj", "{F061BB58-FD4A-4782-AC10-AB6CDE903339}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Core.Test", "Shop.Test\Shop.Core.Test.csproj", "{F061BB58-FD4A-4782-AC10-AB6CDE903339}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Core", "Shop.Core\Shop.Core.csproj", "{AA222746-EFA4-417D-B9AE-EF0FB7488C5E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shop.Tests", "Shop.Tests", "{119B32E0-EDC9-4F76-93E5-95E2539FCBCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F061BB58-FD4A-4782-AC10-AB6CDE903339} = {119B32E0-EDC9-4F76-93E5-95E2539FCBCA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFA28589-2E16-40B7-849F-319D782FF7E4}

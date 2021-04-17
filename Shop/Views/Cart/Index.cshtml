@@ -46,9 +46,9 @@
                         <td>@cartItem.Size</td>
                         <td>Rs.@cartItem.Product.Price</td>
                         <td>@cartItem.Qty</td>
-                        <td>Rs.@cartItem.CalculateDiscount()</td>
-                        <td>Rs.@cartItem.CalculateSubTotal()</td>
-                        <td>Rs.@cartItem.CalculateTotal()</td>
+                        <td>Rs.@cartItem.GetDiscount()</td>
+                        <td>Rs.@cartItem.GetSubTotal()</td>
+                        <td>Rs.@cartItem.GetTotal()</td>
                         <td class="font-weight-bold ">
                             <form asp-action="Delete" method="post">
                                 <input type="hidden" value="@cartItem.CartItemId" name="deleteCartItemId" />

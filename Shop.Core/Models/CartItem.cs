@@ -17,19 +17,23 @@ namespace Shop.Core.Models
         public string CartId { get; set; }
         public int Qty { get; set; }
 
-        public float Total { get; set; }
-        public float SubTotal { get; set; }
-        public float Discount { get; set; }
+        public float Total { get; private set; }
+        public float SubTotal { get; private set; }
+        public float Discount { get; private set; }
 
-        public float CalculateTotal() {
+        public float GetTotal() {
 
             if (Product != null)
             {
-                return CalculateSubTotal() - CalculateDiscount();
+                float sub = GetSubTotal();
+                if (sub>0) {
+                    return sub - GetDiscount();
+                }
+                return 0;
             }
             return 0;
         }
-        public float CalculateSubTotal()
+        public float GetSubTotal()
         {
             if (Product != null)
             {
@@ -37,7 +41,7 @@ namespace Shop.Core.Models
             }
             return 0;
         }
-        public float CalculateDiscount()
+        public float GetDiscount()
         {
             if (Product != null)
             {

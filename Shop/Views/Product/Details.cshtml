@@ -18,7 +18,7 @@
     <div class="product-detailts-page-contents product-detailts-page-contents-details">
         <ul>
             <h2 class="product-details-product-title">@Model.Product.Title</h2>
-            <p class="product-details-product-price">@Model.Product.PriceStr</p>
+            <p class="product-details-product-price">@Model.Product.GetPrice</p>
         </ul>
         <form method="post" asp-action="AddToCart">
             <input type="hidden" asp-for="Product.ProductId" />

@@ -17,7 +17,7 @@ namespace Shop.Core.Models
         public float Price { get; set; }
         public string Description { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string PriceStr { get {
+        public string GetPrice { get {
                 return "LKR."+Price;
             }  }
 

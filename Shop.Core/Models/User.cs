@@ -15,9 +15,31 @@ namespace Shop.Core.Models
         public string ContactNumber { get; set; }
         public List<Checkout> Checkouts { get; set; }
         public string Password { get; set; }
-        public string FullName { get; private set; }
+        public string FullName
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(LastName))
+                {
+                    if (string.IsNullOrWhiteSpace(FirstName) && string.IsNullOrWhiteSpace(LastName))
+                    {
+                        return "";
+                    }
+                    if (string.IsNullOrWhiteSpace(LastName))
+                    {
+                        return FirstName.Trim();
+                    }
+                    if (string.IsNullOrWhiteSpace(FirstName))
+                    {
+                        return LastName.Trim();
+                    }
+                }
 
-        //TODO dont put fullname in to the dtabase table. implement a method to returh the full name
+                return FirstName.Trim() + " " + LastName.Trim();
+            }
+
+
+        }
 
     }
 }
