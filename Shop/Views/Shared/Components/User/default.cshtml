@@ -1,10 +1,10 @@
-﻿@model Shop.Models.User
+﻿@model Shop.Core.Models.User
 @{
 }
 
 @if (Model != null)
 {
-    <div class="dropdown show dropleft d-inline">
+    <div  class="dropdown show dropleft nav-login d-inline">
         <a onclick="openUserDropDown()" class="btn  dropdown-toggle" role="button" id="userdropdown-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <p class="m-0 d-inline"><span class="font-weight-bold">Hi, </span>@Model.FirstName!</p>
         </a>
@@ -19,7 +19,7 @@
 }
 else
 {
-    <a class="login-button" asp-controller="Auth" asp-action="Login">
+    <a class="login-button nav-login" asp-controller="Auth" asp-action="Login">
         <i class="fas fa-sign-in-alt"></i>
         <span>Login</span>
     </a>

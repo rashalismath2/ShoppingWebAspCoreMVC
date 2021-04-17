@@ -1,8 +1,8 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
-using Shop.Models;
-using Shop.Models.Enums;
-using Shop.Repository.RepositoryInterfaces;
+using Shop.Core.Models;
+using Shop.Core.Models.Enums;
+using Shop.Core.Repository.RepositoryInterfaces;
 using Shop.Services.Interfaces;
 using Shop.ViewModels;
 using System;

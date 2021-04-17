@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Shop.Models;
-using Shop.Repository.RepositoryInterfaces;
+using Shop.Core.Models;
+using Shop.Core.Repository.RepositoryInterfaces;
 using Shop.Services.Interfaces;
 using System;
 using System.Collections.Generic;

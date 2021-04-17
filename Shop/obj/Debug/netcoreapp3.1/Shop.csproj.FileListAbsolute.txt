@@ -81,6 +81,13 @@ C:\Users\Inexis Dev\source\repos\ShopProject\Shop\obj\Debug\netcoreapp3.1\Razor\
 C:\Users\Inexis Dev\source\repos\ShopProject\Shop\bin\Debug\netcoreapp3.1\BCrypt.Net-Next.dll
 C:\Users\Inexis Dev\source\repos\ShopProject\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\User\default.cshtml.g.cs
 C:\Users\Inexis Dev\source\repos\ShopProject\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\Index.cshtml.g.cs
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Shop.csprojAssemblyReference.cache
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Shop.AssemblyInfoInputs.cache
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Shop.AssemblyInfo.cs
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Shop.csproj.CoreCompileInputs.cache
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Shop.MvcApplicationPartsAssemblyInfo.cache
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Shop.RazorAssemblyInfo.cache
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Shop.RazorAssemblyInfo.cs
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcoreapp3.1\appsettings.json
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcoreapp3.1\libman.json
@@ -98,7 +105,6 @@ D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcorea
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
-D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
@@ -133,13 +139,8 @@ D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcorea
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Shop.csprojAssemblyReference.cache
-D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Shop.AssemblyInfoInputs.cache
-D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Shop.AssemblyInfo.cs
-D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Shop.csproj.CoreCompileInputs.cache
-D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Shop.MvcApplicationPartsAssemblyInfo.cache
-D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Shop.RazorAssemblyInfo.cache
-D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Shop.RazorAssemblyInfo.cs
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcoreapp3.1\Shop.Core.dll
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcoreapp3.1\Shop.Core.pdb
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\staticwebassets\Shop.StaticWebAssets.Manifest.cache
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\staticwebassets\Shop.StaticWebAssets.xml
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\scopedcss\bundle\Shop.styles.css
@@ -149,11 +150,16 @@ D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcorea
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Auth\Login.cshtml.g.cs
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\Index.cshtml.g.cs
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\_Layout.cshtml.g.cs
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\_ViewImports.cshtml.g.cs
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\_ViewStart.cshtml.g.cs
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Product\Category.cshtml.g.cs
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Product\Details.cshtml.g.cs
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Product\NotFound.cshtml.g.cs
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Cart\default.cshtml.g.cs
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\User\default.cshtml.g.cs
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Footer.cshtml.g.cs
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
@@ -164,8 +170,4 @@ D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcorea
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Shop.dll
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Shop.pdb
 D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Shop.genruntimeconfig.cache
-D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\_Layout.cshtml.g.cs
-D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\_ViewImports.cshtml.g.cs
-D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\_ViewStart.cshtml.g.cs
-D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Product\Category.cshtml.g.cs
-D:\installed programs\visual studio\projects\SHoppingMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Footer.cshtml.g.cs
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll

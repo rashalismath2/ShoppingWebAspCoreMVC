@@ -432,3 +432,10 @@ text-align: start !important;
 footer .page-sections {
     min-height:0;
 }
+
+.nav-login {
+    color: black !important;
+}
+.nav-login a{
+    color: black !important;
+}

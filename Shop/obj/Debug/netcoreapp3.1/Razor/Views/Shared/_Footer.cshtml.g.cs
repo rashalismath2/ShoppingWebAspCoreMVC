@@ -14,13 +14,13 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
 #line 2 "D:\installed programs\visual studio\projects\SHoppingMVC\Shop\Views\_ViewImports.cshtml"
-using Shop.Models.Enums;
+using Shop.Core.Models.Enums;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"98a8da2fe18ecc206933b332acee84f564f97cdb", @"/Views/Shared/_Footer.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"744a0a731609af4a12f0849f449d1bec360d682b", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"14333cc78772db645510cc8382bb38bd79d4e746", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__Footer : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("shop-logo"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -53,7 +53,7 @@ using Shop.Models.Enums;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("<footer>\r\n    <div id=\"footer-contents\" class=\"page-sections \">\r\n        <ul id=\"footer-brand-desc\">\r\n            <li>\r\n                <span class=\"navbar-brand mb-0 h1\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "98a8da2fe18ecc206933b332acee84f564f97cdb4659", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "98a8da2fe18ecc206933b332acee84f564f97cdb4664", async() => {
                 WriteLiteral("ShopOnline");
             }
             );
@@ -105,7 +105,7 @@ using Shop.Models.Enums;
 #line hidden
 #nullable disable
             WriteLiteral("                <li>");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "98a8da2fe18ecc206933b332acee84f564f97cdb7216", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "98a8da2fe18ecc206933b332acee84f564f97cdb7221", async() => {
 #nullable restore
 #line 31 "D:\installed programs\visual studio\projects\SHoppingMVC\Shop\Views\Shared\_Footer.cshtml"
                                                                                                        Write(item.ToString());

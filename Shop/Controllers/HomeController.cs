@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Shop.Repository.RepositoryInterfaces;
+using Shop.Core.Repository.RepositoryInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

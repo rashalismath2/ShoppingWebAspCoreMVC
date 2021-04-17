@@ -1,0 +1,14 @@
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop.Test\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop.Test\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop.Test\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop.Test\bin\Debug\Shop.Test.dll
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop.Test\bin\Debug\Shop.Test.pdb
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop.Test\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop.Test\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop.Test\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop.Test\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop.Test\obj\Debug\Shop.Test.csprojAssemblyReference.cache
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop.Test\obj\Debug\Shop.Test.csproj.CoreCompileInputs.cache
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop.Test\obj\Debug\Shop.Test.csproj.CopyComplete
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop.Test\obj\Debug\Shop.Test.dll
+D:\installed programs\visual studio\projects\SHoppingMVC\Shop.Test\obj\Debug\Shop.Test.pdb

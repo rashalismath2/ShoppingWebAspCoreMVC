@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Shop.Models;
-using Shop.Repository.RepositoryInterfaces;
+using Shop.Core.Models;
+using Shop.Core.Repository.RepositoryInterfaces;
 using Shop.Services.Interfaces;
 using System;
 using System.Collections.Generic;
