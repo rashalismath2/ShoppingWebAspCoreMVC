@@ -37,6 +37,8 @@ namespace Shop.Services
 
         public async void Login(string email, bool rememberMe)
         {
+            if (string.IsNullOrEmpty(email)) throw new ArgumentException("Email cant be empty!");
+
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, email),
@@ -55,7 +57,8 @@ namespace Shop.Services
             await Service.GetRequiredService<IHttpContextAccessor>().HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity),
-                authProperties);
+                authProperties
+              );
 
         }
 
@@ -79,11 +82,9 @@ namespace Shop.Services
                 return isVerfied;
             };
 
-            bool emailsAreTheSame = user.Email.ToLower().Equals(email.ToLower());
-
             bool passwordsAreTheSame = BCrypt.Net.BCrypt.Verify(password, user.Password);
 
-            if (emailsAreTheSame && passwordsAreTheSame) isVerfied = true;
+            if (passwordsAreTheSame) isVerfied = true;
 
             return isVerfied;
         }

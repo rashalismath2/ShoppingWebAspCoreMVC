@@ -23,7 +23,10 @@ namespace Shop.Services
         public string GetCartIdFromSession()
         {
 
-            ISession session = ServiceProvider.GetRequiredService<IHttpContextAccessor>().HttpContext.Session;
+            ISession session = ServiceProvider.GetRequiredService<IHttpContextAccessor>()
+                                .HttpContext
+                                .Session;
+
             string cartId = session.GetString("cartId");
 
             if (cartId == null)

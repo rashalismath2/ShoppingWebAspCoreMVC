@@ -26,31 +26,43 @@ namespace Shop.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Login(LoginViewModel login)
         {
             if (ModelState.IsValid)
             {
-                if (AuthService.VerifyCredentials(login.Email,login.Password))
+                try
                 {
-                    AuthService.Login(login.Email,login.RememberMe);
+                    if (AuthService.VerifyCredentials(login.Email, login.Password))
+                    {
+                        AuthService.Login(login.Email, login.RememberMe);
 
-                    TempData["SuccessMessage"] = "Login successful";
+                        TempData["SuccessMessage"] = "Login successful";
 
-                    return RedirectToRoute(new { controller = "Home", action = "Index" });
+                        return RedirectToRoute(new { controller = "Home", action = "Index" });
+                    }
+
+
+                    ModelState.AddModelError("Login", "Invalid email or password!");
+
                 }
-            }
+                catch (ArgumentException e)
+                {
+                    ModelState.AddModelError("Login", e.Message);
+                }
 
-            ModelState.AddModelError("Login","Invalid email or password!");
+            }
 
             return View(login);
         }
 
         [HttpPost]
-        public IActionResult Logout() {
+        public IActionResult Logout()
+        {
             AuthService.Logout();
             TempData["SuccessMessage"] = "Logout successful";
-            return RedirectToRoute(new { controller="Home",action="Index"});
+            return RedirectToRoute(new { controller = "Home", action = "Index" });
         }
     }
 }
