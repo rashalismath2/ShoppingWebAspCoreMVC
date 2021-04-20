@@ -76,10 +76,13 @@ namespace Shop.Controllers
             //calculating qty will be determined by only the product id, size wont be included
             //total of the qty exist in the cart and we are adding should be less than 10
             int qtyTotal = cartItems.Sum(s => s.Qty);
+            int totalItemsToBeAdded = qtyTotal + productCartViewModel.CartItem.Qty;
+            int allowedItemsToBeAdded = 10;
 
-            if (qtyTotal + productCartViewModel.CartItem.Qty > 10)
+            if (totalItemsToBeAdded > allowedItemsToBeAdded)
             {
-                TempData["ProductErrorMessage"] = "You can only add 10 items per product. You have already added " + qtyTotal + " items.";
+                TempData["ProductErrorMessage"] = @"You can only add 10 items per product. You have already added " 
+                                                     + qtyTotal + " items.";
 
                 return RedirectToAction("Details", new { id = productCartViewModel.Product.ProductId });
             }

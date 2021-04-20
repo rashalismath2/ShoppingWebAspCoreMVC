@@ -34,7 +34,7 @@ namespace Shop.Test
             };
 
             cartItems = new List<CartItem>() {
-                new CartItem(){ 
+                new CartItem(){
                     Product=productOne,
                     Qty=10
                 },
@@ -56,7 +56,7 @@ namespace Shop.Test
             var expected = 1750;
             var result = cart.GetDiscount();
 
-            Assert.AreEqual(expected,result);
+            Assert.AreEqual(expected, result);
 
         }
         [TestMethod]

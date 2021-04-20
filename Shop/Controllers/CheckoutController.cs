@@ -33,6 +33,7 @@ namespace Shop.Controllers
         {
             string cartId = CartService.GetCartIdFromSession();
             Cart cart = await CartRepository.GetCart(cartId);
+
             if (cart.CartItems.Count < 1)
             {
                 TempData["ErrorMessage"] = "The cart is empty";

@@ -37,19 +37,23 @@ namespace Shop.Services
             return user;
         }
 
-        public void Login(string email,bool rememberMe)
+        public Task<bool> Login(string email,bool rememberMe)
         {
             if (string.IsNullOrEmpty(email)) throw new ArgumentException("Email cant be empty!");
 
             Session.SetString("UserEmail", email);
+
+            return Task.FromResult(false);
         }
 
-        public void Logout()
+        public Task<bool> Logout()
         {
-            throw new NotImplementedException();
+            Session.Remove("UserEmail");
+
+            return Task.FromResult(false);
         }
 
-        public bool VerifyCredentials(string email, string password)
+        public bool CredentialsAreValid(string email, string password)
         {
             if (string.IsNullOrEmpty(email)) throw new ArgumentException("Email cant be empty!");
             if (string.IsNullOrEmpty(password)) throw new ArgumentException("Password cant be empty!");

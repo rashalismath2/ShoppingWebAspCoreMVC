@@ -35,7 +35,7 @@ namespace Shop.Services
             return null;
         }
 
-        public async void Login(string email, bool rememberMe)
+        public async Task<bool> Login(string email, bool rememberMe)
         {
             if (string.IsNullOrEmpty(email)) throw new ArgumentException("Email cant be empty!");
 
@@ -54,21 +54,39 @@ namespace Shop.Services
                 IsPersistent = rememberMe
             };
 
-            await Service.GetRequiredService<IHttpContextAccessor>().HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(claimsIdentity),
-                authProperties
-              );
+            try
+            {
+                await Service.GetRequiredService<IHttpContextAccessor>().HttpContext.SignInAsync(
+                      CookieAuthenticationDefaults.AuthenticationScheme,
+                      new ClaimsPrincipal(claimsIdentity),
+                      authProperties
+                    );
+
+                return true;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
 
         }
 
-        public async void Logout()
+        public async Task<bool> Logout()
         {
-            await Service.GetRequiredService<IHttpContextAccessor>().HttpContext.SignOutAsync(
+            try
+            {
+                await Service.GetRequiredService<IHttpContextAccessor>().HttpContext.SignOutAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme);
+
+                return true;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
 
-        public bool VerifyCredentials(string email, string password)
+        public bool CredentialsAreValid(string email, string password)
         {
             if (string.IsNullOrEmpty(email)) throw new ArgumentException("Email cant be empty!");
             if (string.IsNullOrEmpty(password)) throw new ArgumentException("Password cant be empty!");

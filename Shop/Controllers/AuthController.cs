@@ -28,41 +28,55 @@ namespace Shop.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel login)
+        public async Task<IActionResult> Login(LoginViewModel login)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    if (AuthService.VerifyCredentials(login.Email, login.Password))
+                    bool credentialsAreValid = AuthService.CredentialsAreValid(login.Email, login.Password);
+                    bool loginIsSuccess = await AuthService.Login(login.Email, login.RememberMe);
+
+                    if (credentialsAreValid && loginIsSuccess)
                     {
-                        AuthService.Login(login.Email, login.RememberMe);
-
                         TempData["SuccessMessage"] = "Login successful";
-
                         return RedirectToRoute(new { controller = "Home", action = "Index" });
                     }
 
-
                     ModelState.AddModelError("Login", "Invalid email or password!");
-
                 }
                 catch (ArgumentException e)
                 {
                     ModelState.AddModelError("Login", e.Message);
                 }
-
+                catch (Exception exception)
+                {
+                    ModelState.AddModelError("Login", exception.Message);
+                }
             }
 
             return View(login);
         }
 
         [HttpPost]
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
-            AuthService.Logout();
-            TempData["SuccessMessage"] = "Logout successful";
+            try
+            {
+                bool logoutSuccessful = await AuthService.Logout();
+
+                if (logoutSuccessful)
+                {
+                    TempData["SuccessMessage"] = "Logout successful";
+                    return RedirectToRoute(new { controller = "Home", action = "Index" });
+                };
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Logout was not successful";
+            }
             return RedirectToRoute(new { controller = "Home", action = "Index" });
+
         }
     }
 }
