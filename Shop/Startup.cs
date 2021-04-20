@@ -45,6 +45,7 @@ namespace Shop
 
             services.AddScoped<IAuthService, IdentityCookieAuth>();
             services.AddScoped<ICartService, CartService>();
+            services.AddScoped<IProductService, ProductService>();
 
 
             services.AddDistributedMemoryCache();
@@ -81,8 +82,8 @@ namespace Shop
                 endpoints.MapControllerRoute(
                         name: "ProductsByCategory",
                         pattern: "Product/Category/{category}",
-                        defaults:new { controller="Product",action="category"}
-                    );   
+                        defaults: new { controller = "Product", action = "category" }
+                    );
                 endpoints.MapControllerRoute(
                         name: "default",
                         pattern: "{controller=Home}/{action=Index}/{id?}"

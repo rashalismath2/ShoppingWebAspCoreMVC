@@ -22,31 +22,24 @@ namespace Shop.Core.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            for (int i = 1; i < 15; i++)
+            {
+                modelBuilder.Entity<Product>().HasData(new Product()
+                {
+                    ProductId = i,
+                    Title = "Long Sleeve T-Shirt "+i,
+                    ImgUrl = "https://www.nolimit.lk/storage/products/NOLIMIT-Online_0114__W0A7136.jpg",
+                    Type = ProductType.TShirt,
+                    DiscountPrecentage = 2,
+                    Price = 1500+i,
+                    Description = "",
+                    CreatedDate = DateTime.Now
+                });
+            }
+      
             modelBuilder.Entity<Product>().HasData(new Product()
             {
-                ProductId = 1,
-                Title = "Long Sleeve T-Shirt",
-                ImgUrl = "https://www.nolimit.lk/storage/products/NOLIMIT-Online_0114__W0A7136.jpg",
-                Type = ProductType.TShirt,
-                DiscountPrecentage = 2,
-                Price = 1500,
-                Description = "",
-                CreatedDate = DateTime.Now
-            });
-            modelBuilder.Entity<Product>().HasData(new Product()
-            {
-                ProductId = 2,
-                Title = "Basic Polo T-Shirt",
-                ImgUrl = "https://www.nolimit.lk/storage/products/135.jpg",
-                Type = ProductType.TShirt,
-                DiscountPrecentage = 2,
-                Price = 1800,
-                Description = "",
-                CreatedDate = DateTime.Now
-            });
-            modelBuilder.Entity<Product>().HasData(new Product()
-            {
-                ProductId = 3,
+                ProductId = 20,
                 Title = "GENTS CASUAL SHIRT",
                 ImgUrl = "https://www.nolimit.lk/storage/online-shoot-0008-w0a8003-1.jpg",
                 Type = ProductType.Shirt,

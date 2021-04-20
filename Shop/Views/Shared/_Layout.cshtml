@@ -40,7 +40,13 @@
         <ul class="nav-list-items" id="nav-product-types">
             @foreach (var item in Enum.GetValues(typeof(ProductType)))
             {
-                <li><a asp-controller="Product" asp-action="Category" asp-route-category="@item.ToString()">@item.ToString()</a></li>
+                <li>
+                    <a 
+                       asp-controller="Product" 
+                       asp-action="Category" 
+                       asp-route-category="@item.ToString()">@item.ToString()
+                    </a>
+                </li>
             }
         </ul>
         <div>

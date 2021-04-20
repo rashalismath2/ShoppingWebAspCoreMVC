@@ -11,6 +11,8 @@ namespace Shop.Core.Repository.RepositoryInterfaces
     {
         List<Product> NewProducts();
         Product GetById(int id);
-        List<Product> ByCatergory(ProductType category, string filter);
+        List<Product> ByCatergory(ProductType category, string filter, int? pageNumber, int ProductsPerPage);
+
+        int ProductByCategoryLength(ProductType category);
     }
 }

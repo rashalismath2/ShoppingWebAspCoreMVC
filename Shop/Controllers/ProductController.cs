@@ -14,11 +14,14 @@ namespace Shop.Controllers
 {
     public class ProductController : Controller
     {
-        public ProductController(IProductRepository products, ICartRepository cartRepository, ICartService CartService)
+        private readonly IProductService productService;
+
+        public ProductController(IProductRepository products, ICartRepository cartRepository, ICartService CartService,IProductService ProductService)
         {
             ProductsRepository = products;
             CartRepository = cartRepository;
             this.CartService = CartService;
+            productService = ProductService;
         }
 
         public IProductRepository ProductsRepository { get; }
@@ -29,10 +32,18 @@ namespace Shop.Controllers
         {
             return View("NotFound");
         }
-        public IActionResult Category(ProductType category, string priceFilterByCat)
+        public IActionResult Category(ProductType category, string priceFilterByCat,int? pageNumber)
         {
-            List<Product> products = ProductsRepository.ByCatergory(category,priceFilterByCat);
+            ViewBag.PageNumber = pageNumber;
             ViewBag.ProductType = category;
+            ViewBag.ProductByCategoryListCount = (int)Math.Ceiling((double)ProductsRepository.ProductByCategoryLength(category) / IProductService.ProductsPerPage);
+
+            List<Product> products = ProductsRepository.ByCatergory(
+                                        category,priceFilterByCat, 
+                                        pageNumber,
+                                        IProductService.ProductsPerPage
+                                );
+            
             return View(products);
         }
 

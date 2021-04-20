@@ -14,6 +14,7 @@
     <div id="product-category-left">
         <h4>By Price</h4>
         <form method="get">
+            <input type="hidden" name="pageNumber" value="@ViewBag.pageNumber" />
             <select onchange="this.form.submit()" name="priceFilterByCat" class="form-select" aria-label="Default select example">
                 <option selected>Select</option>
                 <option value="low-t-high">Low to high</option>
@@ -30,7 +31,7 @@
             <ul class="product-cont-ul">
                 @foreach (var product in Model)
                 {
-                    <li>
+                    <li class="mb-4">
                         <a asp-controller="Product" asp-action="Details" asp-route-id="@product.ProductId">
                             <div class="product-item-cont">
                                 <img src="@product.ImgUrl" alt="@product.Title" />
@@ -42,5 +43,26 @@
                 }
             </ul>
         </div>
+
+        <nav id="category-page-pagination">
+            <ul class="pagination">
+                @for (int i = 1; i <= ViewBag.ProductByCategoryListCount; i++)
+                {
+                    @if (ViewBag.PageNumber != null && ViewBag.PageNumber == i)
+                    {
+                        <li class="page-item active"><a class="page-link" asp-route-pageNumber="@i" asp-route-category="@ViewBag.ProductType" asp-action="Category">@i</a></li>
+                    }
+                    else if (ViewBag.PageNumber == null && i == 1)
+                    {
+                        <li class="page-item active"><a class="page-link"  asp-route-pageNumber="@i" asp-route-category="@ViewBag.ProductType" asp-action="Category">@i</a></li>
+                    }
+                    else
+                    {
+                        <li class="page-item"><a class="page-link"  asp-route-pageNumber="@i" asp-route-category="@ViewBag.ProductType" asp-action="Category">@i</a></li>
+                    }
+                }
+            </ul>
+        </nav>
+
     </div>
 </section>

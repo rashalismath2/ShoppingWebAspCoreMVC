@@ -19,7 +19,7 @@ namespace Shop.Core.Repository
 
         public List<Product> NewProducts()
         {
-            return DbContext.Products.OrderBy(p=>p.CreatedDate).ToList();
+            return DbContext.Products.OrderBy(p=>p.CreatedDate).Take(4).ToList();
         }
 
         public Product GetById(int id) {
@@ -27,19 +27,45 @@ namespace Shop.Core.Repository
             return  DbContext.Products.Where(p=>p.ProductId==id).FirstOrDefault();
         }
 
-        public List<Product> ByCatergory(ProductType category,string filter)
+        public List<Product> ByCatergory(ProductType category,string filter, int? pageNumber,int ProductsPerPage)
         {
             if (!string.IsNullOrWhiteSpace(filter))
             {
                 switch (filter)
                 {
                     case "high-t-low":
-                        return DbContext.Products.Where(p => p.Type == category).OrderByDescending(p=>p.Price).ToList();
+                        if (pageNumber!=null && pageNumber>1) {
+                            return DbContext.Products
+                               .Where(p => p.Type == category)
+                               .Skip(ProductsPerPage * ((int)pageNumber - 1)).Take(ProductsPerPage)
+                               .OrderByDescending(p => p.Price)
+                               .ToList();
+                        }
+                        return DbContext.Products
+                            .Where(p => p.Type == category)
+                            .Take(ProductsPerPage)
+                            .OrderByDescending(p=>p.Price)
+                            .ToList();
                     default:
                         break;
                 }
             }
-            return DbContext.Products.Where(p=>p.Type==category).ToList();
+
+            if (pageNumber != null && pageNumber > 1)
+            {
+                return DbContext.Products.Where(p => p.Type == category)
+                   .Skip(ProductsPerPage * ((int)pageNumber - 1)).Take(ProductsPerPage)
+                   .ToList();
+            }
+
+            return DbContext.Products.Where(p=>p.Type==category)
+                .Take(ProductsPerPage)
+                .ToList();
+        }
+
+        public int ProductByCategoryLength(ProductType category)
+        {
+            return DbContext.Products.Where(p => p.Type == category).Count();
         }
     }
 }

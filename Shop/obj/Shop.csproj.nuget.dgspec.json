@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\installed programs\\visual studio\\projects\\SHoppingMVC\\Shop\\Shop.csproj": {}
+    "C:\\Users\\Inexis Dev\\source\\repos\\ShoppingWebAspCoreMVC\\ShoppingWebAspCoreMVC\\Shop\\Shop.csproj": {}
   },
   "projects": {
-    "D:\\installed programs\\visual studio\\projects\\SHoppingMVC\\Shop.Core\\Shop.Core.csproj": {
+    "C:\\Users\\Inexis Dev\\source\\repos\\ShoppingWebAspCoreMVC\\ShoppingWebAspCoreMVC\\Shop.Core\\Shop.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\installed programs\\visual studio\\projects\\SHoppingMVC\\Shop.Core\\Shop.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Inexis Dev\\source\\repos\\ShoppingWebAspCoreMVC\\ShoppingWebAspCoreMVC\\Shop.Core\\Shop.Core.csproj",
         "projectName": "Shop.Core",
-        "projectPath": "D:\\installed programs\\visual studio\\projects\\SHoppingMVC\\Shop.Core\\Shop.Core.csproj",
-        "packagesPath": "C:\\Users\\Ismath\\.nuget\\packages\\",
-        "outputPath": "D:\\installed programs\\visual studio\\projects\\SHoppingMVC\\Shop.Core\\obj\\",
+        "projectPath": "C:\\Users\\Inexis Dev\\source\\repos\\ShoppingWebAspCoreMVC\\ShoppingWebAspCoreMVC\\Shop.Core\\Shop.Core.csproj",
+        "packagesPath": "C:\\Users\\Inexis Dev\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Inexis Dev\\source\\repos\\ShoppingWebAspCoreMVC\\ShoppingWebAspCoreMVC\\Shop.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Ismath\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Inexis Dev\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -77,21 +77,21 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\installed programs\\visual studio\\projects\\SHoppingMVC\\Shop\\Shop.csproj": {
+    "C:\\Users\\Inexis Dev\\source\\repos\\ShoppingWebAspCoreMVC\\ShoppingWebAspCoreMVC\\Shop\\Shop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\installed programs\\visual studio\\projects\\SHoppingMVC\\Shop\\Shop.csproj",
+        "projectUniqueName": "C:\\Users\\Inexis Dev\\source\\repos\\ShoppingWebAspCoreMVC\\ShoppingWebAspCoreMVC\\Shop\\Shop.csproj",
         "projectName": "Shop",
-        "projectPath": "D:\\installed programs\\visual studio\\projects\\SHoppingMVC\\Shop\\Shop.csproj",
-        "packagesPath": "C:\\Users\\Ismath\\.nuget\\packages\\",
-        "outputPath": "D:\\installed programs\\visual studio\\projects\\SHoppingMVC\\Shop\\obj\\",
+        "projectPath": "C:\\Users\\Inexis Dev\\source\\repos\\ShoppingWebAspCoreMVC\\ShoppingWebAspCoreMVC\\Shop\\Shop.csproj",
+        "packagesPath": "C:\\Users\\Inexis Dev\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Inexis Dev\\source\\repos\\ShoppingWebAspCoreMVC\\ShoppingWebAspCoreMVC\\Shop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Ismath\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Inexis Dev\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -105,8 +105,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\installed programs\\visual studio\\projects\\SHoppingMVC\\Shop.Core\\Shop.Core.csproj": {
-                "projectPath": "D:\\installed programs\\visual studio\\projects\\SHoppingMVC\\Shop.Core\\Shop.Core.csproj"
+              "C:\\Users\\Inexis Dev\\source\\repos\\ShoppingWebAspCoreMVC\\ShoppingWebAspCoreMVC\\Shop.Core\\Shop.Core.csproj": {
+                "projectPath": "C:\\Users\\Inexis Dev\\source\\repos\\ShoppingWebAspCoreMVC\\ShoppingWebAspCoreMVC\\Shop.Core\\Shop.Core.csproj"
               }
             }
           }
@@ -150,7 +150,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

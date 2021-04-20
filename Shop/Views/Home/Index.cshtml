@@ -11,7 +11,7 @@
         <ul class="product-cont-ul">
             @foreach (var product in Model)
             {
-                <li>
+                <li class="mb-4">
                     <a asp-controller="Product" asp-action="Details" asp-route-id="@product.ProductId">
                         <div class="product-item-cont">
                             <img src="@product.ImgUrl" alt="@product.Title" />
