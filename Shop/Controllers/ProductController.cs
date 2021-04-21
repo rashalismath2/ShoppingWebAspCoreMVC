@@ -87,7 +87,7 @@ namespace Shop.Controllers
             }
 
 
-            newCart = CartService.AddItemToTheList(newCart, cartItems, productCartViewModel.CartItem);
+            newCart = CartService.AddItemToTheCart(newCart, cartItems, productCartViewModel.CartItem);
             CartRepository.Update(newCart);
 
             TempData["ProductSuccessMessage"] = "Product added to the cart";

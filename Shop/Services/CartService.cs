@@ -58,7 +58,7 @@ namespace Shop.Services
         }
 
 
-        public Cart AddItemToTheList(Cart cart, List<CartItem> cartItems, CartItem cartItem)
+        public Cart AddItemToTheCart(Cart cart, List<CartItem> cartItems, CartItem cartItem)
         {
             //if we have a product with same size in the cart items we just simply add two quentities
             bool foundProductWithSameSize = false;

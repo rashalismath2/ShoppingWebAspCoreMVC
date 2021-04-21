@@ -14,6 +14,6 @@ namespace Shop.Services.Interfaces
         Task<string> ProcessCart();
         public int AllowedItemsPerProduct { get { return 10; } }
 
-        Cart AddItemToTheList(Cart cart,List<CartItem> cartItems, CartItem cartItem);
+        Cart AddItemToTheCart(Cart cart,List<CartItem> cartItems, CartItem cartItem);
     }
 }
