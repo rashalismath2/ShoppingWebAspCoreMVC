@@ -1506,6 +1506,20 @@
         "runtime": {
           "bin/placeholder/Shop.Core.dll": {}
         }
+      },
+      "Shop.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "3.1.14",
+          "Shop.Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Shop.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shop.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -5737,13 +5751,19 @@
       "type": "project",
       "path": "../Shop.Core/Shop.Core.csproj",
       "msbuildProject": "../Shop.Core/Shop.Core.csproj"
+    },
+    "Shop.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Shop.Infrastructure/Shop.Infrastructure.csproj",
+      "msbuildProject": "../Shop.Infrastructure/Shop.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "BCrypt.Net-Next >= 4.0.2",
       "Microsoft.EntityFrameworkCore.Design >= 3.1.13",
-      "Shop.Core >= 1.0.0"
+      "Shop.Core >= 1.0.0",
+      "Shop.Infrastructure >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -5775,6 +5795,9 @@
           "projectReferences": {
             "C:\\Users\\Inexis Dev\\source\\repos\\ShoppingWebAspCoreMVC\\ShoppingWebAspCoreMVC\\Shop.Core\\Shop.Core.csproj": {
               "projectPath": "C:\\Users\\Inexis Dev\\source\\repos\\ShoppingWebAspCoreMVC\\ShoppingWebAspCoreMVC\\Shop.Core\\Shop.Core.csproj"
+            },
+            "C:\\Users\\Inexis Dev\\source\\repos\\ShoppingWebAspCoreMVC\\ShoppingWebAspCoreMVC\\Shop.Infrastructure\\Shop.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Inexis Dev\\source\\repos\\ShoppingWebAspCoreMVC\\ShoppingWebAspCoreMVC\\Shop.Infrastructure\\Shop.Infrastructure.csproj"
             }
           }
         }

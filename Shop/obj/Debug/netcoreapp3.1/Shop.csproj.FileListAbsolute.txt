@@ -261,3 +261,5 @@ C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Sho
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\obj\Debug\netcoreapp3.1\Shop.dll
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\obj\Debug\netcoreapp3.1\Shop.pdb
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\obj\Debug\netcoreapp3.1\Shop.genruntimeconfig.cache
+C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\bin\Debug\netcoreapp3.1\Shop.Infrastructure.dll
+C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\bin\Debug\netcoreapp3.1\Shop.Infrastructure.pdb

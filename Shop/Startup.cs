@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Shop.Core.Repository;
 using Shop.Core.Repository.RepositoryInterfaces;
+using Shop.Infrastructure.Repository;
 using Shop.Services;
 using Shop.Services.Interfaces;
 using System;
