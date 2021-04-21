@@ -16,12 +16,12 @@ namespace Shop.Controllers
     {
         private readonly IProductService productService;
 
-        public ProductController(IProductRepository products, ICartRepository cartRepository, ICartService CartService, IProductService ProductService)
+        public ProductController(IProductRepository products, ICartRepository cartRepository, ICartService cartService, IProductService productService)
         {
             ProductsRepository = products;
             CartRepository = cartRepository;
-            this.CartService = CartService;
-            productService = ProductService;
+            this.CartService = cartService;
+            productService = productService;
         }
 
         public IProductRepository ProductsRepository { get; }

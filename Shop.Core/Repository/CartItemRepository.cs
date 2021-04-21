@@ -9,9 +9,9 @@ namespace Shop.Core.Repository
 {
     public class CartItemRepository : ICartItemRepository
     {
-        public CartItemRepository(AppDbContext DbContext)
+        public CartItemRepository(AppDbContext dbContext)
         {
-            this.DbContext = DbContext;
+            this.DbContext = dbContext;
         }
 
         public AppDbContext DbContext { get; }

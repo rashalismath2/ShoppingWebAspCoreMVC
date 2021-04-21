@@ -13,10 +13,10 @@ namespace Shop.Components
 {
     public class UserViewComponent : ViewComponent
     {
-        public UserViewComponent(IAuthService AuthService)
+        public UserViewComponent(IAuthService authService)
         {
   
-            this.AuthService = AuthService;
+            this.AuthService = authService;
         }
 
         public IServiceProvider Service { get; }

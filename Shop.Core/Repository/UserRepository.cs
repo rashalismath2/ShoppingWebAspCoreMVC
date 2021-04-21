@@ -9,9 +9,9 @@ namespace Shop.Core.Repository
 {
     public class UserRepository : IUserRepository
     {
-        public UserRepository(AppDbContext DbContext)
+        public UserRepository(AppDbContext dbContext)
         {
-            this.DbContext = DbContext;
+            this.DbContext = dbContext;
         }
 
         public AppDbContext DbContext { get; }

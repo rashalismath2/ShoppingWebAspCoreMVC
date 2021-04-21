@@ -12,11 +12,11 @@ namespace Shop.Controllers
 {
     public class CartController : Controller
     {
-        public CartController(ICartRepository CartRepository, ICartItemRepository CartItempRepository, ICartService CartService)
+        public CartController(ICartRepository cartRepository, ICartItemRepository cartItempRepository, ICartService cartService)
         {
-            this.CartRepository = CartRepository;
-            this.CartItempRepository = CartItempRepository;
-            this.CartService = CartService;
+            this.CartRepository = cartRepository;
+            this.CartItempRepository = cartItempRepository;
+            this.CartService = cartService;
         }
 
         public ICartRepository CartRepository { get; }

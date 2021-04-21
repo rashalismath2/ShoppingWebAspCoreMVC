@@ -13,10 +13,10 @@ namespace Shop.Services
     public class AuthService : IAuthService
     {
 
-        public AuthService(IServiceProvider Service, IUserRepository UserRepository)
+        public AuthService(IServiceProvider service, IUserRepository userRepository)
         {
-            this.Service = Service;
-            this.UserRepository = UserRepository;
+            this.Service = service;
+            this.UserRepository = userRepository;
 
             Session = Service.GetRequiredService<IHttpContextAccessor>().HttpContext.Session;
         }
