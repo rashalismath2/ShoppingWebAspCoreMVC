@@ -15,10 +15,10 @@ namespace Shop.Services
         public IServiceProvider ServiceProvider { get; }
         public ICartRepository CartRepository { get; }
 
-        public CartService(IServiceProvider ServiceProvider, ICartRepository CartRepository)
+        public CartService(IServiceProvider serviceProvider, ICartRepository cartRepository)
         {
-            this.ServiceProvider = ServiceProvider;
-            this.CartRepository = CartRepository;
+            this.ServiceProvider = serviceProvider;
+            this.CartRepository = cartRepository;
         }
         public string GetCartIdFromSession()
         {

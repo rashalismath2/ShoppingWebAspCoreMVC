@@ -13,10 +13,10 @@ namespace Shop.Controllers
 {
     public class AuthController : Controller
     {
-        public AuthController(IUserRepository UserRepository, IAuthService AuthService)
+        public AuthController(IUserRepository userRepository, IAuthService authService)
         {
-            this.UserRepository = UserRepository;
-            this.AuthService = AuthService;
+            this.UserRepository = userRepository;
+            this.AuthService = authService;
         }
 
         public IUserRepository UserRepository { get; }

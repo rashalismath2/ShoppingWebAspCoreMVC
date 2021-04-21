@@ -15,10 +15,10 @@ namespace Shop.Services
 {
     public class IdentityCookieAuth : IAuthService
     {
-        public IdentityCookieAuth(IServiceProvider Service, IUserRepository UserRepository)
+        public IdentityCookieAuth(IServiceProvider service, IUserRepository userRepository)
         {
-            this.Service = Service;
-            this.UserRepository = UserRepository;
+            this.Service = service;
+            this.UserRepository = userRepository;
         }
 
         public IServiceProvider Service { get; }

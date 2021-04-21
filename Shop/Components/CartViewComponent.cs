@@ -13,10 +13,10 @@ namespace Shop.Components
 {
     public class CartViewComponent : ViewComponent
     {
-        public CartViewComponent(ICartRepository cartRepo, ICartService CartService)
+        public CartViewComponent(ICartRepository cartRepo, ICartService cartService)
         {
             CartRepo = cartRepo;
-            this.CartService = CartService;
+            this.CartService = cartService;
         }
 
         public ICartRepository CartRepo { get; }
