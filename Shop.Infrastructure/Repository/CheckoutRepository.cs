@@ -9,9 +9,9 @@ namespace Shop.Infrastructure.Repository
 {
     public class CheckoutRepository : ICheckoutRepository
     {
-        public CheckoutRepository(AppDbContext DbContext)
+        public CheckoutRepository(AppDbContext dbContext)
         {
-            this.DbContext = DbContext;
+            this.DbContext = dbContext;
         }
 
         public AppDbContext DbContext { get; }
