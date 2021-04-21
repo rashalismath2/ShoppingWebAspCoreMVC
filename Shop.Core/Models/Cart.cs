@@ -40,8 +40,11 @@ namespace Shop.Core.Models
         }
         public float GetTotal()
         {
-            Total = GetSubTotal() - GetDiscount();
-            return Total;
+            if (Discount != 0 && SubTotal != 0)
+            {
+                return Total = SubTotal - Discount;
+            }
+            return Total = GetSubTotal() - GetDiscount();
         }
 
         public void ProcessCart()
