@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Shop.Core.Models;
+using Shop.Core.Models.Enums;
 using Shop.Core.Repository.RepositoryInterfaces;
 using Shop.Services.Interfaces;
 using System;
@@ -22,7 +23,6 @@ namespace Shop.Services
         }
         public string GetCartIdFromSession()
         {
-
             ISession session = ServiceProvider.GetRequiredService<IHttpContextAccessor>()
                                 .HttpContext
                                 .Session;
@@ -55,6 +55,28 @@ namespace Shop.Services
 
             CartRepository.Update(cart);
             return cart.CartId;
+        }
+
+
+        public Cart AddItemToTheList(Cart cart, List<CartItem> cartItems, CartItem cartItem)
+        {
+            //if we have a product with same size in the cart items we just simply add two quentities
+            bool foundProductWithSameSize = false;
+            foreach (var item in cartItems)
+            {
+                if (item.Size == cartItem.Size)
+                {
+                    foundProductWithSameSize = true;
+                    item.Qty += cartItem.Qty;
+                }
+            }
+            //if we didnt found a product with the same size but different size we will add it to the cart
+            if (!foundProductWithSameSize)
+            {
+                cart.CartItems.Add(cartItem);
+            }
+
+            return cart;
         }
     }
 }

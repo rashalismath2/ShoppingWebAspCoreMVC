@@ -16,7 +16,7 @@ namespace Shop.Controllers
     {
         private readonly IProductService productService;
 
-        public ProductController(IProductRepository products, ICartRepository cartRepository, ICartService CartService,IProductService ProductService)
+        public ProductController(IProductRepository products, ICartRepository cartRepository, ICartService CartService, IProductService ProductService)
         {
             ProductsRepository = products;
             CartRepository = cartRepository;
@@ -32,18 +32,18 @@ namespace Shop.Controllers
         {
             return View("NotFound");
         }
-        public IActionResult Category(ProductType category, string priceFilterByCat,int? pageNumber)
+        public IActionResult Category(ProductType category, string priceFilterByCat, int? pageNumber)
         {
             ViewBag.PageNumber = pageNumber;
             ViewBag.ProductType = category;
             ViewBag.ProductByCategoryListCount = (int)Math.Ceiling((double)ProductsRepository.ProductByCategoryLength(category) / IProductService.ProductsPerPage);
 
             List<Product> products = ProductsRepository.ByCatergory(
-                                        category,priceFilterByCat, 
+                                        category, priceFilterByCat,
                                         pageNumber,
                                         IProductService.ProductsPerPage
                                 );
-            
+
             return View(products);
         }
 
@@ -73,37 +73,21 @@ namespace Shop.Controllers
                 .Where(ci => ci.Product.ProductId == productCartViewModel.Product.ProductId)
                 .ToList();
 
+
             //calculating qty will be determined by only the product id, size wont be included
             //total of the qty exist in the cart and we are adding should be less than 10
             int qtyTotal = cartItems.Sum(s => s.Qty);
             int totalItemsToBeAdded = qtyTotal + productCartViewModel.CartItem.Qty;
-            int allowedItemsToBeAdded = 10;
 
-            if (totalItemsToBeAdded > allowedItemsToBeAdded)
+            if (totalItemsToBeAdded > CartService.AllowedItemsPerProduct)
             {
-                TempData["ProductErrorMessage"] = @"You can only add 10 items per product. You have already added " 
+                TempData["ProductErrorMessage"] = @"You can only add 10 items per product. You have already added "
                                                      + qtyTotal + " items.";
-
                 return RedirectToAction("Details", new { id = productCartViewModel.Product.ProductId });
             }
 
 
-            //if we have a product with same size in the cart items we just simply add two quentities
-            bool foundProductWithSameSize = false;
-            foreach (var item in cartItems)
-            {
-                if (item.Size == productCartViewModel.CartItem.Size)
-                {
-                    foundProductWithSameSize = true;
-                    item.Qty += productCartViewModel.CartItem.Qty;
-                }
-            }
-            //if we didnt found a product with the same size but different size we will add it to the cart
-            if (!foundProductWithSameSize)
-            {
-                newCart.CartItems.Add(productCartViewModel.CartItem);
-            }
-
+            newCart = CartService.AddItemToTheList(newCart, cartItems, productCartViewModel.CartItem);
             CartRepository.Update(newCart);
 
             TempData["ProductSuccessMessage"] = "Product added to the cart";
