@@ -12,9 +12,10 @@ namespace Shop.ViewModels
         [EmailAddress]
         [Required]
         public string Email { get; set; }
-        [Required]
+        [Required,MinLength(4,ErrorMessage="Password length must be more thatn 4")]
         public string Password { get; set; }
         public bool RememberMe { get; set; }
+        public string ReturnUrl { get; set; }
 
     }
 }

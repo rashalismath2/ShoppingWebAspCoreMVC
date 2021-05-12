@@ -25,13 +25,13 @@ namespace Shop.Core.Services
         public ISession Session { get; }
         public IUserRepository UserRepository { get; }
 
-        public User GetAuthUser()
+        public async Task<User> GetAuthUser()
         {
             User user = null;
             if (Session.GetString("UserEmail") != null)
             {
                 string email = Session.GetString("UserEmail");
-                user = UserRepository.GetUserByEmail(email);
+                user = await UserRepository.GetUserByEmail(email);
             }
 
             return user;
@@ -53,14 +53,14 @@ namespace Shop.Core.Services
             return Task.FromResult(false);
         }
 
-        public bool CredentialsAreValid(string email, string password)
+        public async Task<bool> CredentialsAreValid(string email, string password)
         {
             if (string.IsNullOrEmpty(email)) throw new ArgumentException("Email cant be empty!");
             if (string.IsNullOrEmpty(password)) throw new ArgumentException("Password cant be empty!");
 
             bool isVerfied = false;
 
-            User user = UserRepository.GetUserByEmail(email);
+            User user =await UserRepository.GetUserByEmail(email);
 
             if (user == null)
             {

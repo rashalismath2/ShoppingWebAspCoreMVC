@@ -34,16 +34,26 @@ namespace Shop.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete([FromForm] int deleteCartItemId)
         {
-            CartItem cartItem = await CartItempRepository.DeleteById(deleteCartItemId);
-            if (cartItem != null)
+            try
             {
-                TempData["CartItemRemoved"] = "Cart Item Removed";
+                CartItem cartItem = await CartItempRepository.DeleteById(deleteCartItemId);
+
+                if (cartItem != null)
+                {
+                    TempData["CartItemRemoved"] = "Cart Item Removed";
+                }
+                else
+                {
+                    TempData["CartItemRemoved"] = "Cart Item Was Not Found";
+                }
+                return RedirectToAction("Index");
             }
-            else
+            catch (Exception)
             {
-                TempData["CartItemRemoved"] = "Cart Item Was Not Found";
+                TempData["CartItemRemoved"] = "Product was not deleted. Please try again!";
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+      
         }
 
     }

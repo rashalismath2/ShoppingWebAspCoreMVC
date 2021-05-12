@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shop.Infrastructure.Repository;
 
 namespace Shop.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210512103947_seedsupdated3")]
+    partial class seedsupdated3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,7 +57,6 @@ namespace Shop.Infrastructure.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CartId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Color")
@@ -100,7 +101,6 @@ namespace Shop.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CartId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("City")
@@ -124,7 +124,7 @@ namespace Shop.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("CheckoutId");
@@ -159,7 +159,6 @@ namespace Shop.Infrastructure.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Type")
@@ -173,10 +172,10 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 1,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 944, DateTimeKind.Local).AddTicks(8406),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 627, DateTimeKind.Local).AddTicks(5219),
                             Description = "",
                             DiscountPrecentage = 2f,
-                            ImgUrl = "https://www.nolimit.lk/storage/products/Gents-1-2020_0032__W0A8616.jpg",
+                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0064-0t3a9626.jpg",
                             Price = 1501f,
                             Title = "Long Sleeve T-Shirt 1",
                             Type = 0
@@ -184,7 +183,7 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 2,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 952, DateTimeKind.Local).AddTicks(8147),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 634, DateTimeKind.Local).AddTicks(9685),
                             Description = "",
                             DiscountPrecentage = 2f,
                             ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0064-0t3a9626.jpg",
@@ -195,10 +194,10 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 3,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 952, DateTimeKind.Local).AddTicks(8835),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(557),
                             Description = "",
                             DiscountPrecentage = 2f,
-                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0064-0t3a9626.jpg",
+                            ImgUrl = "https://www.nolimit.lk/storage/products/Gents-1-2020_0032__W0A8616.jpg",
                             Price = 1503f,
                             Title = "Long Sleeve T-Shirt 3",
                             Type = 0
@@ -206,10 +205,10 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 4,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 952, DateTimeKind.Local).AddTicks(9004),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(732),
                             Description = "",
                             DiscountPrecentage = 2f,
-                            ImgUrl = "https://www.nolimit.lk/storage/products/Gents-1-2020_0032__W0A8616.jpg",
+                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0043-0t3a9660.jpg",
                             Price = 1504f,
                             Title = "Long Sleeve T-Shirt 4",
                             Type = 0
@@ -217,10 +216,10 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 5,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 952, DateTimeKind.Local).AddTicks(9153),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(870),
                             Description = "",
                             DiscountPrecentage = 2f,
-                            ImgUrl = "https://www.nolimit.lk/storage/products/Gents-1-2020_0032__W0A8616.jpg",
+                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0043-0t3a9660.jpg",
                             Price = 1505f,
                             Title = "Long Sleeve T-Shirt 5",
                             Type = 0
@@ -228,10 +227,10 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 6,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 952, DateTimeKind.Local).AddTicks(9312),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(1035),
                             Description = "",
                             DiscountPrecentage = 2f,
-                            ImgUrl = "https://www.nolimit.lk/storage/products/Gents-1-2020_0032__W0A8616.jpg",
+                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0064-0t3a9626.jpg",
                             Price = 1506f,
                             Title = "Long Sleeve T-Shirt 6",
                             Type = 0
@@ -239,7 +238,7 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 7,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 952, DateTimeKind.Local).AddTicks(9445),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(1168),
                             Description = "",
                             DiscountPrecentage = 2f,
                             ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0043-0t3a9660.jpg",
@@ -250,10 +249,10 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 8,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 952, DateTimeKind.Local).AddTicks(9579),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(1414),
                             Description = "",
                             DiscountPrecentage = 2f,
-                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0064-0t3a9626.jpg",
+                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0043-0t3a9660.jpg",
                             Price = 1508f,
                             Title = "Long Sleeve T-Shirt 8",
                             Type = 0
@@ -261,10 +260,10 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 9,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 952, DateTimeKind.Local).AddTicks(9712),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(1758),
                             Description = "",
                             DiscountPrecentage = 2f,
-                            ImgUrl = "https://www.nolimit.lk/storage/products/Gents-1-2020_0032__W0A8616.jpg",
+                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0043-0t3a9660.jpg",
                             Price = 1509f,
                             Title = "Long Sleeve T-Shirt 9",
                             Type = 0
@@ -272,10 +271,10 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 10,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 952, DateTimeKind.Local).AddTicks(9856),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(1984),
                             Description = "",
                             DiscountPrecentage = 2f,
-                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0064-0t3a9626.jpg",
+                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0043-0t3a9660.jpg",
                             Price = 1510f,
                             Title = "Long Sleeve T-Shirt 10",
                             Type = 0
@@ -283,10 +282,10 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 11,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 952, DateTimeKind.Local).AddTicks(9984),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(2128),
                             Description = "",
                             DiscountPrecentage = 2f,
-                            ImgUrl = "https://www.nolimit.lk/storage/products/Gents-1-2020_0032__W0A8616.jpg",
+                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0043-0t3a9660.jpg",
                             Price = 1511f,
                             Title = "Long Sleeve T-Shirt 11",
                             Type = 0
@@ -294,7 +293,7 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 12,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(112),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(2261),
                             Description = "",
                             DiscountPrecentage = 2f,
                             ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0064-0t3a9626.jpg",
@@ -305,10 +304,10 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 13,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(246),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(2394),
                             Description = "",
                             DiscountPrecentage = 2f,
-                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0064-0t3a9626.jpg",
+                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0043-0t3a9660.jpg",
                             Price = 1513f,
                             Title = "Long Sleeve T-Shirt 13",
                             Type = 0
@@ -316,10 +315,10 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 14,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(374),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(2836),
                             Description = "",
                             DiscountPrecentage = 2f,
-                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0064-0t3a9626.jpg",
+                            ImgUrl = "https://www.nolimit.lk/storage/products/Gents-1-2020_0032__W0A8616.jpg",
                             Price = 1514f,
                             Title = "Long Sleeve T-Shirt 14",
                             Type = 0
@@ -327,7 +326,7 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 15,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(626),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(3693),
                             Description = "",
                             DiscountPrecentage = 1.5f,
                             ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0004-0t3a9733.jpg",
@@ -338,29 +337,7 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 16,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(769),
-                            Description = "",
-                            DiscountPrecentage = 1.5f,
-                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0004-0t3a9733.jpg",
-                            Price = 2800f,
-                            Title = "GENTS CASUAL SHIRT",
-                            Type = 1
-                        },
-                        new
-                        {
-                            ProductId = 17,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(903),
-                            Description = "",
-                            DiscountPrecentage = 1.5f,
-                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0004-0t3a9733.jpg",
-                            Price = 2800f,
-                            Title = "GENTS CASUAL SHIRT",
-                            Type = 1
-                        },
-                        new
-                        {
-                            ProductId = 18,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(1087),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(3826),
                             Description = "",
                             DiscountPrecentage = 1.5f,
                             ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0112-0t3a9535.jpg",
@@ -370,8 +347,8 @@ namespace Shop.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = 19,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(1215),
+                            ProductId = 17,
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(3954),
                             Description = "",
                             DiscountPrecentage = 1.5f,
                             ImgUrl = "https://www.nolimit.lk/storage/1-358.jpg",
@@ -381,8 +358,30 @@ namespace Shop.Infrastructure.Migrations
                         },
                         new
                         {
+                            ProductId = 18,
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(4093),
+                            Description = "",
+                            DiscountPrecentage = 1.5f,
+                            ImgUrl = "https://www.nolimit.lk/storage/1-358.jpg",
+                            Price = 2800f,
+                            Title = "GENTS CASUAL SHIRT",
+                            Type = 1
+                        },
+                        new
+                        {
+                            ProductId = 19,
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(4221),
+                            Description = "",
+                            DiscountPrecentage = 1.5f,
+                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0112-0t3a9535.jpg",
+                            Price = 2800f,
+                            Title = "GENTS CASUAL SHIRT",
+                            Type = 1
+                        },
+                        new
+                        {
                             ProductId = 20,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(1344),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(4339),
                             Description = "",
                             DiscountPrecentage = 1.5f,
                             ImgUrl = "https://www.nolimit.lk/storage/1-358.jpg",
@@ -393,7 +392,7 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 21,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(1472),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(4463),
                             Description = "",
                             DiscountPrecentage = 1.5f,
                             ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0004-0t3a9733.jpg",
@@ -404,10 +403,10 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 22,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(1600),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(4586),
                             Description = "",
                             DiscountPrecentage = 1.5f,
-                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0004-0t3a9733.jpg",
+                            ImgUrl = "https://www.nolimit.lk/storage/1-358.jpg",
                             Price = 2800f,
                             Title = "GENTS CASUAL SHIRT",
                             Type = 1
@@ -415,7 +414,7 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 23,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(1718),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(4709),
                             Description = "",
                             DiscountPrecentage = 1.5f,
                             ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0004-0t3a9733.jpg",
@@ -426,10 +425,10 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 24,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(1846),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(4832),
                             Description = "",
                             DiscountPrecentage = 1.5f,
-                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0004-0t3a9733.jpg",
+                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0112-0t3a9535.jpg",
                             Price = 2800f,
                             Title = "GENTS CASUAL SHIRT",
                             Type = 1
@@ -437,7 +436,7 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 25,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(1970),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(4955),
                             Description = "",
                             DiscountPrecentage = 1.5f,
                             ImgUrl = "https://www.nolimit.lk/storage/1-358.jpg",
@@ -448,7 +447,7 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 26,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(2098),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(5073),
                             Description = "",
                             DiscountPrecentage = 1.5f,
                             ImgUrl = "https://www.nolimit.lk/storage/1-358.jpg",
@@ -459,7 +458,7 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 27,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(2216),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(5191),
                             Description = "",
                             DiscountPrecentage = 1.5f,
                             ImgUrl = "https://www.nolimit.lk/storage/1-358.jpg",
@@ -470,7 +469,7 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 28,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(2606),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(5473),
                             Description = "",
                             DiscountPrecentage = 1.5f,
                             ImgUrl = "https://www.nolimit.lk/storage/1-358.jpg",
@@ -481,10 +480,10 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             ProductId = 29,
-                            CreatedDate = new DateTime(2021, 5, 12, 17, 55, 4, 953, DateTimeKind.Local).AddTicks(2765),
+                            CreatedDate = new DateTime(2021, 5, 12, 16, 9, 46, 635, DateTimeKind.Local).AddTicks(5607),
                             Description = "",
                             DiscountPrecentage = 1.5f,
-                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0004-0t3a9733.jpg",
+                            ImgUrl = "https://www.nolimit.lk/storage/baseball-web2-recovered2-0112-0t3a9535.jpg",
                             Price = 2800f,
                             Title = "GENTS CASUAL SHIRT",
                             Type = 1
@@ -499,27 +498,21 @@ namespace Shop.Infrastructure.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ContactNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
@@ -534,8 +527,7 @@ namespace Shop.Infrastructure.Migrations
                             ContactNumber = "0750000000",
                             Email = "UserOne@gmail.com",
                             FirstName = "User",
-                            LastName = "One",
-                            Password = "$2a$11$Hx.1.HZkvkfw7T52BbdhLuJQAhdvR5Y.1nSvwCxJ1sK9paLLtqi5S"
+                            LastName = "One"
                         },
                         new
                         {
@@ -553,9 +545,7 @@ namespace Shop.Infrastructure.Migrations
                 {
                     b.HasOne("Shop.Core.Models.Cart", "Cart")
                         .WithMany("CartItems")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CartId");
 
                     b.HasOne("Shop.Core.Models.Product", "Product")
                         .WithMany()
@@ -568,15 +558,11 @@ namespace Shop.Infrastructure.Migrations
                 {
                     b.HasOne("Shop.Core.Models.Cart", "Cart")
                         .WithMany()
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CartId");
 
                     b.HasOne("Shop.Core.Models.User", "User")
                         .WithMany("Checkouts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

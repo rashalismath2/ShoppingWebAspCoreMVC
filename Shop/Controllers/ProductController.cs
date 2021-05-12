@@ -30,7 +30,7 @@ namespace Shop.Controllers
 
         public IActionResult Index()
         {
-            return View("NotFound");
+            return RedirectToRoute(new { controller = "Home", action = "Index" });
         }
         public IActionResult Category(ProductType category, string priceFilterByCat,int? pageNumber)
         {
@@ -52,8 +52,9 @@ namespace Shop.Controllers
             Product product = ProductsRepository.GetById(id);
             if (product == null)
             {
-                //Created a not found product page
-                return View("NotFound");
+                TempData["CustomErrorTitle"] = "404";
+                TempData["CustomErrorMessage"] = "Product was not found";
+                return RedirectToRoute(new { controller="Home",action="Error"});
             }
 
             ProductCartViewModel productCartViewModel = new ProductCartViewModel();
@@ -104,11 +105,20 @@ namespace Shop.Controllers
                 newCart.CartItems.Add(productCartViewModel.CartItem);
             }
 
-            CartRepository.Update(newCart);
+            try
+            {
+                await CartRepository.Update(newCart);
 
-            TempData["ProductSuccessMessage"] = "Product added to the cart";
+                TempData["ProductSuccessMessage"] = "Product added to the cart";
 
-            return RedirectToAction("Details", new { id = productCartViewModel.Product.ProductId });
+                return RedirectToAction("Details", new { id = productCartViewModel.Product.ProductId });
+            }
+            catch (Exception)
+            {
+                TempData["ProductErrorMessage"] = "Product was unable to add to the cart";
+                return RedirectToAction("Details",new { id=productCartViewModel.Product.ProductId});
+            }
+
         }
     }
 }

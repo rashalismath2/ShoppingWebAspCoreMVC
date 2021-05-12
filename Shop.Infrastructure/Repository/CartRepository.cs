@@ -23,10 +23,10 @@ namespace Shop.Infrastructure.Repository
             DbContext.SaveChanges();
             return cart;
         }
-        public Cart Update(Cart cart)
+        public async Task<Cart> Update(Cart cart)
         {
             DbContext.Carts.Update(cart);
-            DbContext.SaveChanges();
+            await DbContext.SaveChangesAsync();
             return cart;
         }
 

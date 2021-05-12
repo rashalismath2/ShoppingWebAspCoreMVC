@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +10,6 @@ namespace Shop.Services.Interfaces
     {
         string GetCartIdFromSession();
         string ClearCartFromSession();
-        Task<string> ProcessCart();
+        Cart ProcessCart(Cart cart);
     }
 }

@@ -8,9 +8,9 @@ namespace Shop.Services.Interfaces
 {
     public interface IAuthService
     {
-        User GetAuthUser();
+        Task<User> GetAuthUser();
         Task<bool> Login(string email,bool rememberMe);
-        bool CredentialsAreValid(string email,string password);
+        Task<bool> CredentialsAreValid(string email,string password);
         Task<bool> Logout();
     }
 }

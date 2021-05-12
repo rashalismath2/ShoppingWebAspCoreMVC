@@ -20,8 +20,17 @@ namespace Shop.Infrastructure.Repository
         {
             CartItem cartItem=await DbContext.CartItems.FindAsync(id);
             if (cartItem != null) {
+
                 DbContext.CartItems.Remove(cartItem);
-                await DbContext.SaveChangesAsync();
+
+                try
+                {
+                    await DbContext.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
 
             return cartItem;

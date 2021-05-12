@@ -24,15 +24,20 @@ namespace Shop.Services
         public IServiceProvider Service { get; }
         public IUserRepository UserRepository { get; }
 
-        public User GetAuthUser()
+        public async Task<User> GetAuthUser()
         {
             string email = Service.GetRequiredService<IHttpContextAccessor>().HttpContext.User.Identity.Name;
-            //TODO dependecy to repository from service. Is it okay?
-            if (!string.IsNullOrWhiteSpace(email))
+            if (string.IsNullOrEmpty(email)) throw new ArgumentException("User was not found");
+
+            try
             {
-                return UserRepository.GetUserByEmail(email);
-            };
-            return null;
+                return await UserRepository.GetUserByEmail(email);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+
         }
 
         public async Task<bool> Login(string email, bool rememberMe)
@@ -42,7 +47,7 @@ namespace Shop.Services
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, email),
-                new Claim("Email", email),
+                new Claim(ClaimTypes.Email, email),
                 new Claim(ClaimTypes.Role, "User"),
             };
 
@@ -80,24 +85,24 @@ namespace Shop.Services
 
                 return true;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                throw exception;
+                return false;
             }
         }
 
-        public bool CredentialsAreValid(string email, string password)
+        public async Task<bool> CredentialsAreValid(string email, string password)
         {
             if (string.IsNullOrEmpty(email)) throw new ArgumentException("Email cant be empty!");
             if (string.IsNullOrEmpty(password)) throw new ArgumentException("Password cant be empty!");
 
             bool isVerfied = false;
 
-            User user = UserRepository.GetUserByEmail(email);
+            User user = await UserRepository.GetUserByEmail(email);
 
             if (user == null)
             {
-                return isVerfied;
+                throw new ArgumentException("Provided email was not found. IF you havend already signed in please signup");
             };
 
             bool passwordsAreTheSame = BCrypt.Net.BCrypt.Verify(password, user.Password);

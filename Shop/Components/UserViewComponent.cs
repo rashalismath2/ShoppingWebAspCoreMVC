@@ -15,18 +15,29 @@ namespace Shop.Components
     {
         public UserViewComponent(IAuthService authService)
         {
-  
+
             this.AuthService = authService;
         }
 
-        public IServiceProvider Service { get; }
-        public IUserRepository UserRepository { get; }
         public IAuthService AuthService { get; }
 
-        
-        public IViewComponentResult Invoke() {
 
-            return View(AuthService.GetAuthUser());
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            try
+            {
+                User user = await AuthService.GetAuthUser();
+                return View(user);
+            }
+            catch (ArgumentException)
+            {
+                return View(new User());
+            }   
+            catch (Exception)
+            {
+                return View(new User());
+            }
+
         }
 
     }

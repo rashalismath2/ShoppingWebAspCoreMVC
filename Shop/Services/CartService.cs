@@ -45,16 +45,11 @@ namespace Shop.Services
             return cartId;
         }
 
-        public async Task<string> ProcessCart()
+        public  Cart ProcessCart(Cart cart)
         {
-            string cartId = GetCartIdFromSession();
-            Cart cart = await CartRepository.GetCart(cartId);
             cart.Deleted = true;
-
             cart.ProcessCart();
-
-            CartRepository.Update(cart);
-            return cart.CartId;
+            return cart;
         }
     }
 }

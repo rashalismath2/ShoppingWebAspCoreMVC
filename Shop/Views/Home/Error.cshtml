@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = TempData["CustomErrorTitle"] ?? "Error";
+}
+
+
+<h2>
+    @if (TempData["CustomErrorMessage"] != null)
+    {
+        @TempData["CustomErrorMessage"]
+    }
+    else
+    {
+        <span>Something went wrong! Please try again</span>
+    }
+</h2>

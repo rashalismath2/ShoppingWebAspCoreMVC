@@ -20,5 +20,9 @@ namespace Shop.Controllers
         {
             return View(Products.NewProducts());
         }
+        public IActionResult Error()
+        {
+            return View();
+        }
     }
 }

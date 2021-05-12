@@ -1,6 +1,7 @@
 ﻿using Shop.Core.Models.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,10 +11,14 @@ namespace Shop.Core.Models
     {
         public int CartItemId { get; set; }
         public Product Product { get; set; }
+        [Required]
         public int ProductId { get; set; }
+        [Required]
         public ProductSize Size { get; set; }
+        [Required]
         public ProductColor Color { get; set; }
         public Cart Cart { get; set; }
+        [Required]
         public string CartId { get; set; }
         public int Qty { get; set; }
 

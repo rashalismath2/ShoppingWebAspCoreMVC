@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Core.Models;
 using Shop.Core.Repository.RepositoryInterfaces;
@@ -22,24 +23,35 @@ namespace Shop.Controllers
         public IUserRepository UserRepository { get; }
         public IAuthService AuthService { get; }
 
-        public IActionResult Login()
+        [AllowAnonymous]
+        public IActionResult Login([FromQuery]string ReturnUrl)
         {
+            ViewData["ReturnUrl"] = ReturnUrl;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToRoute(new { controller = "Home", action = "Index" });
+            }
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel login)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    bool credentialsAreValid = AuthService.CredentialsAreValid(login.Email, login.Password);
+                    bool credentialsAreValid = await AuthService.CredentialsAreValid(login.Email, login.Password);
                     bool loginIsSuccess = await AuthService.Login(login.Email, login.RememberMe);
 
                     if (credentialsAreValid && loginIsSuccess)
                     {
                         TempData["SuccessMessage"] = "Login successful";
+                        if (login.ReturnUrl!=null) {
+                            return Redirect(login.ReturnUrl);
+                        }
                         return RedirectToRoute(new { controller = "Home", action = "Index" });
                     }
 
@@ -59,22 +71,20 @@ namespace Shop.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
-            try
-            {
-                bool logoutSuccessful = await AuthService.Logout();
 
-                if (logoutSuccessful)
-                {
-                    TempData["SuccessMessage"] = "Logout successful";
-                    return RedirectToRoute(new { controller = "Home", action = "Index" });
-                };
-            }
-            catch (Exception)
+            bool logoutSuccessful = await AuthService.Logout();
+
+            if (logoutSuccessful)
             {
-                TempData["ErrorMessage"] = "Logout was not successful";
-            }
+                TempData["SuccessMessage"] = "Logout successful";
+                return RedirectToRoute(new { controller = "Home", action = "Index" });
+            };
+
+            TempData["ErrorMessage"] = "Logout was not successful";
+
             return RedirectToRoute(new { controller = "Home", action = "Index" });
 
         }

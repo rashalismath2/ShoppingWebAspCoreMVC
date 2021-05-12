@@ -247,7 +247,6 @@ C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Sho
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Product\Category.cshtml.g.cs
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Product\Details.cshtml.g.cs
-C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Product\NotFound.cshtml.g.cs
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Cart\default.cshtml.g.cs
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\User\default.cshtml.g.cs
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Footer.cshtml.g.cs
@@ -263,3 +262,5 @@ C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Sho
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\obj\Debug\netcoreapp3.1\Shop.genruntimeconfig.cache
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\bin\Debug\netcoreapp3.1\Shop.Infrastructure.dll
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\bin\Debug\netcoreapp3.1\Shop.Infrastructure.pdb
+C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Home\Error.cshtml.g.cs

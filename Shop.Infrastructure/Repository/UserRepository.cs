@@ -1,4 +1,5 @@
-﻿using Shop.Core.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Shop.Core.Models;
 using Shop.Core.Repository.RepositoryInterfaces;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,9 @@ namespace Shop.Infrastructure.Repository
 
         public AppDbContext DbContext { get; }
 
-        public User GetUserByEmail(string email)
+        public async Task<User> GetUserByEmail(string email)
         {
-            return DbContext.Users.Where(user => user.Email == email).FirstOrDefault();
+            return await DbContext.Users.Where(user => user.Email == email).FirstOrDefaultAsync();
         }
 
         public async Task<User> GetUserById(int userId)

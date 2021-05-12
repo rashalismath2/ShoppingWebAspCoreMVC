@@ -8,7 +8,7 @@ namespace Shop.Core.Repository.RepositoryInterfaces
 {
     public interface IUserRepository
     {
-        User GetUserByEmail(string email);
+        Task<User> GetUserByEmail(string email);
         Task<User> GetUserById(int userId);
     }
 }
