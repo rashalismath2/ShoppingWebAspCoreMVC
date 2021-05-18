@@ -5,10 +5,12 @@
 }
 
 @section Left{
+    
     <div class="checkout-sections checkout-sections-border">
         <span class="navbar-brand mb-0 h1"><a id="shop-logo" asp-controller="Home" asp-action="Index">ShopOnline</a></span>
     </div>
     <div class="checkout-sections ">
+        <div id="custom-errors"></div>
         <form asp-controller="Checkout" asp-action="Index" method="post">
             <div>
                 <h5>Billing information</h5>
@@ -66,7 +68,7 @@
 
             <div class="form-group d-flex justify-content-between">
                 <a class="btn btn-secondary" asp-controller="Cart" asp-action="Index"><i class="fas fa-long-arrow-alt-left mr-1"></i>Cart</a>
-                <button type="submit" class="btn btn-primary">Checkout</button>
+                <button id="checkout-submit" type="submit" class="btn btn-primary">Checkout</button>
             </div>
 
         </form>

@@ -3,9 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Shop.Core.Models;
 using Shop.Core.Repository.RepositoryInterfaces;
 using Shop.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Shop.Controllers
@@ -13,6 +10,8 @@ namespace Shop.Controllers
     [Authorize]
     public class CheckoutController : Controller
     {
+        private readonly IUserRepository _userRepository;
+
         public ICartRepository CartRepository { get; }
         public ICheckoutRepository CheckoutRepository { get; }
         public ICartService CartService { get; }
@@ -21,14 +20,16 @@ namespace Shop.Controllers
         public CheckoutController(
                 ICartRepository CartRepository,
                 ICheckoutRepository CheckoutRepository,
-                ICartService CartService, 
-                IAuthService AuthService
+                ICartService CartService,
+                IAuthService AuthService,
+                IUserRepository userRepository
             )
         {
             this.CartRepository = CartRepository;
             this.CheckoutRepository = CheckoutRepository;
             this.CartService = CartService;
             this.AuthService = AuthService;
+            this._userRepository = userRepository;
         }
 
         [HttpGet]
@@ -50,11 +51,11 @@ namespace Shop.Controllers
             Checkout checkout = new Checkout()
             {
                 Cart = cart,
-                UserId=user.UserId,
-                FullName=user.FullName,
-                Address=user.Address,
-                Email=user.Email,
-                Phone=user.ContactNumber
+                UserId = user.UserId,
+                FullName = user.FullName,
+                Address = user.Address,
+                Email = user.Email,
+                Phone = user.ContactNumber
             };
 
             return View(checkout);
@@ -70,9 +71,12 @@ namespace Shop.Controllers
             if (ModelState.IsValid)
             {
                 //TODO- ACID. Cart and Checkout saved seprately
+                var authUser= await _userRepository.GetUserByEmail(HttpContext.User.Identity.Name);
+                checkout.UserId = authUser.UserId;
+
                 await CheckoutRepository.Create(checkout);
 
-                cart=CartService.ProcessCart(cart);
+                cart = CartService.ProcessCart(cart);
 
                 await CartRepository.Update(cart);
 

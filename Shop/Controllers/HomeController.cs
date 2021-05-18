@@ -16,8 +16,11 @@ namespace Shop.Controllers
 
         public IProductRepository Products { get; }
 
-        public IActionResult Index()
+        public IActionResult Index([FromQuery] string success)
         {
+            if (success!=null) {
+                TempData["SuccessMessage"] = success;
+            }
             return View(Products.NewProducts());
         }
         public IActionResult Error()

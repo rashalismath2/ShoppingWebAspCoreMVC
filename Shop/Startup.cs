@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Shop.Core.Repository;
 using Shop.Core.Repository.RepositoryInterfaces;
@@ -13,6 +14,7 @@ using Shop.Services;
 using Shop.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,7 +33,13 @@ namespace Shop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpContextAccessor();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson();
+
+            services.AddCors(o=>o.AddPolicy("CorsPolicy",builder=> {
+                builder.WithOrigins("https://localhost:44352/");
+            }));
+
+
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
@@ -87,8 +95,9 @@ namespace Shop
                 }
             });
 
-
+            app.UseCors("CorsPolicy");
             app.UseStaticFiles();
+
             app.UseHttpsRedirection();
             app.UseRouting();
 
@@ -108,6 +117,7 @@ namespace Shop
                         name: "default",
                         pattern: "{controller=Home}/{action=Index}/{id?}"
                     );
+
             });
 
         }

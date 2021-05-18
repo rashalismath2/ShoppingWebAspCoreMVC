@@ -1,13 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Shop.Core.Models;
 using Shop.Core.Repository.RepositoryInterfaces;
 using Shop.Services.Interfaces;
 using Shop.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Shop.Controllers
@@ -24,7 +20,7 @@ namespace Shop.Controllers
         public IAuthService AuthService { get; }
 
         [AllowAnonymous]
-        public IActionResult Login([FromQuery]string ReturnUrl)
+        public IActionResult Login([FromQuery] string ReturnUrl)
         {
             ViewData["ReturnUrl"] = ReturnUrl;
 
@@ -49,7 +45,8 @@ namespace Shop.Controllers
                     if (credentialsAreValid && loginIsSuccess)
                     {
                         TempData["SuccessMessage"] = "Login successful";
-                        if (login.ReturnUrl!=null) {
+                        if (login.ReturnUrl != null)
+                        {
                             return Redirect(login.ReturnUrl);
                         }
                         return RedirectToRoute(new { controller = "Home", action = "Index" });

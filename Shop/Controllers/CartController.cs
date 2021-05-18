@@ -2,10 +2,7 @@
 using Shop.Core.Models;
 using Shop.Core.Repository.RepositoryInterfaces;
 using Shop.Services.Interfaces;
-using Shop.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Shop.Controllers
@@ -53,7 +50,7 @@ namespace Shop.Controllers
                 TempData["CartItemRemoved"] = "Product was not deleted. Please try again!";
                 return RedirectToAction("Index");
             }
-      
+
         }
 
     }

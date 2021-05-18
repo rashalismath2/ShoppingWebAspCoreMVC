@@ -1,0 +1,8 @@
+{
+  "name": "shop",
+  "author": "Ismath",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.6.0"
+  }
+}
