@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = Model.Product.Title;
 }
-<nav aria-label="breadcrumb" >
+<nav aria-label="breadcrumb">
     <ol class="breadcrumb product-details-breadcrumb  nav-padding">
         <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
         <li class="breadcrumb-item ">@Model.Product.Type.ToString()</li>
@@ -22,6 +22,9 @@
         </ul>
         <form method="post" asp-action="AddToCart">
             <input type="hidden" asp-for="Product.ProductId" />
+            <input  type="hidden" asp-for="Product.Title" />
+            <input type="hidden" asp-for="CartItem.CartId" />
+
             <div class="product-details-sections">
                 <div class="product-details-section-first"><span>Color</span></div>
                 <div class="product-details-section-second">
@@ -60,19 +63,13 @@
                 </div>
             </div>
             <div class="product-details-sections">
-                <button type="submit" class="btn btn-primary">
+                <button id="add-to-cart-submit" type="submit" class="btn btn-primary">
                     <i class="fas fa-sign-in-alt"></i>
                     Add to cart
                 </button>
-                @if (TempData["ProductSuccessMessage"] != null)
-                {
-                    <p class="text-success success-message">@TempData["ProductSuccessMessage"]</p>
-                }  
 
-                @if (TempData["ProductErrorMessage"] != null)
-                {
-                    <p class="text-danger error-message">@TempData["ProductErrorMessage"]</p>
-                }
+                 <p id="custom-success" class="text-success success-message"></p>
+                 <p id="custom-errors" class="text-danger error-message"></p>
 
             </div>
         </form>
@@ -88,3 +85,11 @@
 
     </div>
 </section>
+
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+    <script src="~/Content/Js/Product.js"></script>
+}

@@ -49,6 +49,7 @@ namespace Shop.Controllers
 
         public IActionResult Details(int id)
         {
+            string cartId = CartService.GetCartIdFromSession();
             Product product = ProductsRepository.GetById(id);
             if (product == null)
             {
@@ -59,8 +60,8 @@ namespace Shop.Controllers
 
             ProductCartViewModel productCartViewModel = new ProductCartViewModel();
             productCartViewModel.Product = product;
-            productCartViewModel.CartItem = new CartItem(); ;
-
+            productCartViewModel.CartItem=new CartItem() {CartId = cartId };
+     
             return View(productCartViewModel);
         }
         [HttpPost]
@@ -109,7 +110,7 @@ namespace Shop.Controllers
             {
                 await CartRepository.Update(newCart);
 
-                TempData["ProductSuccessMessage"] = "Product added to the cart";
+                TempData["ProductSuccessMessage"] = "Product was added to the cart";
 
                 return RedirectToAction("Details", new { id = productCartViewModel.Product.ProductId });
             }

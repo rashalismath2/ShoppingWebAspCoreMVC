@@ -57,7 +57,7 @@
     </nav>
 
     @RenderBody()
-
+    @RenderSection("scripts",required:false)
     @await Html.PartialAsync("_Footer") 
 </body>
 </html>
