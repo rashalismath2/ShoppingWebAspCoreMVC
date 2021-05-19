@@ -35,7 +35,9 @@ $("#add-to-cart-submit").on("click", function (e) {
         }),
         contentType: "application/json",
         success: function (res, status) {
+
             $("#cart-item-count").text(res.data)
+
             $("#custom-success")
                 .text("Product was added to the cart")
             $.LoadingOverlay("hide");

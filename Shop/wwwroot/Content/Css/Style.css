@@ -1,4 +1,4 @@
-﻿body {
+body {
 }
 
 :root {
@@ -103,7 +103,16 @@ img {
     margin: 15px 0;
 }
 
-
+#cart-menu {
+    left: -300px;
+    color: white;
+    min-width: 350px;
+    min-height:80px;
+    background: #343a40 !important;
+}
+#cart-menu #cart-menu-empty-message {
+    text-align: center
+}
 
 .homepage-items-head {
     margin: 0;

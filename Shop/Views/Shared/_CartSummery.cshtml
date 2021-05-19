@@ -1,0 +1,46 @@
+﻿@model Shop.Core.Models.Cart
+@{
+}
+
+    <div class="checkout-sections checkout-sections-border">
+        @foreach (var item in Model.CartItems)
+        {
+            <div class="row">
+                <div class="col-3 text-center">
+                    <div id="checkout-product-img">
+                        <span class="badge badge-light">@item.Qty</span>
+                        <img src="@item.Product.ImgUrl" />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <p class="m-0">@item.Product.Title</p>
+                    <p>Size: @item.Size</p>
+                </div>
+                <div class="col-3">
+                    <p><b>LKR @item.GetTotal()</b></p>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="checkout-sections checkout-sections-border">
+        <div class="row">
+            <div class="col-3">
+                Subtotal
+            </div>
+            <div class="col-6"></div>
+            <div class="col-3">
+                <p><b>LKR @Model.GetSubTotal()</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="checkout-sections checkout-sections-border">
+        <div class="row">
+            <div class="col-3 text-right font-weight-bold">
+                Total
+            </div>
+            <div class="col-5"></div>
+            <div class="col-4">
+                <h5><b>LKR @Model.GetTotal()</b></h5>
+            </div>
+        </div>
+    </div>

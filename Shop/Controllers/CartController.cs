@@ -24,7 +24,7 @@ namespace Shop.Controllers
         {
             string cartId = CartService.GetCartIdFromSession();
             Cart cart = await CartRepository.GetCart(cartId);
-
+            cart.ProcessCart();
             return View(cart);
         }
 

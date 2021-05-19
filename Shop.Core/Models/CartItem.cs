@@ -17,7 +17,6 @@ namespace Shop.Core.Models
         public ProductSize Size { get; set; }
         [Required]
         public ProductColor Color { get; set; }
-        public Cart Cart { get; set; }
         [Required]
         public string CartId { get; set; }
         public int Qty { get; set; }

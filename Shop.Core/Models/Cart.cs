@@ -24,6 +24,8 @@ namespace Shop.Core.Models
 
         public float GetDiscount()
         {
+            Discount = 0;
+
             foreach (var item in CartItems)
             {
                 Discount += item.GetDiscount();
@@ -32,6 +34,7 @@ namespace Shop.Core.Models
         }
         public float GetSubTotal()
         {
+            SubTotal = 0;
             foreach (var item in CartItems)
             {
                 SubTotal += item.GetSubTotal();

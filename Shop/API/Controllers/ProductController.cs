@@ -78,7 +78,7 @@ namespace Shop.API.Controllers
             {
                 await CartRepository.Update(newCart);
 
-                return Ok(new { data = newCart.CartItems.Count });
+                return new JsonResult(new { data = newCart.CartItems.Count});
             }
             catch (Exception)
             {

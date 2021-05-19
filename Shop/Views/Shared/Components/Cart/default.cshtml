@@ -3,8 +3,36 @@
 }
 
 <li>
-    <a id="cart-icon" asp-controller="Cart" asp-action="Index">
+    @*<a id="cart-icon" asp-controller="Cart" asp-action="Index">
+        <span id="cart-item-count" class="badge badge-light">@Model.CartItems.Count</span>
+        <i class="fas fa-shopping-cart"></i>
+    </a>*@
+
+<div class="dropdown">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
         <span id="cart-item-count" class="badge badge-light">@Model.CartItems.Count</span>
         <i class="fas fa-shopping-cart"></i>
     </a>
+
+    <ul id="cart-menu" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        @if (Model.CartItems.Count < 1)
+        {
+            <p id="cart-menu-empty-message">No items have been added to the cart yet</p>
+        }
+        else
+        {
+            @await Html.PartialAsync("_CartSummery", @Model)
+            <div class="checkout-sections checkout-sections-border">
+                <div class="row">
+                    <div class="col-6 text-right font-weight-bold">
+                        <a class="btn btn-secondary" asp-controller="Cart" asp-action="Index">Cart</a>
+                    </div>
+                    <div class="col-6">
+                        <a asp-controller="Checkout" asp-action="Index" class="btn btn-success">Checkout</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </ul>
+</div>
 </li>
