@@ -5,12 +5,13 @@
 
 <div class="page-sections">
     <div class="text-right">
-        @if (TempData["CartItemRemoved"]!=null)
+        @if (TempData["CartItemRemoved"] != null)
         {
             <div class="alert alert-success d-inline mr-2" role="alert">
                 @TempData["CartItemRemoved"]
             </div>
         }
+        <div id="customer-error" class="hide alert-danger d-inline mr-2" role="alert"></div>
     </div>
 
     <table class="table nav-padding">
@@ -39,27 +40,27 @@
             {
                 @foreach (var cartItem in Model.CartItems)
                 {
-                    <tr>
+                    <tr  data-id="@cartItem.CartItemId" id="cart-item-row">
                         <td><img class="cart-product-image" src="@cartItem.Product.ImgUrl" /></td>
                         <td><a id="cart-product-link" asp-controller="product" asp-action="Details" asp-route-id="@cartItem.Product.ProductId">@cartItem.Product.Title</a></td>
                         <td>@cartItem.Product.Type.ToString()</td>
                         <td>@cartItem.Size</td>
                         <td>Rs.@cartItem.Product.Price</td>
                         <td>@cartItem.Qty</td>
-                        <td>Rs.@cartItem.GetDiscount()</td>
-                        <td>Rs.@cartItem.GetSubTotal()</td>
-                        <td>Rs.@cartItem.GetTotal()</td>
+                        <td  data-id="@cartItem.CartItemId" id="cart-item-discount">Rs.@cartItem.GetDiscount()</td>
+                        <td  data-id="@cartItem.CartItemId"  id="cart-item-subtotal">Rs.@cartItem.GetSubTotal()</td>
+                        <td  data-id="@cartItem.CartItemId"  id="cart-item-total">Rs.@cartItem.GetTotal()</td>
                         <td class="font-weight-bold ">
-                            <form asp-action="Delete" method="post">
+                            <form >
                                 <input type="hidden" value="@cartItem.CartItemId" name="deleteCartItemId" />
-                                <button class="btn btn-danger">Delete</button>
+                                <button type="button" data-id="@cartItem.CartItemId" onclick="deleteSelectedCartItem(this)" id="cart-item-delete-button"  class="btn btn-danger">Delete</button>
                             </form>
 
                         </td>
                     </tr>
                 }
             }
-            <br/>
+            <br />
             @if (Model.CartItems.Count > 0)
             {
                 <tr>
@@ -81,9 +82,9 @@
                     <td class="no-border"></td>
                     <td class="no-border"></td>
                     <td class="no-border"></td>
-                    <td>Rs.@Model.GetDiscount()</td>
-                    <td>Rs.@Model.GetSubTotal()</td>
-                    <td>Rs.@Model.GetTotal()</td>
+                    <td id="cart-item-discount-value">Rs.@Model.GetDiscount()</td>
+                    <td id="cart-item-subtotal-value">Rs.@Model.GetSubTotal()</td>
+                    <td id="cart-item-total-value">Rs.@Model.GetTotal()</td>
                     <td class="font-weight-bold "></td>
                 </tr>
                 <tr>
@@ -102,4 +103,12 @@
 
         </tbody>
     </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+    <script src="~/Content/Js/Cart.js"></script>
+
 </div>
+

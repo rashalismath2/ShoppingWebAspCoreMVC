@@ -11,47 +11,23 @@ namespace Shop.Controllers
     {
         public CartController(ICartRepository cartRepository, ICartItemRepository cartItempRepository, ICartService cartService)
         {
-            this.CartRepository = cartRepository;
-            this.CartItempRepository = cartItempRepository;
-            this.CartService = cartService;
+            this._cartRepository = cartRepository;
+            this._cartItempRepository = cartItempRepository;
+            this._cartService = cartService;
         }
 
-        public ICartRepository CartRepository { get; }
-        public ICartItemRepository CartItempRepository { get; }
-        public ICartService CartService { get; }
+        public ICartRepository _cartRepository { get; }
+        public ICartItemRepository _cartItempRepository { get; }
+        public ICartService _cartService { get; }
 
         public async Task<IActionResult> Index()
         {
-            string cartId = CartService.GetCartId();
-            Cart cart = await CartRepository.GetCart(cartId);
+            string cartId = _cartService.GetCartId();
+            Cart cart = await _cartRepository.GetCart(cartId);
             cart.ProcessCart();
             return View(cart);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Delete([FromForm] int deleteCartItemId)
-        {
-            try
-            {
-                CartItem cartItem = await CartItempRepository.DeleteById(deleteCartItemId);
-
-                if (cartItem != null)
-                {
-                    TempData["CartItemRemoved"] = "Cart Item Removed";
-                }
-                else
-                {
-                    TempData["CartItemRemoved"] = "Cart Item Was Not Found";
-                }
-                return RedirectToAction("Index");
-            }
-            catch (Exception)
-            {
-                TempData["CartItemRemoved"] = "Product was not deleted. Please try again!";
-                return RedirectToAction("Index");
-            }
-
-        }
 
     }
 
