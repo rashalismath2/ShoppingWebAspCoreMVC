@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,10 +14,11 @@ namespace Shop.Core.Models
         public User User { get; set; }
         [Required]
         public int UserId { get; set; }
+        [ForeignKey("CartId")]
         public Cart Cart { get; set; }
         [Required]
         public string CartId { get; set; }
-        [Required,MinLength(4)]
+        [Required, MinLength(4)]
         public string FullName { get; set; }
         [Required, MinLength(10)]
         public string Phone { get; set; }
@@ -29,5 +31,10 @@ namespace Shop.Core.Models
         public string Note { get; set; }
         [Required]
         public PaymentMethod PaymentMethod { get; set; }
+        public DateTime Date { get; set; }
+
+        public Checkout()
+        {
+        }
     }
 }

@@ -268,3 +268,4 @@ C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Sho
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CartSummery.cshtml.g.cs
+C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\History.cshtml.g.cs

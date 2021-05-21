@@ -27,7 +27,12 @@ namespace Shop.Infrastructure.Repository
             return  DbContext.Products.Where(p=>p.ProductId==id).FirstOrDefault();
         }
 
-        public List<Product> ByCatergory(ProductType category,string filter, int? pageNumber,int ProductsPerPage)
+        public List<Product> ByCatergory(
+                            ProductType category,
+                            string filter, 
+                            int? pageNumber,
+                            int productsPerPage
+        )
         {
             if (!string.IsNullOrWhiteSpace(filter))
             {
@@ -37,13 +42,13 @@ namespace Shop.Infrastructure.Repository
                         if (pageNumber!=null && pageNumber>1) {
                             return DbContext.Products
                                .Where(p => p.Type == category)
-                               .Skip(ProductsPerPage * ((int)pageNumber - 1)).Take(ProductsPerPage)
+                               .Skip(productsPerPage * ((int)pageNumber - 1)).Take(productsPerPage)
                                .OrderByDescending(p => p.Price)
                                .ToList();
                         }
                         return DbContext.Products
                             .Where(p => p.Type == category)
-                            .Take(ProductsPerPage)
+                            .Take(productsPerPage)
                             .OrderByDescending(p=>p.Price)
                             .ToList();
                     default:
@@ -54,12 +59,12 @@ namespace Shop.Infrastructure.Repository
             if (pageNumber != null && pageNumber > 1)
             {
                 return DbContext.Products.Where(p => p.Type == category)
-                   .Skip(ProductsPerPage * ((int)pageNumber - 1)).Take(ProductsPerPage)
+                   .Skip(productsPerPage * ((int)pageNumber - 1)).Take(productsPerPage)
                    .ToList();
             }
 
             return DbContext.Products.Where(p=>p.Type==category)
-                .Take(ProductsPerPage)
+                .Take(productsPerPage)
                 .ToList();
         }
 

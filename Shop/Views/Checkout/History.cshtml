@@ -1,0 +1,72 @@
+﻿@model List<Shop.Core.Models.Checkout>
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-sections">
+    <table class="table nav-padding">
+        <thead>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Product</th>
+                <th scope="col">Category</th>
+                <th scope="col">Size</th>
+                <th scope="col">Price</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Discount</th>
+                <th scope="col">Product SubTotal</th>
+                <th scope="col">Product Total</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count < 1)
+            {
+                <tr>
+                    <td class="text-center" colspan="9">You have not purchased items yet</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var checkout in Model)
+                {
+                    @foreach (var cartItem in checkout.Cart.CartItems)
+                    {
+                            <tr>
+                                <td><img class="cart-product-image" src="@cartItem.Product.ImgUrl" /></td>
+                                <td><a id="cart-product-link" asp-controller="product" asp-action="Details" asp-route-id="@cartItem.Product.ProductId">@cartItem.Product.Title</a></td>
+                                <td>@cartItem.Product.Type.ToString()</td>
+                                <td>@cartItem.Size</td>
+                                <td>Rs.@cartItem.Product.Price</td>
+                                <td>@cartItem.Qty</td>
+                                <td>Rs.@cartItem.GetDiscount()</td>
+                                <td>Rs.@cartItem.GetSubTotal()</td>
+                                <td>Rs.@cartItem.GetTotal()</td>
+                                <td>@checkout.Date.ToString("MM/dd/yyyy")</td>
+                            </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+    <nav id="category-page-pagination">
+        <ul class="pagination">
+            @for (int i = 1; i <= ViewBag.CheckoutCounts; i++)
+            {
+                @if (ViewBag.PageNumber != null && ViewBag.PageNumber == i)
+                {
+                    <li class="page-item active"><a class="page-link" asp-route-pageNumber="@i" asp-action="History">@i</a></li>
+                }
+                else if (ViewBag.PageNumber == null && i == 1)
+                {
+                    <li class="page-item active"><a class="page-link" asp-route-pageNumber="@i" asp-action="History">@i</a></li>
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" asp-route-pageNumber="@i" asp-action="History">@i</a></li>
+                }
+            }
+        </ul>
+    </nav>
+</div>

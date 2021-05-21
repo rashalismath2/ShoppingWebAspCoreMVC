@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Shop.Core.Models;
 using Shop.Core.Repository.RepositoryInterfaces;
 using Shop.Services.Interfaces;
+using System;
 using System.Threading.Tasks;
 
 namespace Shop.Controllers
@@ -12,31 +13,31 @@ namespace Shop.Controllers
     {
         private readonly IUserRepository _userRepository;
 
-        public ICartRepository CartRepository { get; }
-        public ICheckoutRepository CheckoutRepository { get; }
-        public ICartService CartService { get; }
-        public IAuthService AuthService { get; }
+        private ICartRepository _cartRepository { get; }
+        private ICheckoutRepository _checkoutRepository { get; }
+        private ICartService _cartService { get; }
+        private IAuthService _authService { get; }
 
         public CheckoutController(
-                ICartRepository CartRepository,
-                ICheckoutRepository CheckoutRepository,
-                ICartService CartService,
-                IAuthService AuthService,
+                ICartRepository cartRepository,
+                ICheckoutRepository checkoutRepository,
+                ICartService cartService,
+                IAuthService authService,
                 IUserRepository userRepository
             )
         {
-            this.CartRepository = CartRepository;
-            this.CheckoutRepository = CheckoutRepository;
-            this.CartService = CartService;
-            this.AuthService = AuthService;
+            this._cartRepository = cartRepository;
+            this._checkoutRepository = checkoutRepository;
+            this._cartService = cartService;
+            this._authService = authService;
             this._userRepository = userRepository;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            string cartId = CartService.GetCartIdFromSession();
-            Cart cart = await CartRepository.GetCart(cartId);
+            string cartId = _cartService.GetCartIdFromSession();
+            Cart cart = await _cartRepository.GetCart(cartId);
 
             var emptyCartValue = 1;
 
@@ -46,7 +47,7 @@ namespace Shop.Controllers
                 return RedirectToRoute(new { controller = "Home", action = "Index" });
             }
 
-            User user = await AuthService.GetAuthUser();
+            User user = await _authService.GetAuthUser();
 
             Checkout checkout = new Checkout()
             {
@@ -65,8 +66,8 @@ namespace Shop.Controllers
         public async Task<IActionResult> Index(Checkout checkout)
         {
 
-            string cartIdFromSession = CartService.GetCartIdFromSession();
-            Cart cart = await CartRepository.GetCart(cartIdFromSession);
+            string cartIdFromSession = _cartService.GetCartIdFromSession();
+            Cart cart = await _cartRepository.GetCart(cartIdFromSession);
 
             if (ModelState.IsValid)
             {
@@ -74,13 +75,14 @@ namespace Shop.Controllers
                 var authUser= await _userRepository.GetUserByEmail(HttpContext.User.Identity.Name);
                 checkout.UserId = authUser.UserId;
 
-                await CheckoutRepository.Create(checkout);
+                checkout.Date = DateTime.Now;
+                await _checkoutRepository.Create(checkout);
 
-                cart = CartService.ProcessCart(cart);
+                cart = _cartService.ProcessCart(cart);
 
-                await CartRepository.Update(cart);
+                await _cartRepository.Update(cart);
 
-                CartService.ClearCartFromSession();
+                _cartService.ClearCartFromSession();
 
                 TempData["SuccessMessage"] = "Checkout complete";
 
@@ -91,6 +93,19 @@ namespace Shop.Controllers
             checkout.Cart = cart;
 
             return View(checkout);
+        }
+
+        public async Task<IActionResult> History(int? pageNumber) {
+
+            ViewBag.PageNumber = pageNumber;
+            var totalCheckoutResultCount = await _checkoutRepository.CheckoutLength();
+            var resultsPerPage = ICheckoutService.ResultsPerPage;
+            var checkoutPagesCount = (int)Math.Ceiling((double)(totalCheckoutResultCount / resultsPerPage));
+            ViewBag.CheckoutCounts = checkoutPagesCount;
+
+            var authUser = await _userRepository.GetUserByEmail(HttpContext.User.Identity.Name);
+            var checkouts = await _checkoutRepository.RetrieveResultForPage(authUser.UserId,pageNumber,resultsPerPage);
+            return View(checkouts);
         }
     }
 }

@@ -59,6 +59,7 @@ namespace Shop.API.Controllers
             checkout.UserId = authUser.UserId;
 
             //TODO- ACID. Cart and Checkout saved seprately
+            checkout.Date = DateTime.Now;
             await CheckoutRepository.Create(checkout);
 
             cart = CartService.ProcessCart(cart);

@@ -84,6 +84,7 @@ namespace Shop
             {
                 app.UseExceptionHandler("Home/Error/");
             }
+            app.UseHttpsRedirection();
 
             app.Use(async (context, next) =>
             {
@@ -98,7 +99,6 @@ namespace Shop
             app.UseCors("CorsPolicy");
             app.UseStaticFiles();
 
-            app.UseHttpsRedirection();
             app.UseRouting();
 
             app.UseSession();
