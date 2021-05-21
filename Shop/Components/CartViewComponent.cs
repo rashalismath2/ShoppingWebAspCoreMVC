@@ -23,7 +23,7 @@ namespace Shop.Components
         public ICartService CartService { get; }
 
         public async Task<IViewComponentResult> InvokeAsync() {
-            string cartId = CartService.GetCartIdFromSession();
+            string cartId = CartService.GetCartId();
             Cart cart = await CartRepo.GetCart(cartId);
             cart.ProcessCart();
             return View(cart);

@@ -32,7 +32,7 @@ namespace Shop.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Index( ProductCartViewModel productCartViewModel)
         {
-            string cartId = CartService.GetCartIdFromSession();
+            string cartId = CartService.GetCartId();
             Cart newCart = await CartRepository.GetCart(cartId);
             productCartViewModel.CartItem.ProductId = productCartViewModel.Product.ProductId;
 

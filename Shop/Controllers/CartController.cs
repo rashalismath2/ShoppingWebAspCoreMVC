@@ -22,7 +22,7 @@ namespace Shop.Controllers
 
         public async Task<IActionResult> Index()
         {
-            string cartId = CartService.GetCartIdFromSession();
+            string cartId = CartService.GetCartId();
             Cart cart = await CartRepository.GetCart(cartId);
             cart.ProcessCart();
             return View(cart);

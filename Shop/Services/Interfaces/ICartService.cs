@@ -8,8 +8,8 @@ namespace Shop.Services.Interfaces
 {
     public interface ICartService
     {
-        string GetCartIdFromSession();
-        string ClearCartFromSession();
+        string GetCartId();
+        string ClearCart();
         Cart ProcessCart(Cart cart);
     }
 }

@@ -20,32 +20,50 @@ namespace Shop.Services
             this.ServiceProvider = serviceProvider;
             this.CartRepository = cartRepository;
         }
-        public string GetCartIdFromSession()
-        {
+        public string GetCartId()
+        { 
+            var httpContext = ServiceProvider.GetRequiredService<IHttpContextAccessor>()
+                                .HttpContext;
+            ISession session = httpContext.Session;
 
-            ISession session = ServiceProvider.GetRequiredService<IHttpContextAccessor>()
-                                .HttpContext
-                                .Session;
-
-            string cartId = session.GetString("cartId");
-
-            if (cartId == null)
+            var cartIdFromCookie = httpContext.Request.Cookies["cartId"];
+            string cartIdFromSession = session.GetString("cartId");
+            if (cartIdFromCookie == null && cartIdFromSession == null)
             {
-                cartId = Guid.NewGuid().ToString();
-                session.SetString("cartId", cartId);
+                cartIdFromSession = Guid.NewGuid().ToString();
+                session.SetString("cartId", cartIdFromSession);
+
+                CookieOptions option = new CookieOptions();
+
+                option.Expires = DateTime.Now.AddDays(10);
+                option.HttpOnly = true;
+
+                httpContext.Response.Cookies.Append("cartId", cartIdFromSession, option);
             }
 
-            return cartId;
+            if (cartIdFromCookie != null && cartIdFromSession == null)
+            {
+                cartIdFromSession = cartIdFromCookie;
+                session.SetString("cartId", cartIdFromSession);
+            }
+
+
+            return cartIdFromSession;
         }
-        public string ClearCartFromSession()
+        public string ClearCart()
         {
             ISession session = ServiceProvider.GetRequiredService<IHttpContextAccessor>().HttpContext.Session;
             string cartId = session.GetString("cartId");
             session.Remove("cartId");
+
+            var httpContext = ServiceProvider.GetRequiredService<IHttpContextAccessor>()
+                               .HttpContext;
+            httpContext.Response.Cookies.Delete("cartId");
+
             return cartId;
         }
 
-        public  Cart ProcessCart(Cart cart)
+        public Cart ProcessCart(Cart cart)
         {
             cart.Deleted = true;
             cart.ProcessCart();

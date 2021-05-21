@@ -49,7 +49,7 @@ namespace Shop.Controllers
 
         public IActionResult Details(int id)
         {
-            string cartId = CartService.GetCartIdFromSession();
+            string cartId = CartService.GetCartId();
             Product product = ProductsRepository.GetById(id);
             if (product == null)
             {
@@ -67,7 +67,7 @@ namespace Shop.Controllers
         [HttpPost]
         public async Task<IActionResult> AddToCart(ProductCartViewModel productCartViewModel)
         {
-            string cartId = CartService.GetCartIdFromSession();
+            string cartId = CartService.GetCartId();
             Cart newCart = await CartRepository.GetCart(cartId);
             productCartViewModel.CartItem.ProductId = productCartViewModel.Product.ProductId;
 

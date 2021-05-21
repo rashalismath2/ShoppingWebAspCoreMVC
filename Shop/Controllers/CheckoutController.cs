@@ -36,7 +36,7 @@ namespace Shop.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            string cartId = _cartService.GetCartIdFromSession();
+            string cartId = _cartService.GetCartId();
             Cart cart = await _cartRepository.GetCart(cartId);
 
             var emptyCartValue = 1;
@@ -66,7 +66,7 @@ namespace Shop.Controllers
         public async Task<IActionResult> Index(Checkout checkout)
         {
 
-            string cartIdFromSession = _cartService.GetCartIdFromSession();
+            string cartIdFromSession = _cartService.GetCartId();
             Cart cart = await _cartRepository.GetCart(cartIdFromSession);
 
             if (ModelState.IsValid)
@@ -82,7 +82,7 @@ namespace Shop.Controllers
 
                 await _cartRepository.Update(cart);
 
-                _cartService.ClearCartFromSession();
+                _cartService.ClearCart();
 
                 TempData["SuccessMessage"] = "Checkout complete";
 

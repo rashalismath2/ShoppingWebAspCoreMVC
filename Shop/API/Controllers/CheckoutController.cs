@@ -47,7 +47,7 @@ namespace Shop.API.Controllers
                 return new JsonResult(ModelState);
             }
 
-            string cartIdFromSession = CartService.GetCartIdFromSession();
+            string cartIdFromSession = CartService.GetCartId();
             Cart cart = await CartRepository.GetCart(cartIdFromSession);
 
             if (cart.CartItems.Count < 1)
@@ -66,7 +66,7 @@ namespace Shop.API.Controllers
 
             await CartRepository.Update(cart);
 
-            CartService.ClearCartFromSession();
+            CartService.ClearCart();
 
 
             return NoContent();
