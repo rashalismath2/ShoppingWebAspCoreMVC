@@ -33,9 +33,7 @@ namespace Shop.API.Controllers
                 {
                     return NoContent();
                 }
-
                 return NotFound();
-
             }
             catch (Exception)
             {

@@ -63,9 +63,6 @@
                 <textarea asp-for="Note" class="form-control" id="checkoutNote" rows="3"></textarea>
             </div>
 
-            <input asp-for="@Model.CartId" value="@Model.Cart.CartId" type="hidden" />
-            <input asp-for="@Model.UserId" value="@Model.User" type="hidden" />
-
             <div class="form-group d-flex justify-content-between">
                 <a class="btn btn-secondary" asp-controller="Cart" asp-action="Index"><i class="fas fa-long-arrow-alt-left mr-1"></i>Cart</a>
                 <button id="checkout-submit" type="submit" class="btn btn-primary">Checkout</button>

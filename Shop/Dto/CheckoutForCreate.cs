@@ -2,21 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Shop.Core.Models
+namespace Shop.Dto
 {
-    public class Checkout
+    public class CheckoutForCreate
     {
-        public int CheckoutId { get; set; }
-        public User User { get; set; }
-        [Required]
         public int UserId { get; set; }
-        [ForeignKey("CartId")]
-        public Cart Cart { get; set; }
-        [Required]
         public string CartId { get; set; }
         [Required, MinLength(4)]
         public string FullName { get; set; }
@@ -32,6 +25,5 @@ namespace Shop.Core.Models
         [Required]
         public PaymentMethod PaymentMethod { get; set; }
         public DateTime Date { get; set; }
-
     }
 }

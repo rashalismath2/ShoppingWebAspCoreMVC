@@ -1,7 +1,3 @@
-C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.csprojAssemblyReference.cache
-C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.AssemblyInfoInputs.cache
-C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.AssemblyInfo.cs
-C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.csproj.CoreCompileInputs.cache
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop.Infrastructure\bin\Debug\netcoreapp3.1\Shop.Infrastructure.deps.json
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop.Infrastructure\bin\Debug\netcoreapp3.1\Shop.Infrastructure.runtimeconfig.json
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop.Infrastructure\bin\Debug\netcoreapp3.1\Shop.Infrastructure.runtimeconfig.dev.json
@@ -9,6 +5,10 @@ C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Sho
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop.Infrastructure\bin\Debug\netcoreapp3.1\Shop.Infrastructure.pdb
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop.Infrastructure\bin\Debug\netcoreapp3.1\Shop.Core.dll
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop.Infrastructure\bin\Debug\netcoreapp3.1\Shop.Core.pdb
+C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.csprojAssemblyReference.cache
+C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.AssemblyInfo.cs
+C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.csproj.CoreCompileInputs.cache
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.csproj.CopyComplete
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.dll
 C:\Users\Inexis Dev\source\repos\ShoppingWebAspCoreMVC\ShoppingWebAspCoreMVC\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.pdb

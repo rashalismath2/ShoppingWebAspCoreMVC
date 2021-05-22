@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Core.Models;
 using Shop.Core.Repository.RepositoryInterfaces;
+using Shop.Dto;
 using Shop.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -18,56 +20,55 @@ namespace Shop.API.Controllers
     {
 
         private readonly IUserRepository _userRepository;
-        public ICartRepository CartRepository { get; }
-        public ICheckoutRepository CheckoutRepository { get; }
-        public ICartService CartService { get; }
-        public IAuthService AuthService { get; }
+        private readonly IMapper _mapper;
+        private readonly ICartRepository _cartRepository;
+        private readonly ICheckoutRepository _checkoutRepository;
+        private readonly ICartService _cartService;
+        private readonly IAuthService _authService;
 
         public CheckoutController(
-                ICartRepository CartRepository,
-                ICheckoutRepository CheckoutRepository,
-                ICartService CartService,
-                IAuthService AuthService,
-                IUserRepository userRepository
+                ICartRepository cartRepository,
+                ICheckoutRepository checkoutRepository,
+                ICartService cartService,
+                IAuthService authService,
+                IUserRepository userRepository,
+                IMapper mapper
             )
         {
-            this.CartRepository = CartRepository;
-            this.CheckoutRepository = CheckoutRepository;
-            this.CartService = CartService;
-            this.AuthService = AuthService;
+            this._cartRepository = cartRepository;
+            this._checkoutRepository = checkoutRepository;
+            this._cartService = cartService;
+            this._authService = authService;
             this._userRepository = userRepository;
+            this._mapper = mapper;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Checkout([FromBody]Checkout checkout)
+        public async Task<IActionResult> Checkout([FromBody] CheckoutForCreate checkoutForCreate)
         {
-
             if (!ModelState.IsValid)
             {
                 return new JsonResult(ModelState);
             }
 
-            string cartIdFromSession = CartService.GetCartId();
-            Cart cart = await CartRepository.GetCart(cartIdFromSession);
-
-            if (cart.CartItems.Count < 1)
-            {
-                return BadRequest(new {errors="Cart items cant be zero" });
-            }
+            string cartId = _cartService.GetCartId();
+            Cart cart = await _cartRepository.GetCart(cartId);
+            if (cart.CartItems.Count < 1) return BadRequest(new { errors = "Cart items cant be zero" });
+            checkoutForCreate.CartId = cart.CartId;
 
             var authUser = await _userRepository.GetUserByEmail(HttpContext.User.Identity.Name);
-            checkout.UserId = authUser.UserId;
+            checkoutForCreate.UserId = authUser.UserId;
 
-            //TODO- ACID. Cart and Checkout saved seprately
-            checkout.Date = DateTime.Now;
-            await CheckoutRepository.Create(checkout);
+            checkoutForCreate.Date = DateTime.Now;
 
-            cart = CartService.ProcessCart(cart);
+            var checkout = _mapper.Map<Checkout>(checkoutForCreate);
 
-            await CartRepository.Update(cart);
+            cart = _cartService.ProcessCart(cart);
 
-            CartService.ClearCart();
+            await _checkoutRepository.Create(checkout);
+            await _cartRepository.Update(cart);
 
+            _cartService.ClearCart();
 
             return NoContent();
         }

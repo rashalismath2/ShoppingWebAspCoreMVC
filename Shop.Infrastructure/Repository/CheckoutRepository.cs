@@ -24,8 +24,8 @@ namespace Shop.Infrastructure.Repository
 
         public async Task<Checkout> Create(Checkout checkout)
         {
-            await DbContext.AddAsync(checkout);
-            DbContext.SaveChanges();
+            DbContext.Add(checkout);
+            await DbContext.SaveChangesAsync();
             return checkout;
         }
 

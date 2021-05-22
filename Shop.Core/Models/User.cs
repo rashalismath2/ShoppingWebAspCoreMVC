@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.Core.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,6 +9,10 @@ namespace Shop.Core.Models
 {
     public class User
     {
+        public User()
+        {
+            Checkouts = new List<Checkout>();
+        }
         public int UserId { get; set; }
         [Required,MinLength(3)]
         public string FirstName { get; set; }
@@ -19,33 +24,12 @@ namespace Shop.Core.Models
         public string Address { get; set; }
         [Required, MinLength(10)]
         public string ContactNumber { get; set; }
-        public List<Checkout> Checkouts { get; set; }
         [Required, MinLength(4)]
         public string Password { get; set; }
+        public List<Checkout> Checkouts { get; set; }
         public string FullName
         {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(LastName))
-                {
-                    if (string.IsNullOrWhiteSpace(FirstName) && string.IsNullOrWhiteSpace(LastName))
-                    {
-                        return "";
-                    }
-                    if (string.IsNullOrWhiteSpace(LastName))
-                    {
-                        return FirstName.Trim();
-                    }
-                    if (string.IsNullOrWhiteSpace(FirstName))
-                    {
-                        return LastName.Trim();
-                    }
-                }
-
-                return FirstName.Trim() + " " + LastName.Trim();
-            }
-
-
+            get{ return StringManipulation.GetFullName(FirstName, LastName); }
         }
 
     }

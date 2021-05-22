@@ -39,6 +39,7 @@ namespace Shop
                 builder.WithOrigins("https://localhost:44352/");
             }));
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddDbContext<AppDbContext>(options =>
             {
@@ -64,7 +65,7 @@ namespace Shop
                 options.Cookie.IsEssential = true;
                 options.IdleTimeout = TimeSpan.FromDays(1);
             });
-
+            
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {

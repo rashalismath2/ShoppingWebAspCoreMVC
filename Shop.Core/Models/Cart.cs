@@ -10,13 +10,13 @@ namespace Shop.Core.Models
     public class Cart
     {
         public string CartId { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdateAt { get; set; }
-        public List<CartItem> CartItems { get; set; }
         public float Total { get; private set; }
         public float SubTotal { get; private set; }
         public float Discount { get; private set; }
-        public bool Deleted { get;  set; }
+        public bool processed { get;  set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdateAt { get; set; }
+        public List<CartItem> CartItems { get; set; }
         public Cart()
         {
             CartItems = new List<CartItem>();

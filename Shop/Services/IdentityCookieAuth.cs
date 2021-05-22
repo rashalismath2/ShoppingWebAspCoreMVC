@@ -48,7 +48,7 @@ namespace Shop.Services
             {
                 new Claim(ClaimTypes.Name, email),
                 new Claim(ClaimTypes.Email, email),
-                new Claim(ClaimTypes.Role, "User"),
+                new Claim(ClaimTypes.Role, "User")
             };
 
             var claimsIdentity = new ClaimsIdentity(
