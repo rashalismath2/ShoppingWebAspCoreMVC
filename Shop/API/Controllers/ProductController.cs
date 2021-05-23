@@ -22,7 +22,7 @@ namespace Shop.API.Controllers
         public ProductController(
             ICartRepository cartRepository,
             ICartService cartService
-           )
+        )
         {
             _cartRepository = cartRepository;
             _cartService = cartService;
@@ -35,12 +35,12 @@ namespace Shop.API.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             productCartViewModel.CartItem.ProductId = productCartViewModel.Product.ProductId;
-            string cartId = _cartService.GetCartId();
+         
             Cart newCart = null;
             try
             {
+                string cartId = _cartService.GetCartId();
                 newCart = await _cartRepository.GetCart(cartId);
             }
             catch (Exception)
@@ -48,11 +48,11 @@ namespace Shop.API.Controllers
                 return new JsonResult(new { errors = "Something went wrong! Try again" });
             }
 
-            List<CartItem> cartItems = newCart.CartItems
+            List<CartItem> sameProductInCartItems = newCart.CartItems
                 .Where(ci => ci.Product.ProductId == productCartViewModel.Product.ProductId)
                 .ToList();
 
-            if (_cartService.AllowedQtyExceeds(cartItems, productCartViewModel))
+            if (_cartService.AllowedQtyExceeds(sameProductInCartItems, productCartViewModel))
             {
                 return StatusCode(400, new
                 {
@@ -61,7 +61,7 @@ namespace Shop.API.Controllers
                 });
             }
 
-            newCart = _cartService.AddItemToTheCart(cartItems, newCart, productCartViewModel);
+            newCart = _cartService.AddItemToTheCart(sameProductInCartItems, newCart, productCartViewModel);
 
             try
             {
@@ -70,7 +70,7 @@ namespace Shop.API.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(400, new
+                return StatusCode(500, new
                 {
                     error = @"Error in adding item to the  cart"
                 });

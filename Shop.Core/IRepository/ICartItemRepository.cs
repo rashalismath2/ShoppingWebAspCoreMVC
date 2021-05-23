@@ -8,6 +8,6 @@ namespace Shop.Core.Repository.RepositoryInterfaces
 {
     public interface ICartItemRepository
     {
-       Task<CartItem> DeleteById(int id);
+        Task<CartItem> DeleteById(int id);
     }
 }

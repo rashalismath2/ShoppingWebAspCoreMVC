@@ -1,4 +1,5 @@
-﻿using Shop.Core.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Shop.Core.Models;
 using Shop.Core.Models.Enums;
 using Shop.Core.Repository.RepositoryInterfaces;
 using System;
@@ -10,26 +11,25 @@ namespace Shop.Infrastructure.Repository
 {
     public class ProductRepository : IProductRepository
     {
+        private readonly AppDbContext _dbContext;
         public ProductRepository(AppDbContext dbContext)
         {
-            DbContext = dbContext;
+            _dbContext = dbContext;
         }
 
-        public AppDbContext DbContext { get; }
-
-        public List<Product> NewProducts()
+        public async Task<List<Product>> NewProducts()
         {
-            return DbContext.Products.OrderBy(p=>p.CreatedDate).Take(4).ToList();
+            return await _dbContext.Products.OrderBy(p => p.CreatedDate).Take(4).ToListAsync();
         }
 
-        public Product GetById(int id) {
-
-            return  DbContext.Products.Where(p=>p.ProductId==id).FirstOrDefault();
+        public async Task<Product> GetById(int id)
+        {
+            return await _dbContext.Products.Where(p => p.ProductId == id).FirstOrDefaultAsync();
         }
 
-        public List<Product> ByCatergory(
+        public async Task<List<Product>> ByCatergory(
                             ProductType category,
-                            string filter, 
+                            string filter,
                             int? pageNumber,
                             int productsPerPage
         )
@@ -39,18 +39,19 @@ namespace Shop.Infrastructure.Repository
                 switch (filter)
                 {
                     case "high-t-low":
-                        if (pageNumber!=null && pageNumber>1) {
-                            return DbContext.Products
+                        if (pageNumber != null && pageNumber > 1)
+                        {
+                            return await _dbContext.Products
                                .Where(p => p.Type == category)
                                .Skip(productsPerPage * ((int)pageNumber - 1)).Take(productsPerPage)
                                .OrderByDescending(p => p.Price)
-                               .ToList();
+                               .ToListAsync();
                         }
-                        return DbContext.Products
+                        return await _dbContext.Products
                             .Where(p => p.Type == category)
                             .Take(productsPerPage)
-                            .OrderByDescending(p=>p.Price)
-                            .ToList();
+                            .OrderByDescending(p => p.Price)
+                            .ToListAsync();
                     default:
                         break;
                 }
@@ -58,19 +59,19 @@ namespace Shop.Infrastructure.Repository
 
             if (pageNumber != null && pageNumber > 1)
             {
-                return DbContext.Products.Where(p => p.Type == category)
+                return await _dbContext.Products.Where(p => p.Type == category)
                    .Skip(productsPerPage * ((int)pageNumber - 1)).Take(productsPerPage)
-                   .ToList();
+                   .ToListAsync();
             }
 
-            return DbContext.Products.Where(p=>p.Type==category)
+            return await _dbContext.Products.Where(p => p.Type == category)
                 .Take(productsPerPage)
-                .ToList();
+                .ToListAsync();
         }
 
         public int ProductByCategoryLength(ProductType category)
         {
-            return DbContext.Products.Where(p => p.Type == category).Count();
+            return _dbContext.Products.Where(p => p.Type == category).Count();
         }
     }
 }

@@ -10,29 +10,28 @@ namespace Shop.Infrastructure.Repository
 {
     public class CartRepository : ICartRepository
     {
+        private readonly AppDbContext _dbContext;
         public CartRepository(AppDbContext dbContext)
         {
-            this.DbContext = dbContext;
+            _dbContext = dbContext;
         }
-
-        public AppDbContext DbContext { get; }
 
         public Cart Create(Cart cart)
         {
-            DbContext.Carts.Add(cart);
-            DbContext.SaveChanges();
+            _dbContext.Carts.Add(cart);
+            _dbContext.SaveChanges();
             return cart;
         }
         public async Task<Cart> Update(Cart cart)
         {
-            DbContext.Carts.Update(cart);
-            await DbContext.SaveChangesAsync();
+            _dbContext.Carts.Update(cart);
+            await _dbContext.SaveChangesAsync();
             return cart;
         }
 
         public async Task<Cart> GetCart(string cartId)
         {
-            Cart cart = await DbContext.Carts
+            Cart cart = await _dbContext.Carts
                 .Include(c => c.CartItems)
                 .ThenInclude(ci => ci.Product)
                 .FirstOrDefaultAsync(c => c.CartId == cartId);

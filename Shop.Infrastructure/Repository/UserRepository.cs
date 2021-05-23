@@ -10,21 +10,20 @@ namespace Shop.Infrastructure.Repository
 {
     public class UserRepository : IUserRepository
     {
+        private readonly AppDbContext _dbContext;
         public UserRepository(AppDbContext dbContext)
         {
-            this.DbContext = dbContext;
+            _dbContext = dbContext;
         }
-
-        public AppDbContext DbContext { get; }
 
         public async Task<User> GetUserByEmail(string email)
         {
-            return await DbContext.Users.Where(user => user.Email == email).FirstOrDefaultAsync();
+            return await _dbContext.Users.Where(user => user.Email == email).FirstOrDefaultAsync();
         }
 
         public async Task<User> GetUserById(int userId)
         {
-            return await DbContext.Users.FindAsync(userId); 
+            return await _dbContext.Users.FindAsync(userId); 
         }
     }
 }

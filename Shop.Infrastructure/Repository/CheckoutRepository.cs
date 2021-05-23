@@ -10,22 +10,21 @@ namespace Shop.Infrastructure.Repository
 {
     public class CheckoutRepository : ICheckoutRepository
     {
+        private readonly AppDbContext _dbContext;
         public CheckoutRepository(AppDbContext dbContext)
         {
-            this.DbContext = dbContext;
+            _dbContext = dbContext;
         }
-
-        public AppDbContext DbContext { get; }
 
         public async Task<int> CheckoutLength()
         {
-            return await DbContext.Checkouts.CountAsync() ;
+            return await _dbContext.Checkouts.CountAsync() ;
         }
 
         public async Task<Checkout> Create(Checkout checkout)
         {
-            DbContext.Add(checkout);
-            await DbContext.SaveChangesAsync();
+            _dbContext.Add(checkout);
+            await _dbContext.SaveChangesAsync();
             return checkout;
         }
 
@@ -33,24 +32,23 @@ namespace Shop.Infrastructure.Repository
 
             if (pageNumber != null && pageNumber > 1)
             {
-                return await DbContext.Checkouts.
+                return await _dbContext.Checkouts.
                      Where(checkout => checkout.UserId == userId)
-                     .Skip(resultsPerPage * ((int)pageNumber - 1)).Take(resultsPerPage)
+                     .Skip(resultsPerPage * ((int)pageNumber - 1))
+                     .Take(resultsPerPage)
                      .Include(checkout => checkout.Cart)
                      .ThenInclude(cart => cart.CartItems)
                      .ThenInclude(cartItem => cartItem.Product)
                      .ToListAsync();
             }
 
-            return await DbContext.Checkouts.
+            return await _dbContext.Checkouts.
                    Where(checkout => checkout.UserId == userId)
                     .Take(resultsPerPage)
                    .Include(checkout => checkout.Cart)
                    .ThenInclude(cart => cart.CartItems)
                    .ThenInclude(cartItem => cartItem.Product)
                    .ToListAsync();
-  
-
         }
     }
 }

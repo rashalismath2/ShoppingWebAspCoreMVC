@@ -9,30 +9,21 @@ namespace Shop.Infrastructure.Repository
 {
     public class CartItemRepository : ICartItemRepository
     {
+        private readonly AppDbContext _dbContext;
+
         public CartItemRepository(AppDbContext dbContext)
         {
-            this.DbContext = dbContext;
+            _dbContext = dbContext;
         }
-
-        public AppDbContext DbContext { get; }
 
         public async Task<CartItem> DeleteById(int id)
         {
-            CartItem cartItem=await DbContext.CartItems.FindAsync(id);
-            if (cartItem != null) {
-
-                DbContext.CartItems.Remove(cartItem);
-
-                try
-                {
-                    await DbContext.SaveChangesAsync();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+            CartItem cartItem = await _dbContext.CartItems.FindAsync(id);
+            if (cartItem != null)
+            {
+                _dbContext.CartItems.Remove(cartItem);
+                await _dbContext.SaveChangesAsync();
             }
-
             return cartItem;
         }
     }

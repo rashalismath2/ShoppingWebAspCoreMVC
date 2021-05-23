@@ -58,7 +58,6 @@ namespace Shop.API.Controllers
 
             var authUser = await _userRepository.GetUserByEmail(HttpContext.User.Identity.Name);
             checkoutForCreate.UserId = authUser.UserId;
-
             checkoutForCreate.Date = DateTime.Now;
 
             var checkout = _mapper.Map<Checkout>(checkoutForCreate);

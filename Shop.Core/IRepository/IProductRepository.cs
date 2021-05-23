@@ -9,9 +9,9 @@ namespace Shop.Core.Repository.RepositoryInterfaces
 {
     public interface IProductRepository
     {
-        List<Product> NewProducts();
-        Product GetById(int id);
-        List<Product> ByCatergory(ProductType category, string filter, int? pageNumber, int ProductsPerPage);
+        Task<List<Product>> NewProducts();
+        Task<Product> GetById(int id);
+        Task<List<Product>> ByCatergory(ProductType category, string filter, int? pageNumber, int ProductsPerPage);
 
         int ProductByCategoryLength(ProductType category);
     }

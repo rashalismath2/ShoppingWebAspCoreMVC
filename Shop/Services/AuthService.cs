@@ -12,44 +12,39 @@ namespace Shop.Core.Services
 {
     public class AuthService : IAuthService
     {
+        private readonly IServiceProvider _service;
+        private readonly ISession _session;
+        private readonly IUserRepository _userRepository;
 
         public AuthService(IServiceProvider service, IUserRepository userRepository)
         {
-            this.Service = service;
-            this.UserRepository = userRepository;
-
-            Session = service.GetRequiredService<IHttpContextAccessor>().HttpContext.Session;
+            this._service = service;
+            this._userRepository = userRepository;
+            _session = service.GetRequiredService<IHttpContextAccessor>().HttpContext.Session;
         }
-
-        public IServiceProvider Service { get; }
-        public ISession Session { get; }
-        public IUserRepository UserRepository { get; }
 
         public async Task<User> GetAuthUser()
         {
             User user = null;
-            if (Session.GetString("UserEmail") != null)
+            if (_session.GetString("UserEmail") != null)
             {
-                string email = Session.GetString("UserEmail");
-                user = await UserRepository.GetUserByEmail(email);
+                string email = _session.GetString("UserEmail");
+                user = await _userRepository.GetUserByEmail(email);
             }
-
             return user;
         }
 
         public Task<bool> Login(string email,bool rememberMe)
         {
             if (string.IsNullOrEmpty(email)) throw new ArgumentException("Email cant be empty!");
-
-            Session.SetString("UserEmail", email);
+            _session.SetString("UserEmail", email);
 
             return Task.FromResult(false);
         }
 
         public Task<bool> Logout()
         {
-            Session.Remove("UserEmail");
-
+            _session.Remove("UserEmail");
             return Task.FromResult(false);
         }
 
@@ -60,7 +55,7 @@ namespace Shop.Core.Services
 
             bool isVerfied = false;
 
-            User user =await UserRepository.GetUserByEmail(email);
+            User user =await _userRepository.GetUserByEmail(email);
 
             if (user == null)
             {

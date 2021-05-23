@@ -20,7 +20,6 @@ namespace Shop.Core.Models
         [Required]
         public string CartId { get; set; }
         public int Qty { get; set; }
-
         public float Total { get; private set; }
         public float SubTotal { get; private set; }
         public float Discount { get; private set; }

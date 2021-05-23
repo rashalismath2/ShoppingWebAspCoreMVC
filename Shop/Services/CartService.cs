@@ -13,53 +13,41 @@ namespace Shop.Services
 {
     public class CartService : ICartService
     {
-        public int QtyTotal { get; set; }
-        public IServiceProvider ServiceProvider { get; }
-        public ICartRepository CartRepository { get; }
 
+        private readonly IServiceProvider _serviceProvider;
+        private readonly ICartRepository _cartRepository;
+        public int QtyTotal { get;  set; }
         public CartService(IServiceProvider serviceProvider, ICartRepository cartRepository)
         {
-            this.ServiceProvider = serviceProvider;
-            this.CartRepository = cartRepository;
+            _serviceProvider = serviceProvider;
+            _cartRepository = cartRepository;
         }
         public string GetCartId()
         {
-            var httpContext = ServiceProvider.GetRequiredService<IHttpContextAccessor>()
+            var httpContext = _serviceProvider.GetRequiredService<IHttpContextAccessor>()
                                 .HttpContext;
-            ISession session = httpContext.Session;
 
             var cartIdFromCookie = httpContext.Request.Cookies["cartId"];
-            string cartIdFromSession = session.GetString("cartId");
-            if (cartIdFromCookie == null && cartIdFromSession == null)
-            {
-                cartIdFromSession = Guid.NewGuid().ToString();
-                session.SetString("cartId", cartIdFromSession);
 
+            if (cartIdFromCookie == null)
+            {
+                cartIdFromCookie = Guid.NewGuid().ToString();
                 CookieOptions option = new CookieOptions();
 
                 option.Expires = DateTime.Now.AddDays(10);
                 option.HttpOnly = true;
 
-                httpContext.Response.Cookies.Append("cartId", cartIdFromSession, option);
+                httpContext.Response.Cookies.Append("cartId", cartIdFromCookie, option);
             }
 
-            if (cartIdFromCookie != null && cartIdFromSession == null)
-            {
-                cartIdFromSession = cartIdFromCookie;
-                session.SetString("cartId", cartIdFromSession);
-            }
-
-
-            return cartIdFromSession;
+            return cartIdFromCookie;
         }
         public string ClearCart()
         {
-            ISession session = ServiceProvider.GetRequiredService<IHttpContextAccessor>().HttpContext.Session;
-            string cartId = session.GetString("cartId");
-            session.Remove("cartId");
+            var httpContext = _serviceProvider.GetRequiredService<IHttpContextAccessor>()
+                             .HttpContext;
 
-            var httpContext = ServiceProvider.GetRequiredService<IHttpContextAccessor>()
-                               .HttpContext;
+            string cartId = httpContext.Request.Cookies["cartId"];
             httpContext.Response.Cookies.Delete("cartId");
 
             return cartId;
@@ -88,8 +76,7 @@ namespace Shop.Services
             else return false;
 
         }
-
-        public Cart AddItemToTheCart(List<CartItem> cartItems, Cart newCart,ProductCartViewModel productCartViewModel)
+        public Cart AddItemToTheCart(List<CartItem> cartItems, Cart newCart, ProductCartViewModel productCartViewModel)
         {
             //if we have a product with same size in the cart items we just simply add two quentities
             bool foundProductWithSameSize = false;

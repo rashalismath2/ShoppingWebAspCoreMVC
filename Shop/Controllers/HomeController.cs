@@ -9,19 +9,18 @@ namespace Shop.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IProductRepository _productsRepository;
         public HomeController(IProductRepository products)
         {
-            Products = products;
+            _productsRepository = products;
         }
 
-        public IProductRepository Products { get; }
-
-        public IActionResult Index([FromQuery] string success)
+        public async Task<IActionResult> Index([FromQuery] string success)
         {
             if (success!=null) {
                 TempData["SuccessMessage"] = success;
             }
-            return View(Products.NewProducts());
+            return View(await _productsRepository.NewProducts());
         }
         public IActionResult Error()
         {

@@ -7,12 +7,6 @@ namespace Shop.Services.Interfaces
 {
     public interface IProductService
     {
-        public static int ProductsPerPage
-        {
-            get
-            {
-                return 10;
-            }
-        }
+        public static int ProductsPerPage = 10;
     }
 }

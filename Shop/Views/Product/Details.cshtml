@@ -22,7 +22,7 @@
         </ul>
         <form method="post" asp-action="AddToCart">
             <input type="hidden" asp-for="Product.ProductId" />
-            <input  type="hidden" asp-for="Product.Title" />
+            <input type="hidden" asp-for="Product.Title" />
             <input type="hidden" asp-for="CartItem.CartId" />
 
             <div class="product-details-sections">
@@ -68,8 +68,8 @@
                     Add to cart
                 </button>
 
-                 <p id="custom-success" class="text-success success-message"></p>
-                 <p id="custom-errors" class="text-danger error-message"></p>
+                <p id="custom-success" class="text-success success-message"></p>
+                <p id="custom-errors" class="text-danger error-message"></p>
 
             </div>
         </form>

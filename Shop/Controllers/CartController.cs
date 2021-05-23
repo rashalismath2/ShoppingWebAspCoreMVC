@@ -9,23 +9,32 @@ namespace Shop.Controllers
 {
     public class CartController : Controller
     {
-        public CartController(ICartRepository cartRepository, ICartItemRepository cartItempRepository, ICartService cartService)
-        {
-            this._cartRepository = cartRepository;
-            this._cartItempRepository = cartItempRepository;
-            this._cartService = cartService;
-        }
+        private readonly ICartRepository _cartRepository;
+        private readonly ICartService _cartService;
 
-        public ICartRepository _cartRepository { get; }
-        public ICartItemRepository _cartItempRepository { get; }
-        public ICartService _cartService { get; }
+        public CartController(
+            ICartRepository cartRepository,
+            ICartService cartService
+         )
+        {
+            _cartRepository = cartRepository;
+            _cartService = cartService;
+        }
 
         public async Task<IActionResult> Index()
         {
-            string cartId = _cartService.GetCartId();
-            Cart cart = await _cartRepository.GetCart(cartId);
-            cart.ProcessCart();
-            return View(cart);
+            try
+            {
+                string cartId = _cartService.GetCartId();
+                Cart cart = await _cartRepository.GetCart(cartId);
+                cart.ProcessCart();
+                return View(cart);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+           
         }
 
 

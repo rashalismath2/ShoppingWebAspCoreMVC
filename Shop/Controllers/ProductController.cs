@@ -14,61 +14,91 @@ namespace Shop.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly IProductService productService;
+        private readonly IProductService _productService;
+        private readonly IProductRepository _productsRepository;
+        private readonly ICartRepository _cartRepository;
+        private readonly ICartService _cartService;
 
-        public ProductController(IProductRepository products, ICartRepository cartRepository, ICartService cartService,IProductService productService)
+        public ProductController(
+            IProductRepository products,
+            ICartRepository cartRepository,
+            ICartService cartService,
+            IProductService productService
+         )
         {
-            ProductsRepository = products;
-            CartRepository = cartRepository;
-            this.CartService = cartService;
-            this.productService = productService;
+            _productsRepository = products;
+            _cartRepository = cartRepository;
+            _cartService = cartService;
+            _productService = productService;
         }
 
-        public IProductRepository ProductsRepository { get; }
-        public ICartRepository CartRepository { get; }
-        public ICartService CartService { get; }
-
-        public IActionResult Index()
-        {
-            return RedirectToRoute(new { controller = "Home", action = "Index" });
-        }
-        public IActionResult Category(ProductType category, string priceFilterByCat,int? pageNumber)
+        public async Task<IActionResult> Category(ProductType category, string priceFilterByCat, int? pageNumber)
         {
             ViewBag.PageNumber = pageNumber;
             ViewBag.ProductType = category;
-            ViewBag.ProductByCategoryListCount = (int)Math.Ceiling((double)ProductsRepository.ProductByCategoryLength(category) / IProductService.ProductsPerPage);
+            ViewBag.ProductByCategoryListCount = (int)Math.Ceiling((double)_productsRepository.ProductByCategoryLength(category) / IProductService.ProductsPerPage);
 
-            List<Product> products = ProductsRepository.ByCatergory(
-                                        category,priceFilterByCat, 
+            try
+            {
+                List<Product> products =await _productsRepository.ByCatergory(
+                                        category, priceFilterByCat,
                                         pageNumber,
                                         IProductService.ProductsPerPage
                                 );
-            
-            return View(products);
+
+                return View(products);
+            }
+            catch (Exception)
+            {
+                return RedirectToHomeOnExceptions("Something went wrong! Try again");
+            }
         }
 
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            string cartId = CartService.GetCartId();
-            Product product = ProductsRepository.GetById(id);
+            Product product = null;
+            string cartId = null;
+            try
+            {
+                cartId = _cartService.GetCartId();
+                product =await _productsRepository.GetById(id);
+            }
+            catch (Exception)
+            {
+                return RedirectToHomeOnExceptions("Something went wrong! Try again");
+            }
+
             if (product == null)
             {
                 TempData["CustomErrorTitle"] = "404";
                 TempData["CustomErrorMessage"] = "Product was not found";
-                return RedirectToRoute(new { controller="Home",action="Error"});
+                return RedirectToRoute(new { controller = "Home", action = "Error" });
             }
 
-            ProductCartViewModel productCartViewModel = new ProductCartViewModel();
-            productCartViewModel.Product = product;
-            productCartViewModel.CartItem=new CartItem() {CartId = cartId };
-     
+            ProductCartViewModel productCartViewModel = new ProductCartViewModel() {
+                Product = product,
+                CartItem = new CartItem() { CartId = cartId }
+            };
+
             return View(productCartViewModel);
         }
+
+        private IActionResult RedirectToHomeOnExceptions(string error)
+        {
+            TempData["ErrorMessage"] = error;
+            return RedirectToRoute(new { controller = "Home", action = "Index" });
+        }
+
+        /// <summary>
+        /// Delete this method. moved to the API
+        /// </summary>
+        /// <param name="productCartViewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> AddToCart(ProductCartViewModel productCartViewModel)
         {
-            string cartId = CartService.GetCartId();
-            Cart newCart = await CartRepository.GetCart(cartId);
+            string cartId = _cartService.GetCartId();
+            Cart newCart = await _cartRepository.GetCart(cartId);
             productCartViewModel.CartItem.ProductId = productCartViewModel.Product.ProductId;
 
             List<CartItem> cartItems = newCart.CartItems
@@ -83,7 +113,7 @@ namespace Shop.Controllers
 
             if (totalItemsToBeAdded > allowedItemsToBeAdded)
             {
-                TempData["ProductErrorMessage"] = @"You can only add 10 items per product. You have already added " 
+                TempData["ProductErrorMessage"] = @"You can only add 10 items per product. You have already added "
                                                      + qtyTotal + " items.";
 
                 return RedirectToAction("Details", new { id = productCartViewModel.Product.ProductId });
@@ -108,7 +138,7 @@ namespace Shop.Controllers
 
             try
             {
-                await CartRepository.Update(newCart);
+                await _cartRepository.Update(newCart);
 
                 TempData["ProductSuccessMessage"] = "Product was added to the cart";
 
@@ -117,9 +147,10 @@ namespace Shop.Controllers
             catch (Exception)
             {
                 TempData["ProductErrorMessage"] = "Product was unable to add to the cart";
-                return RedirectToAction("Details",new { id=productCartViewModel.Product.ProductId});
+                return RedirectToAction("Details", new { id = productCartViewModel.Product.ProductId });
             }
 
         }
+
     }
 }

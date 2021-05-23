@@ -12,11 +12,10 @@ namespace Shop.Controllers
     public class CheckoutController : Controller
     {
         private readonly IUserRepository _userRepository;
-
-        private ICartRepository _cartRepository { get; }
-        private ICheckoutRepository _checkoutRepository { get; }
-        private ICartService _cartService { get; }
-        private IAuthService _authService { get; }
+        private readonly ICartRepository _cartRepository;
+        private readonly ICheckoutRepository _checkoutRepository;
+        private readonly ICartService _cartService;
+        private readonly IAuthService _authService;
 
         public CheckoutController(
                 ICartRepository cartRepository,
@@ -37,17 +36,30 @@ namespace Shop.Controllers
         public async Task<IActionResult> Index()
         {
             string cartId = _cartService.GetCartId();
-            Cart cart = await _cartRepository.GetCart(cartId);
-
-            var emptyCartValue = 1;
-
-            if (cart.CartItems.Count < emptyCartValue)
+            Cart cart=null;
+            try
             {
-                TempData["ErrorMessage"] = "The cart is empty";
-                return RedirectToRoute(new { controller = "Home", action = "Index" });
+                cart = await _cartRepository.GetCart(cartId);
+            }
+            catch (Exception)
+            {
+                return this.RedirectToHomeOnExceptions("Something went wrong!");
             }
 
-            User user = await _authService.GetAuthUser();
+            if (cart.CartItems.Count < 1)
+            {
+                return this.RedirectToHomeOnExceptions("The cart is empty");
+            }
+
+            User user=null;
+            try
+            {
+                user = await _authService.GetAuthUser();
+            }
+            catch (Exception)
+            {
+                return this.RedirectToHomeOnExceptions("Something went wrong!");
+            }
 
             Checkout checkout = new Checkout()
             {
@@ -62,40 +74,9 @@ namespace Shop.Controllers
             return View(checkout);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Index(Checkout checkout)
+
+        public async Task<IActionResult> History(int? pageNumber)
         {
-
-            string cartIdFromSession = _cartService.GetCartId();
-            Cart cart = await _cartRepository.GetCart(cartIdFromSession);
-
-            if (ModelState.IsValid)
-            {
-                //TODO- ACID. Cart and Checkout saved seprately
-                var authUser= await _userRepository.GetUserByEmail(HttpContext.User.Identity.Name);
-                checkout.UserId = authUser.UserId;
-
-                checkout.Date = DateTime.Now;
-                await _checkoutRepository.Create(checkout);
-
-                cart = _cartService.ProcessCart(cart);
-
-                await _cartRepository.Update(cart);
-
-                _cartService.ClearCart();
-
-                TempData["SuccessMessage"] = "Checkout complete";
-
-                return RedirectToRoute(new { controller = "Home", action = "Index" });
-            }
-
-
-            checkout.Cart = cart;
-
-            return View(checkout);
-        }
-
-        public async Task<IActionResult> History(int? pageNumber) {
 
             ViewBag.PageNumber = pageNumber;
             var totalCheckoutResultCount = await _checkoutRepository.CheckoutLength();
@@ -104,8 +85,62 @@ namespace Shop.Controllers
             ViewBag.CheckoutCounts = checkoutPagesCount;
 
             var authUser = await _userRepository.GetUserByEmail(HttpContext.User.Identity.Name);
-            var checkouts = await _checkoutRepository.RetrieveResultForPage(authUser.UserId,pageNumber,resultsPerPage);
+            var checkouts = await _checkoutRepository.RetrieveResultForPage(authUser.UserId, pageNumber, resultsPerPage);
             return View(checkouts);
         }
+
+        private IActionResult RedirectToHomeOnExceptions(string error)
+        {
+            TempData["ErrorMessage"] = error;
+            return RedirectToRoute(new { controller = "Home", action = "Index" });
+        }
+
+        /// <summary>
+        /// Delete this method since we use the API controller
+        /// </summary>
+        /// <param name="checkout"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> Index(Checkout checkout)
+        {
+            Cart cart = null;
+            try
+            {
+                string cartId = _cartService.GetCartId();
+                cart = await _cartRepository.GetCart(cartId);
+            }
+            catch (Exception)
+            {
+                return this.RedirectToHomeOnExceptions("Something went wrong! Try again");
+            }
+
+            checkout.Cart = cart;
+            if (!ModelState.IsValid)
+            {
+                return View(checkout);
+            }
+
+            try
+            {
+                //TODO- ACID. Cart and Checkout saved seprately
+                var authUser = await _userRepository.GetUserByEmail(HttpContext.User.Identity.Name);
+                checkout.UserId = authUser.UserId;
+                checkout.Date = DateTime.Now;
+
+                await _checkoutRepository.Create(checkout);
+                cart = _cartService.ProcessCart(cart);
+                await _cartRepository.Update(cart);
+            }
+            catch (Exception)
+            {
+                return this.RedirectToHomeOnExceptions("Something went wrong! Try again");
+            }
+
+            _cartService.ClearCart();
+            TempData["SuccessMessage"] = "Checkout complete";
+
+            return RedirectToRoute(new { controller = "Home", action = "Index" });
+        }
+
     }
 }

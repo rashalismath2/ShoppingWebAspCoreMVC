@@ -15,23 +15,23 @@ namespace Shop.Services
 {
     public class IdentityCookieAuth : IAuthService
     {
+        private readonly IServiceProvider _service;
+        private readonly IUserRepository _userRepository;
+
         public IdentityCookieAuth(IServiceProvider service, IUserRepository userRepository)
         {
-            this.Service = service;
-            this.UserRepository = userRepository;
+            _service = service;
+            _userRepository = userRepository;
         }
-
-        public IServiceProvider Service { get; }
-        public IUserRepository UserRepository { get; }
 
         public async Task<User> GetAuthUser()
         {
-            string email = Service.GetRequiredService<IHttpContextAccessor>().HttpContext.User.Identity.Name;
+            string email = _service.GetRequiredService<IHttpContextAccessor>().HttpContext.User.Identity.Name;
             if (string.IsNullOrEmpty(email)) throw new ArgumentException("User was not found");
 
             try
             {
-                return await UserRepository.GetUserByEmail(email);
+                return await _userRepository.GetUserByEmail(email);
             }
             catch (Exception exception)
             {
@@ -61,7 +61,7 @@ namespace Shop.Services
 
             try
             {
-                await Service.GetRequiredService<IHttpContextAccessor>().HttpContext.SignInAsync(
+                await _service.GetRequiredService<IHttpContextAccessor>().HttpContext.SignInAsync(
                       CookieAuthenticationDefaults.AuthenticationScheme,
                       new ClaimsPrincipal(claimsIdentity),
                       authProperties
@@ -80,7 +80,7 @@ namespace Shop.Services
         {
             try
             {
-                await Service.GetRequiredService<IHttpContextAccessor>().HttpContext.SignOutAsync(
+                await _service.GetRequiredService<IHttpContextAccessor>().HttpContext.SignOutAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme);
 
                 return true;
@@ -98,7 +98,7 @@ namespace Shop.Services
 
             bool isVerfied = false;
 
-            User user = await UserRepository.GetUserByEmail(email);
+            User user = await _userRepository.GetUserByEmail(email);
 
             if (user == null)
             {

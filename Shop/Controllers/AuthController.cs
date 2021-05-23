@@ -10,14 +10,15 @@ namespace Shop.Controllers
 {
     public class AuthController : Controller
     {
+        private readonly IUserRepository _userRepository;
+        private readonly IAuthService _authService;
+
         public AuthController(IUserRepository userRepository, IAuthService authService)
         {
-            this.UserRepository = userRepository;
-            this.AuthService = authService;
+            _userRepository = userRepository;
+            _authService = authService;
         }
 
-        public IUserRepository UserRepository { get; }
-        public IAuthService AuthService { get; }
 
         [AllowAnonymous]
         public IActionResult Login([FromQuery] string ReturnUrl)
@@ -39,8 +40,8 @@ namespace Shop.Controllers
             {
                 try
                 {
-                    bool credentialsAreValid = await AuthService.CredentialsAreValid(login.Email, login.Password);
-                    bool loginIsSuccess = await AuthService.Login(login.Email, login.RememberMe);
+                    bool credentialsAreValid = await _authService.CredentialsAreValid(login.Email, login.Password);
+                    bool loginIsSuccess = await _authService.Login(login.Email, login.RememberMe);
 
                     if (credentialsAreValid && loginIsSuccess)
                     {
@@ -60,6 +61,7 @@ namespace Shop.Controllers
                 }
                 catch (Exception exception)
                 {
+                    //log the server exceptions
                     ModelState.AddModelError("Login", exception.Message);
                 }
             }
@@ -72,7 +74,7 @@ namespace Shop.Controllers
         public async Task<IActionResult> Logout()
         {
 
-            bool logoutSuccessful = await AuthService.Logout();
+            bool logoutSuccessful = await _authService.Logout();
 
             if (logoutSuccessful)
             {
