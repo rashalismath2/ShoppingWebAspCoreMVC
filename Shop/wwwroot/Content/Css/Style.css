@@ -485,3 +485,7 @@ footer .page-sections {
     #cart-product-link:hover {
         text-decoration: underline !important;
     }
+
+#whats-in-store a {
+    color: white !important;
+}
